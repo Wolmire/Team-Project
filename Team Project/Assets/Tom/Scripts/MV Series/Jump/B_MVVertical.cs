@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public abstract class MVVerticalBase : MonoBehaviour
+public abstract class B_MVVertical : MonoBehaviour
 {
     public virtual void Jump(float Force)
     {

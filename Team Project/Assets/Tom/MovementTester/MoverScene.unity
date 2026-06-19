@@ -546,6 +546,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1755294023}
+  - component: {fileID: 1755294024}
   m_Layer: 0
   m_Name: CameraTool
   m_TagString: Untagged
@@ -561,13 +562,27 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1755294022}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 1.155, z: 0}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 1.0634774, y: 1.1550003, z: -0.5149501}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 6120404160207531823}
+  m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1755294024
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1755294022}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 99cdc9752edd68f4eb9df4af2b2789fd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::CopyLocation
+  Target: {fileID: 953492046}
+  Offset: {x: 0, y: 1.6, z: 0}
 --- !u!1 &2145689394
 GameObject:
   m_ObjectHideFlags: 0
@@ -1143,10 +1158,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
-    m_AddedGameObjects:
-    - targetCorrespondingSourceObject: {fileID: -8679921383154817045, guid: 4c962b6057b79e04a8d08479d289aa3b, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 1755294023}
+    m_AddedGameObjects: []
     m_AddedComponents:
     - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 4c962b6057b79e04a8d08479d289aa3b, type: 3}
       insertIndex: -1
@@ -1272,7 +1284,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 834dc72c7d1092544a34fe39c2cd2163, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::MVMDefault
+  Locked: 0
   MVMDSpeed: 10
+  Camera: {fileID: 1755294022}
 --- !u!114 &6120404160207531822
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1286,11 +1300,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::MVMManager
   MVInput: {fileID: 6120404160207531819}
---- !u!4 &6120404160207531823 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: 4c962b6057b79e04a8d08479d289aa3b, type: 3}
-  m_PrefabInstance: {fileID: 1710370009112395806}
-  m_PrefabAsset: {fileID: 0}
+  Locked: 0
 --- !u!114 &6120404160207531824
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1303,11 +1313,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1397e0dbf79af9f49bbba21f7f7b10eb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::MVLDefault
+  Locked: 0
   Camera: {fileID: 1755294022}
   NegativeXLimit: -20
   PositiveXlimit: 50
-  XSensitivity: 0.02
-  YSensitivity: 0.1
+  XSensitivity: 4
+  YSensitivity: 4
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0
@@ -1315,5 +1326,6 @@ SceneRoots:
   - {fileID: 961739753}
   - {fileID: 203844589}
   - {fileID: 2145689398}
+  - {fileID: 1755294023}
   - {fileID: 1710370009112395806}
   - {fileID: 632579999}

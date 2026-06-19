@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class MVLDefault : MVLook
+public class MVLDefault : B_MVLook
 {
     //public float Sensitivity;
     float xRotation;
@@ -14,14 +14,35 @@ public class MVLDefault : MVLook
     [Header("Sensitivity")]
     public float XSensitivity = 1;
     public float YSensitivity = 1;
+
     public override void RotationManager(Vector2 LookInput)
     {
         xRotation -= LookInput.y * XSensitivity;
         yRotation += LookInput.x * YSensitivity;
         xRotation = Mathf.Clamp(xRotation, NegativeXLimit, PositiveXlimit);
+        
+        if(Locked)
+        {
+            transform.rotation = Quaternion.Euler(0, yRotation, 0);
+            Camera.transform.rotation = Quaternion.Euler(xRotation, yRotation, 0);
 
-        transform.rotation = Quaternion.Euler(0, yRotation, 0);
-        Camera.transform.rotation = Quaternion.Euler(xRotation, yRotation, 0);
+
+        }
+        else
+        {
+            //transform.rotation = Quaternion.Euler(xRotation, yRotation, 0);
+            Camera.transform.rotation = Quaternion.Euler(xRotation, yRotation,0);
+
+        }
+    }
+
+    public override void PlayerManager(Vector3 PlayerVelocity)
+    {
+        if(!Locked)
+        {
+            transform.rotation = Quaternion.LookRotation(PlayerVelocity, Vector3.up);
+           // Camera.transform.rotation = Quaternion.Euler(xRotation, yRotation, 0);
+        }
     }
     public override void ChangeLookMode()
     {

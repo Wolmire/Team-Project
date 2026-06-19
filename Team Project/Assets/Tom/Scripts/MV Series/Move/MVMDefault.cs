@@ -1,11 +1,14 @@
 using UnityEngine;
 
-public class MVMDefault : MVMoveBase
+public class MVMDefault : B_MVMove
 {
     public float MVMDSpeed = 1.0f;
     Vector3 RawMovementDirection;
     Vector3 RefinedMovementDirection;
     CharacterController MVMController;
+
+    public GameObject Camera;
+
     private void Awake()
     {
         MVMController = GetComponent<CharacterController>();
@@ -15,7 +18,16 @@ public class MVMDefault : MVMoveBase
     {
         RawMovementDirection = new Vector3(Direction.x, 0, Direction.y);
 
-        RefinedMovementDirection = transform.TransformDirection(RawMovementDirection);
+        if (Locked)
+        {
+
+            RefinedMovementDirection = transform.TransformDirection(RawMovementDirection);
+        }
+        else
+        {
+            RefinedMovementDirection = Camera.transform.TransformDirection(RawMovementDirection);
+        }
         MVMController.Move(RefinedMovementDirection * MVMDSpeed * Time.deltaTime);
+
     }
 }

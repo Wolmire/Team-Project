@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class MVVDefault : MVVerticalBase
+public class MVVDefault : B_MVVertical
 {
 
     Vector3 GravityPull;
