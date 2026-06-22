@@ -78,5 +78,7 @@ public class MVMManager : MonoBehaviour
         {
             MVVJump.Jump(10);
         }
+
+      //  MVInput.actions["Jump".]
     }
 }
