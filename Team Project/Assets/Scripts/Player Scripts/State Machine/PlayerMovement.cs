@@ -3,7 +3,8 @@ using UnityEngine;
 public class PlayerMovement : MonoBehaviour
 {
     public CharacterController MController;
-    public float Speed = 1.0f;
+    public float WalkSpeed = 1.0f;
+    public float RunSpeed = 2.0f;
     float DefaultHeight;
     public float CrouchHeight = 1.2f;
     [HideInInspector] public Vector3 RawMovementDirection;
@@ -12,7 +13,6 @@ public class PlayerMovement : MonoBehaviour
     public void Awake()
     {
         DefaultHeight = MController.height;
-        Time.timeScale = .1f;
     }
     public void Move(Vector2 Direction, bool Locked, GameObject camera)
     {

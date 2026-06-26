@@ -519,7 +519,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::AIOMovement
   MController: {fileID: 1067426571}
-  Speed: 1
+  WalkSpeed: 1
+  RunSpeed: 2
   CrouchHeight: 1.2
   RawMovementDirection: {x: 0, y: 0, z: 0}
   RefinedMovementDirection: {x: 0, y: 0, z: 0}
@@ -675,7 +676,19 @@ MonoBehaviour:
     m_ActionId: e906f8a7-0f6f-46e3-a483-412d30b24997
     m_ActionName: 'Player/Reload[/Keyboard/r]'
   - m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1067426575}
+        m_TargetAssemblyTypeName: PlayerInput, Assembly-CSharp
+        m_MethodName: ReadSprintInput
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
     m_ActionId: f56d42c9-2667-410b-b55f-bdfbc02d232d
     m_ActionName: 'Player/Sprint[/Keyboard/shift]'
   - m_PersistentCalls:
