@@ -518,7 +518,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 039af38522d2d8b4a8927cf8cc364240, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::AIOMovement
+  MController: {fileID: 1067426571}
   Speed: 1
+  CrouchHeight: 1.2
   RawMovementDirection: {x: 0, y: 0, z: 0}
   RefinedMovementDirection: {x: 0, y: 0, z: 0}
 --- !u!114 &1067426568
@@ -720,6 +722,22 @@ MonoBehaviour:
       m_Calls: []
     m_ActionId: 4c45041d-9fd1-42af-b027-9c6e546b044b
     m_ActionName: UI/TrackedDeviceOrientation
+  - m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 1067426575}
+        m_TargetAssemblyTypeName: PlayerInput, Assembly-CSharp
+        m_MethodName: ReadCrouchInput
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_ActionId: 4155b087-c2b8-4f10-91c3-85542d1277f9
+    m_ActionName: 'Player/Crouch[/Keyboard/leftCtrl]'
   m_NeverAutoSwitchControlSchemes: 0
   m_DefaultControlScheme: 
   m_DefaultActionMap: Player

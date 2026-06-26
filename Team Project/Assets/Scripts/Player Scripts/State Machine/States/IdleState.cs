@@ -10,6 +10,8 @@ public class IdleState : PlayerState
     public override void Tick()
     {
         if(input.MoveInput.sqrMagnitude > 0.01f) playerStateMachine.SwitchState(new WalkState(core, movement, input, camera, playerStateMachine));
+        if(input.Crouch) playerStateMachine.SwitchState(new CrouchState(core, movement, input, camera, playerStateMachine));
+
         camera.RotationManager(input.LookInput);
         camera.PlayerRotManager(movement.RefinedMovementDirection);
     }
