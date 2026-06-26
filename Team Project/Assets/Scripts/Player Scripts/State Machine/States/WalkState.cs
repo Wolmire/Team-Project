@@ -10,9 +10,10 @@ public class WalkState : PlayerState
     public override void Tick()
     {
         if (input.MoveInput.sqrMagnitude < 0.01f) playerStateMachine.SwitchState(new IdleState(core, movement, input, camera, playerStateMachine));
+        if (input.Sprint) playerStateMachine.SwitchState(new RunState(core, movement, input, camera, playerStateMachine));
 
         movement.Move(input.MoveInput, camera.Locked, camera.Camera);
-        core.MController.Move(movement.RefinedMovementDirection.normalized * movement.Speed * Time.deltaTime);
+        core.MController.Move(movement.RefinedMovementDirection.normalized * movement.WalkSpeed * Time.deltaTime);
 
         camera.RotationManager(input.LookInput);
         camera.PlayerRotManager(movement.RefinedMovementDirection);

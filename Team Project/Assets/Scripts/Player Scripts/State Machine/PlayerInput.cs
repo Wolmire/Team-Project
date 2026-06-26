@@ -38,31 +38,34 @@ public class PlayerInput : MonoBehaviour
         }
         else
         {
-            if (context.started)
-            {
+           if (context.started)
+           {
                 IsCrouchInputPressed = true;
                 Crouch = true;
-            }
-            if (context.canceled)
-            {
-                IsCrouchInputPressed = false;
-                Crouch = false;
-            }
+           }
+           if (context.canceled)
+           {
+               IsCrouchInputPressed = false;
+               Crouch = false;
+           }
         }
     }
-    public void ReadSprintInput(InputAction.CallbackContext context)
-    {
-        if (context.started)
-        {
-            IsSprintInputPressed = true;
-            Sprint = true;
-        }
-        if (context.canceled)
-        {
-            IsSprintInputPressed = false;
-            Sprint = false;
-        }
-    }
+    public void ReadSprintInput(InputAction.CallbackContext context) =>  Sprint = context.ReadValueAsButton();
+
+    //{
+      //  Sprint = context.ReadValueAsButton();
+
+        //if (context.started)
+        //{
+        //    IsSprintInputPressed = true;
+        //    Sprint = true;
+        //}
+        //if (context.canceled)
+        //{
+        //    IsSprintInputPressed = false;
+        //    Sprint = false;
+        //}
+    //}
     public void ReadJumpInput(InputAction.CallbackContext context)
     {
         if (context.started)
