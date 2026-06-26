@@ -2,7 +2,8 @@ using UnityEngine;
 
 public class PlayerMovement : MonoBehaviour
 {
-    public float Speed = 1.0f;
+    public float WalkSpeed = 1.0f;
+    public float RunSpeed = 1.4f;
     [HideInInspector] public Vector3 RawMovementDirection;
     [HideInInspector] public Vector3 RefinedMovementDirection;   
 

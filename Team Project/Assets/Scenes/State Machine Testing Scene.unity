@@ -518,7 +518,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 039af38522d2d8b4a8927cf8cc364240, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::AIOMovement
-  Speed: 1
+  WalkSpeed: 1
+  RunSpeed: 1.4
   RawMovementDirection: {x: 0, y: 0, z: 0}
   RefinedMovementDirection: {x: 0, y: 0, z: 0}
 --- !u!114 &1067426568
@@ -673,7 +674,19 @@ MonoBehaviour:
     m_ActionId: e906f8a7-0f6f-46e3-a483-412d30b24997
     m_ActionName: 'Player/Reload[/Keyboard/r]'
   - m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1067426575}
+        m_TargetAssemblyTypeName: PlayerInput, Assembly-CSharp
+        m_MethodName: ReadSprintInput
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
     m_ActionId: f56d42c9-2667-410b-b55f-bdfbc02d232d
     m_ActionName: 'Player/Sprint[/Keyboard/shift]'
   - m_PersistentCalls:
@@ -796,11 +809,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 050f0dc137016b14c8da412b240c09bd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PlayerCamera
-  Camera: {fileID: 961739749}
+  Camera: {fileID: 8169019434347281278}
   XSensitivity: 1
   YSensitivity: 1
-  NegativeXLimit: 0
-  PositiveXlimit: 0
+  NegativeXLimit: -40
+  PositiveXlimit: 40
   Locked: 0
 --- !u!1 &1156814481
 GameObject:
@@ -1000,7 +1013,6 @@ Transform:
   m_Children:
   - {fileID: 1067426574}
   - {fileID: 7966806468800371362}
-  - {fileID: 3586638948831670036}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1948721471
@@ -2769,7 +2781,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 1930571674}
+  m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &3647178039400188024
 GameObject:
@@ -4807,3 +4819,4 @@ SceneRoots:
   - {fileID: 1859065479}
   - {fileID: 113934690}
   - {fileID: 1930571674}
+  - {fileID: 3586638948831670036}
