@@ -52,6 +52,7 @@ public class PlayerInput : MonoBehaviour
     }
     public void ReadSprintInput(InputAction.CallbackContext context) =>  Sprint = context.ReadValueAsButton();
 
+   // public void ReadCameraLockInput(InputAction.CallbackContext context) => ToggleLock = context.ReadValueAsButton();
     //{
       //  Sprint = context.ReadValueAsButton();
 

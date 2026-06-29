@@ -6,6 +6,10 @@ public class RunState : PlayerState
     public RunState(PlayerCore core, PlayerMovement movement, PlayerInput input, PlayerCamera camera, PlayerStateMachine sm) : base(core, movement, input, camera, sm)
     {
     }
+    public override void Enter()
+    {
+        movement.AnimationTriggerer("Running");
+    }
     public override void Tick()
     {
         if (!input.Sprint) playerStateMachine.SwitchState(new WalkState(core, movement, input, camera, playerStateMachine));

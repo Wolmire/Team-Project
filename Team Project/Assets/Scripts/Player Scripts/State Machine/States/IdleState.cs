@@ -6,6 +6,7 @@ public class IdleState : PlayerState
     public override void Enter()
     {
         Debug.Log("Entered" + playerStateMachine.CurrentState);
+        movement.AnimationTriggerer("Idling");
     }
     public override void Tick()
     {

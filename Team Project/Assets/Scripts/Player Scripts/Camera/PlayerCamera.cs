@@ -17,6 +17,7 @@ public class PlayerCamera : MonoBehaviour
 
     float xRotation;
     float yRotation;
+
     public void RotationManager(Vector2 LookInput)
     {
         xRotation -= LookInput.y * XSensitivity;
@@ -37,8 +38,11 @@ public class PlayerCamera : MonoBehaviour
     {
         if (!Locked)
         {
+            if(PlayerVelocity.magnitude > 0.1f)
+            { 
             Vector3 RefinedPlayerVelocity = new Vector3(PlayerVelocity.x, 0, PlayerVelocity.z);
             transform.rotation = Quaternion.LookRotation(RefinedPlayerVelocity, Vector3.up);
+            }
         }
     }
 }
