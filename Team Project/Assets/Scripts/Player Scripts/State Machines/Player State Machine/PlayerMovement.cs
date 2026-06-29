@@ -3,17 +3,21 @@ using UnityEngine;
 
 public class PlayerMovement : MonoBehaviour
 {
+    public CharacterController MController;
     public float WalkSpeed = 1.0f;
-    public float RunSpeed = 1.4f;
     public float SmoothSpeed = 10f;
+    public float RunSpeed = 2.0f;
+    float DefaultHeight;
+    public float CrouchHeight = 1.2f;
     [HideInInspector] public Vector3 RawMovementDirection;
     [HideInInspector] public Vector3 RefinedMovementDirection;
     [HideInInspector] public Vector3 AnimatorDirection;
 
      public Animator PlayerAnimator;
-
-    private void Start()
+     
+    public void Awake()
     {
+        DefaultHeight = MController.height;
         PlayerAnimator = GetComponent<Animator>();
     }
     public void Move(Vector2 Direction, bool Locked, GameObject camera)
@@ -56,4 +60,15 @@ public class PlayerMovement : MonoBehaviour
         Debug.Log("Jumped");
     }
 
+    public void Crouch()
+    {
+        MController.height = CrouchHeight;
+        MController.center = new Vector3(0, CrouchHeight / 2, 0);
+    }
+
+    public void UnCrouch()
+    {
+        MController.center = new Vector3(0, DefaultHeight / 2, 0);
+        MController.height = DefaultHeight;
+    }
 }
