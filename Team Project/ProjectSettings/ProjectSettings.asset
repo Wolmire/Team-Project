@@ -828,6 +828,7 @@ PlayerSettings:
   webWasm2023: 0
   webEnableSubmoduleStrippingCompatibility: 0
   scriptingDefineSymbols:
+<<<<<<< Updated upstream
     Android: DOTWEEN
     EmbeddedLinux: DOTWEEN
     GameCoreScarlett: DOTWEEN
@@ -846,6 +847,9 @@ PlayerSettings:
     XboxOne: DOTWEEN
     iPhone: DOTWEEN
     tvOS: DOTWEEN
+=======
+    Standalone: ALTERUNA;ALTERUNA_V_2_X_X_X;ALTERUNA_V_2_0_X_X;ALTERUNA_V_2_0_2_X;ALTERUNA_V_2_0_2_9
+>>>>>>> Stashed changes
   additionalCompilerArguments: {}
   platformArchitecture: {}
   scriptingBackend:

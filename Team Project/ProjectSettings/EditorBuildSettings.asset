@@ -9,7 +9,12 @@ EditorBuildSettings:
     path: Assets/Scenes/SampleScene.unity
     guid: 99c9720ab356a0642a771bea13969a05
   - enabled: 1
+<<<<<<< Updated upstream
     path: Assets/Tom/TomScene.unity
     guid: 62d9e4badeb1a0c47a97b361dce34424
+=======
+    path: Assets/NGO_Minimal_Setup/NGO_Setup.unity
+    guid: 6a92186a7afbd594594599b57634e4e4
+>>>>>>> Stashed changes
   m_configObjects:
     com.unity.input.settings.actions: {fileID: -944628639613478452, guid: 10a70292d847915449e5d2be1789fade, type: 3}
