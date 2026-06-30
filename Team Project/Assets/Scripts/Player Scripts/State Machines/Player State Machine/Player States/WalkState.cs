@@ -6,7 +6,7 @@ public class WalkState : PlayerState
     public override void Enter()
     {
         Debug.Log("Entered" + playerStateMachine.CurrentState);
-        movement.AnimationTriggerer("Walking");
+        //movement.AnimationTriggerer("Walking");
     }
     public override void Tick()
     {

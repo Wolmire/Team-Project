@@ -8,7 +8,7 @@ public class IdleState : PlayerState
         Debug.Log("Entered" + playerStateMachine.CurrentState);
         weaponCore.CanQueueAttack = true;
         weaponCore.CanAttack = true;
-        movement.AnimationTriggerer("Idle");
+        //movement.AnimationTriggerer("Idle");
     }
     public override void Tick()
     {
