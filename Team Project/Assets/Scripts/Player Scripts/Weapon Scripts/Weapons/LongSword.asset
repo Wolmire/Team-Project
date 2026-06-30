@@ -12,11 +12,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3de0f362656bbd7ac8bfaebe6fff3288, type: 3}
   m_Name: LongSword
   m_EditorClassIdentifier: Assembly-CSharp::WeaponData
+  weaponName: Standard Long Sword
   weaponType: 1
+  weaponIcon: {fileID: 0}
   AttackDamageModifier: 1
   AttackSpeedModifier: 1
   lightAttacks:
   - {fileID: 11400000, guid: dce5facb6f88addd69dff6eae6371f59, type: 2}
   - {fileID: 11400000, guid: dce5facb6f88addd69dff6eae6371f59, type: 2}
-  heavyAttacks: []
+  heavyAttacks:
+  - {fileID: 11400000, guid: 5f8019d4eab195a169e3565503d4377d, type: 2}
   specialAttacks: []

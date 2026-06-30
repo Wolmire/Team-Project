@@ -24,7 +24,8 @@ public class WeaponAttackState : WeaponState
             if(weaponCore.QueuedAttacks.Count > 0 && weaponCore.CanAttack)
             {
                 WeaponStateMachine.SwitchState(new WeaponAttackState(input, weaponCore, WeaponStateMachine, playerStateMachine));
-                if(weaponCore.previousAttack.attackType == weaponCore.currentAttack.attackType && weaponCore.positionInAttackCombo < weaponCore.currentWeapon.lightAttacks.Length - 1 )
+
+                if(weaponCore.previousAttack.attackType == weaponCore.currentAttack.attackType && weaponCore.positionInAttackCombo < weaponCore.currentWeapon.lightAttacks.Length - 1)
                 {
                     weaponCore.positionInAttackCombo++;
                 }

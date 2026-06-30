@@ -5,17 +5,15 @@ public abstract class PlayerState
     protected PlayerStateMachine playerStateMachine;
     protected PlayerInput input;
     protected PlayerCamera camera;
-    protected WeaponStateMachine weaponStateMachine;
     protected WeaponCore weaponCore;
 
-    public PlayerState(PlayerCore playerCore, PlayerMovement movement, PlayerInput input, PlayerCamera camera, PlayerStateMachine psm, WeaponStateMachine wsm, WeaponCore weaponCore)
+    public PlayerState(PlayerCore playerCore, PlayerMovement movement, PlayerInput input, PlayerCamera camera, PlayerStateMachine psm, WeaponCore weaponCore)
     {
         this.playerCore = playerCore;
         this.movement = movement;
         this.input = input;
         this.playerStateMachine = psm;
         this.camera = camera;
-        this.weaponStateMachine = wsm;
         this.weaponCore = weaponCore;
     }
 

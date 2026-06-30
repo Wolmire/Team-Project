@@ -11,7 +11,6 @@ public class WeaponAttack : ScriptableObject
     {
         Debug.Log(this.name + " attacked for " + baseDamage + " damage.");
     }
-
 }
 public enum AttackType
 {
