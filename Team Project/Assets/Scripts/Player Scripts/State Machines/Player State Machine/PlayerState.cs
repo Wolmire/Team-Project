@@ -17,6 +17,7 @@ public abstract class PlayerState
         this.weaponCore = weaponCore;
     }
 
+
     public virtual void Enter() { }
     public virtual void Tick() { }
     public virtual void FixedTick() { }

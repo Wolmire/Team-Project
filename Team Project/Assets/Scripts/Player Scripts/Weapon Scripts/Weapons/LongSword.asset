@@ -19,7 +19,8 @@ MonoBehaviour:
   AttackSpeedModifier: 1
   lightAttacks:
   - {fileID: 11400000, guid: dce5facb6f88addd69dff6eae6371f59, type: 2}
-  - {fileID: 11400000, guid: dce5facb6f88addd69dff6eae6371f59, type: 2}
+  - {fileID: 11400000, guid: 272a0a1512e799b4fa73dc504851f097, type: 2}
+  - {fileID: 11400000, guid: c9ebc282c9935524cb0af5cc28ac17df, type: 2}
   heavyAttacks:
   - {fileID: 11400000, guid: 5f8019d4eab195a169e3565503d4377d, type: 2}
   specialAttacks: []

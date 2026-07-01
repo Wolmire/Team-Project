@@ -34,6 +34,7 @@ public class PlayerCore : MonoBehaviour
     {
         Gravity();
         staminaText.text = currentStamina.ToString("F0") + " / " + maxStamina.ToString();
+        if(currentStamina > maxStamina) currentStamina = maxStamina;
     }
     public void ToggleBool(ref bool boolToToggle)
     {

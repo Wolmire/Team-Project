@@ -6,7 +6,7 @@ using UnityEngine.UI;
 public class WeaponData : ScriptableObject
 {
     public string weaponName;
-    public WeaponType weaponType;    
+    public WeaponType weaponType;
     public Image weaponIcon;
     public float AttackDamageModifier;
     public float AttackSpeedModifier;
