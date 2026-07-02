@@ -12,7 +12,7 @@ public class CrouchState : PlayerState
 
     public override void Tick()
     {
-        if (!input.Crouch)
+        if (!input.Crouch && movement.CheckifCanUncrouch())
         {
             playerStateMachine.SwitchState(new IdleState(playerCore, movement, input, camera, playerStateMachine, weaponCore));
             movement.UnCrouch();

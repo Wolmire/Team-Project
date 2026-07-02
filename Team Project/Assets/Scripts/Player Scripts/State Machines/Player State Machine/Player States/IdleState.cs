@@ -14,13 +14,15 @@ public class IdleState : PlayerState
 
         if (input.Crouch) playerStateMachine.SwitchState(new CrouchState(playerCore, movement, input, camera, playerStateMachine, weaponCore));
 
-        if (playerCore.currentStamina < playerCore.maxStamina)
-        {
-            playerCore.currentStamina += playerCore.staminaRegenRate * playerCore.staminaRegenRateMuliplier * playerCore.idleStaminaRegenMultiplier * Time.deltaTime;
-        }
+        if(!movement.isGrounded()) playerStateMachine.SwitchState(new FallState(playerCore, movement, input, camera, playerStateMachine, weaponCore));
+
+        if (input.JumpPressed()) playerStateMachine.SwitchState(new JumpState(playerCore, movement, input, camera, playerStateMachine, weaponCore));
+
+        if (playerCore.currentStamina < playerCore.maxStamina) playerCore.currentStamina += playerCore.staminaRegenRate * playerCore.staminaRegenRateMuliplier * playerCore.idleStaminaRegenMultiplier * Time.deltaTime;
 
         camera.RotationManager(input.LookInput);
         camera.PlayerRotManager(movement.RefinedMovementDirection);
+        movement.ApplyMovement(0);
 
         HandleAttackInput();
     }
@@ -42,5 +44,9 @@ public class IdleState : PlayerState
         weaponCore.currentChainAttackType = type;
         weaponCore.QueueAttack(firstAttack, type, 0);
         playerStateMachine.SwitchState(new AttackState(playerCore, movement, input, camera, playerStateMachine, weaponCore));
+    }
+    public override void Exit()
+    {
+        movement.AirSpeedMultiplier = 0.5f;
     }
 }

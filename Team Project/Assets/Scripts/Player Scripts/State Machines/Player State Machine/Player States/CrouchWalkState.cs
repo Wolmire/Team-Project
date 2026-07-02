@@ -15,18 +15,18 @@ public class CrouchWalkState : PlayerState
         if (input.MoveInput.sqrMagnitude < 0.01f) playerStateMachine.SwitchState(new CrouchState(playerCore, movement, input, camera, playerStateMachine, weaponCore));
 
         movement.Move(input.MoveInput, camera.Locked, camera.Camera);
-        playerCore.MController.Move(movement.RefinedMovementDirection.normalized * movement.MovementSpeed * movement.CrouchSpeedMultiplier * Time.deltaTime);
+        movement.MController.Move(movement.RefinedMovementDirection.normalized * movement.MovementSpeed * movement.CrouchSpeedMultiplier * Time.deltaTime);
 
         camera.RotationManager(input.LookInput);
         camera.PlayerRotManager(movement.RefinedMovementDirection);
 
-        if (input.Sprint && playerCore.currentStamina > playerCore.runMinStamina) 
+        if (input.Sprint && playerCore.currentStamina > playerCore.runMinStamina && movement.CheckifCanUncrouch()) 
         {
             playerStateMachine.SwitchState(new RunState(playerCore, movement, input, camera, playerStateMachine, weaponCore));
             movement.UnCrouch();
         }
 
-        if (!input.Crouch)
+        if (!input.Crouch && movement.CheckifCanUncrouch())
         {
             playerStateMachine.SwitchState(new WalkState(playerCore, movement, input, camera, playerStateMachine, weaponCore));
             movement.UnCrouch();

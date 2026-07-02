@@ -20,14 +20,15 @@ public class AttackState : PlayerState
 
     public override void Tick()
     {
-        if (!weaponCore.attackFinished) return;
+        if (weaponCore.attackFinished)
+        {
+            if (input.MoveInput.sqrMagnitude > 0.01f) playerStateMachine.SwitchState(new WalkState(playerCore, movement, input, camera, playerStateMachine, weaponCore));
 
-        if (input.MoveInput.sqrMagnitude > 0.01f) playerStateMachine.SwitchState(new WalkState(playerCore, movement, input, camera, playerStateMachine, weaponCore));
-
-        else playerStateMachine.SwitchState(new IdleState(playerCore, movement, input, camera, playerStateMachine, weaponCore));
+            else playerStateMachine.SwitchState(new IdleState(playerCore, movement, input, camera, playerStateMachine, weaponCore));
+        }
 
         camera.RotationManager(input.LookInput);
-        camera.PlayerRotManager(movement.RefinedMovementDirection / 2); //expiremental, allow for rotating during attack at half speed, might try and find a way to only allow rotation during the start up frames of the attack
+        //camera.PlayerRotManager(movement.RefinedMovementDirection / 2); //expiremental, allow for rotating during attack at half speed, might try and find a way to only allow rotation during the start up frames of the attack
 
         HandleAttackInput(); //made this a seperate method, makes it easier to copy paste into other states, and is clean
     }

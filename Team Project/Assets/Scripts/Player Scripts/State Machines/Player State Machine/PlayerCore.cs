@@ -4,12 +4,7 @@ using UnityEngine;
 
 public class PlayerCore : MonoBehaviour
 {
-    [HideInInspector] public CharacterController MController;
-
     [HideInInspector] public bool waitComplete = false;
-
-    Vector3 GravityPull;
-    public float GravityStrength;
 
     public float maxStamina = 100f;
     public float staminaRegenRate = 10f;
@@ -26,14 +21,10 @@ public class PlayerCore : MonoBehaviour
     public bool isCrouching = false;
 
     public TextMeshProUGUI staminaText;
-    void Start()
-    {
-        MController = GetComponent<CharacterController>();
-    }
+
     public void Update()
     {
-        Gravity();
-        staminaText.text = currentStamina.ToString("F0") + " / " + maxStamina.ToString();
+        if (staminaText != null) staminaText.text = currentStamina.ToString("F0") + " / " + maxStamina.ToString();
         if(currentStamina > maxStamina) currentStamina = maxStamina;
     }
     public void ToggleBool(ref bool boolToToggle)
@@ -53,10 +44,8 @@ public class PlayerCore : MonoBehaviour
         waitComplete = true;
     }
 
-    public void Gravity()
-    {
-        GravityPull.y = -GravityStrength;
-        MController.Move(GravityPull * Time.deltaTime);
-    }
+
+
+
 }
  
