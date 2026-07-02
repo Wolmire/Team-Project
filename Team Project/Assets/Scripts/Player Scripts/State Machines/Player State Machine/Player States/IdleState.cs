@@ -7,7 +7,6 @@ public class IdleState : PlayerState
     {
         Debug.Log("Entered" + playerStateMachine.CurrentState);
         //movement.AnimationTriggerer("Idle"); 
-
     }
     public override void Tick()
     {
@@ -27,14 +26,14 @@ public class IdleState : PlayerState
     }
     private void HandleAttackInput()
     {
-        if (input.LightAttackPressed()) StartAttackChain(attackChainType.Light, weaponCore.CurrentWeaponData.lightAttacks);
+        if (input.LightAttackPressed()) InitiateAttack(attackChainType.Light, weaponCore.CurrentWeaponData.lightAttacks);
 
-        if (input.HeavyAttackPressed()) StartAttackChain(attackChainType.Heavy, weaponCore.CurrentWeaponData.heavyAttacks);
+        if (input.HeavyAttackPressed()) InitiateAttack(attackChainType.Heavy, weaponCore.CurrentWeaponData.heavyAttacks);
 
-        if (input.SpecialAttackPressed()) StartAttackChain(attackChainType.Special, weaponCore.CurrentWeaponData.specialAttacks);
+        if (input.SpecialAttackPressed()) InitiateAttack(attackChainType.Special, weaponCore.CurrentWeaponData.specialAttacks);
     }
 
-    private void StartAttackChain(attackChainType type, WeaponAttack[] list)
+    private void InitiateAttack(attackChainType type, WeaponAttack[] list) //basically checks if player has enough stamina and there is a valid attack to initiate
     {
         if (list == null || list.Length == 0) return;
         WeaponAttack firstAttack = list[0];
@@ -43,6 +42,5 @@ public class IdleState : PlayerState
         weaponCore.currentChainAttackType = type;
         weaponCore.QueueAttack(firstAttack, type, 0);
         playerStateMachine.SwitchState(new AttackState(playerCore, movement, input, camera, playerStateMachine, weaponCore));
-
     }
 }
