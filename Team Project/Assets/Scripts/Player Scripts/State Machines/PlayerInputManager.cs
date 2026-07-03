@@ -18,6 +18,9 @@ public class PlayerInputManager : MonoBehaviour
 
     private bool toggleTargetLock;
 
+    private bool primary;
+    private bool secondary;
+
     public bool ToggleCrouch;
 
     public string DeviceType;
@@ -76,6 +79,20 @@ public class PlayerInputManager : MonoBehaviour
     {
         if (!toggleTargetLock) return false;
         toggleTargetLock = false;
+        return true;
+    }
+    public void ReadPrimaryInput(InputAction.CallbackContext context) { if (context.started) primary = true; }
+    public bool PrimaryInputPressed()
+    {
+        if (!primary) return false;
+        primary = false;
+        return true;
+    }
+    public void ReadSecondaryInput(InputAction.CallbackContext context) { if (context.started) secondary = true; }
+    public bool SecondaryInputPressed()
+    {
+        if (!secondary) return false;
+        secondary = false;
         return true;
     }
 }

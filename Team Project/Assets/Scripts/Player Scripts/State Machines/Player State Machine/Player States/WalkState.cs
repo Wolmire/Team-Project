@@ -2,7 +2,7 @@ using UnityEngine;
 
 public class WalkState : PlayerState
 {
-    public WalkState(PlayerCore playerCore, PlayerMovement movement, PlayerInputManager input, PlayerStateMachine psm, WeaponCore weaponCore, TargetLockHandler targetLock) : base(playerCore, movement, input, psm, weaponCore, targetLock) { }
+    public WalkState(PlayerCore playerCore, PlayerMovement movement, PlayerInputManager input, PlayerStateMachine psm, WeaponCore weaponCore, TargetLockHandler targetLock, EquipManager equipManager) : base(playerCore, movement, input, psm, weaponCore, targetLock, equipManager) { }
     public override void Enter()
     {
         Debug.Log("Entered" + playerStateMachine.CurrentState);
@@ -10,19 +10,31 @@ public class WalkState : PlayerState
     }
     public override void Tick()
     {
-        if (input.MoveInput.sqrMagnitude < 0.01f) playerStateMachine.SwitchState(new IdleState(playerCore, movement, input, playerStateMachine, weaponCore, targetLock));
-        if (input.Sprint && playerCore.currentStamina > playerCore.runMinStamina) playerStateMachine.SwitchState(new RunState(playerCore, movement, input, playerStateMachine, weaponCore, targetLock));
-        if (input.Crouch) playerStateMachine.SwitchState(new CrouchWalkState(playerCore, movement, input, playerStateMachine, weaponCore, targetLock));
-        if (!movement.isGrounded()) playerStateMachine.SwitchState(new FallState(playerCore, movement, input, playerStateMachine, weaponCore, targetLock));
+        if (input.MoveInput.sqrMagnitude < 0.01f) playerStateMachine.SwitchState(new IdleState(playerCore, movement, input, playerStateMachine, weaponCore, targetLock, equipManager));
+        if (input.Sprint && playerCore.currentStamina > playerCore.runMinStamina) playerStateMachine.SwitchState(new RunState(playerCore, movement, input, playerStateMachine, weaponCore, targetLock, equipManager));
+        if (input.Crouch) playerStateMachine.SwitchState(new CrouchWalkState(playerCore, movement, input, playerStateMachine, weaponCore, targetLock, equipManager));
+        if (!movement.isGrounded()) playerStateMachine.SwitchState(new FallState(playerCore, movement, input, playerStateMachine, weaponCore, targetLock, equipManager));
         if (input.JumpPressed())
         {
-            playerStateMachine.SwitchState(new JumpState(playerCore, movement, input, playerStateMachine, weaponCore, targetLock));
+            playerStateMachine.SwitchState(new JumpState(playerCore, movement, input, playerStateMachine, weaponCore, targetLock, equipManager));
         }
 
         movement.Move(input.MoveInput, targetLock.activeTarget, targetLock.GetActiveCamera(), targetLock.currentTarget);
         movement.ApplyMovement(movement.WalkSpeedMultiplier);
 
         if(playerCore.currentStamina < playerCore.maxStamina) playerCore.currentStamina += (playerCore.staminaRegenRate * playerCore.walkStaminaRegenMultiplier * playerCore.staminaRegenRateMuliplier * Time.deltaTime);
+
+        if (input.PrimaryInputPressed() && equipManager.CurrentWeapon != equipManager.WeaponSlot1)
+        {
+            equipManager.Equip(equipManager.WeaponSlot1, equipManager.RSlot);
+            weaponCore.CurrentWeaponData = equipManager.CurrentWeapon.WeaponData;
+        }
+        if (input.SecondaryInputPressed() && equipManager.CurrentWeapon != equipManager.WeaponSlot2)
+        {
+            equipManager.Equip(equipManager.WeaponSlot2, equipManager.RSlot);
+            weaponCore.CurrentWeaponData = equipManager.CurrentWeapon.WeaponData;
+        }
+
         HandleAttackInput();
     }
     private void HandleAttackInput()
@@ -42,7 +54,7 @@ public class WalkState : PlayerState
         weaponCore.attackChainIndex = 0;
         weaponCore.currentChainAttackType = type;
         weaponCore.QueueAttack(firstAttack, type, 0);
-        playerStateMachine.SwitchState(new AttackState(playerCore, movement, input, playerStateMachine, weaponCore, targetLock));
+        playerStateMachine.SwitchState(new AttackState(playerCore, movement, input, playerStateMachine, weaponCore, targetLock, equipManager));
     }
 
     public override void Exit()

@@ -1,0 +1,23 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3de0f362656bbd7ac8bfaebe6fff3288, type: 3}
+  m_Name: ShortSword
+  m_EditorClassIdentifier: Assembly-CSharp::WeaponData
+  weaponName: who cares
+  weaponType: 0
+  weaponIcon: {fileID: 0}
+  AttackDamageModifier: 1
+  AttackSpeedModifier: 1
+  lightAttacks: []
+  heavyAttacks: []
+  specialAttacks: []
+  WeaponModel: {fileID: 0}

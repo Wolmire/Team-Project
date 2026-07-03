@@ -7,9 +7,10 @@ public class StatesInitializer : MonoBehaviour
     public PlayerMovement movement;
     public PlayerInputManager input;
     public TargetLockHandler targetLock;
+    public EquipManager equipManager;
 
     private void Start()
     {
-        playerStateMachine.SwitchState(new IdleState(playerCore, movement, input, playerStateMachine, weaponCore, targetLock));
+        playerStateMachine.SwitchState(new IdleState(playerCore, movement, input, playerStateMachine, weaponCore, targetLock, equipManager));
     }
 }

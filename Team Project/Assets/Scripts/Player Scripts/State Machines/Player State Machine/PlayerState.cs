@@ -6,8 +6,9 @@ public abstract class PlayerState
     protected PlayerInputManager input;
     protected WeaponCore weaponCore;
     protected TargetLockHandler targetLock;
+    protected EquipManager equipManager;
 
-    public PlayerState(PlayerCore playerCore, PlayerMovement movement, PlayerInputManager input, PlayerStateMachine psm, WeaponCore weaponCore, TargetLockHandler targetLock)
+    public PlayerState(PlayerCore playerCore, PlayerMovement movement, PlayerInputManager input, PlayerStateMachine psm, WeaponCore weaponCore, TargetLockHandler targetLock, EquipManager equipManager)
     {
         this.playerCore = playerCore;
         this.movement = movement;
@@ -15,9 +16,8 @@ public abstract class PlayerState
         this.playerStateMachine = psm;
         this.weaponCore = weaponCore;
         this.targetLock = targetLock;
+        this.equipManager = equipManager;
     }
-
-
     public virtual void Enter() { }
     public virtual void Tick() { }
     public virtual void FixedTick() { }

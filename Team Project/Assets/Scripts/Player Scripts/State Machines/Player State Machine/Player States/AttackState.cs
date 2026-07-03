@@ -1,7 +1,7 @@
 using UnityEngine;
 public class AttackState : PlayerState
 {
-    public AttackState(PlayerCore playerCore, PlayerMovement movement, PlayerInputManager input, PlayerStateMachine psm, WeaponCore weaponCore, TargetLockHandler targetLock) : base(playerCore, movement, input, psm, weaponCore, targetLock) { }
+    public AttackState(PlayerCore playerCore, PlayerMovement movement, PlayerInputManager input, PlayerStateMachine psm, WeaponCore weaponCore, TargetLockHandler targetLock, EquipManager equipManager) : base(playerCore, movement, input, psm, weaponCore, targetLock, equipManager) { }
 
     public override void Enter()
     {
@@ -10,7 +10,7 @@ public class AttackState : PlayerState
         if (weaponCore.queuedAttack == null) //should never happen but if somehow you enter this state without a queued attack itll just return to idle state for safety
         {
             Debug.LogWarning("No attack queued, returning to idle");
-            playerStateMachine.SwitchState(new IdleState(playerCore, movement, input, playerStateMachine, weaponCore, targetLock));
+            playerStateMachine.SwitchState(new IdleState(playerCore, movement, input, playerStateMachine, weaponCore, targetLock, equipManager));
         }
 
         weaponCore.OnAttackStarted += ConsumeStamina;//subscribe to attack started event
@@ -22,9 +22,9 @@ public class AttackState : PlayerState
     {
         if (weaponCore.attackFinished)
         {
-            if (input.MoveInput.sqrMagnitude > 0.01f) playerStateMachine.SwitchState(new WalkState(playerCore, movement, input, playerStateMachine, weaponCore, targetLock));
+            if (input.MoveInput.sqrMagnitude > 0.01f) playerStateMachine.SwitchState(new WalkState(playerCore, movement, input, playerStateMachine, weaponCore, targetLock, equipManager));
 
-            else playerStateMachine.SwitchState(new IdleState(playerCore, movement, input, playerStateMachine, weaponCore, targetLock));
+            else playerStateMachine.SwitchState(new IdleState(playerCore, movement, input, playerStateMachine, weaponCore, targetLock, equipManager));
         }
 
         HandleAttackInput(); //made this a seperate method, makes it easier to copy paste into other states, and is clean

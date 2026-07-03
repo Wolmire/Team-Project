@@ -2,7 +2,7 @@ using UnityEngine;
 
 public class CrouchWalkState : PlayerState
 {
-    public CrouchWalkState(PlayerCore playerCore, PlayerMovement movement, PlayerInputManager input, PlayerStateMachine psm, WeaponCore weaponCore, TargetLockHandler targetLock) : base(playerCore, movement, input, psm, weaponCore, targetLock) { }
+    public CrouchWalkState(PlayerCore playerCore, PlayerMovement movement, PlayerInputManager input, PlayerStateMachine psm, WeaponCore weaponCore, TargetLockHandler targetLock, EquipManager equipManager) : base(playerCore, movement, input, psm, weaponCore, targetLock, equipManager) { }
 
     public override void Enter()
     {
@@ -12,7 +12,7 @@ public class CrouchWalkState : PlayerState
     }
     public override void Tick()
     {
-        if (input.MoveInput.sqrMagnitude < 0.01f) playerStateMachine.SwitchState(new CrouchState(playerCore, movement, input, playerStateMachine, weaponCore, targetLock));
+        if (input.MoveInput.sqrMagnitude < 0.01f) playerStateMachine.SwitchState(new CrouchState(playerCore, movement, input, playerStateMachine, weaponCore, targetLock, equipManager));
 
         movement.Move(input.MoveInput, targetLock.activeTarget, targetLock.GetActiveCamera(), targetLock.currentTarget);
         movement.ApplyMovement(movement.CrouchSpeedMultiplier);
@@ -20,13 +20,13 @@ public class CrouchWalkState : PlayerState
 
         if (input.Sprint && playerCore.currentStamina > playerCore.runMinStamina && movement.CheckifCanUncrouch()) 
         {
-            playerStateMachine.SwitchState(new RunState(playerCore, movement, input, playerStateMachine, weaponCore, targetLock));
+            playerStateMachine.SwitchState(new RunState(playerCore, movement, input, playerStateMachine, weaponCore, targetLock, equipManager));
             movement.UnCrouch();
         }
 
         if (!input.Crouch && movement.CheckifCanUncrouch())
         {
-            playerStateMachine.SwitchState(new WalkState(playerCore, movement, input, playerStateMachine, weaponCore, targetLock));
+            playerStateMachine.SwitchState(new WalkState(playerCore, movement, input, playerStateMachine, weaponCore, targetLock, equipManager));
             movement.UnCrouch();
         }
 
