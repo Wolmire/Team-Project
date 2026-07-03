@@ -2,7 +2,7 @@ using UnityEngine;
 using UnityEngine.InputSystem;
 public class IdleState : PlayerState
 {
-    public IdleState(PlayerCore playerCore, PlayerMovement movement, PlayerInput input, PlayerCamera camera, PlayerStateMachine psm, WeaponCore weaponCore) : base(playerCore, movement, input, camera, psm, weaponCore) { }
+    public IdleState(PlayerCore playerCore, PlayerMovement movement, PlayerInputManager input, PlayerStateMachine psm, WeaponCore weaponCore, TargetLockHandler targetLock) : base(playerCore, movement, input, psm, weaponCore, targetLock) { }
     public override void Enter()
     {
         Debug.Log("Entered" + playerStateMachine.CurrentState);
@@ -10,19 +10,20 @@ public class IdleState : PlayerState
     }
     public override void Tick()
     {
-        if (input.MoveInput.sqrMagnitude > 0.01f) playerStateMachine.SwitchState(new WalkState(playerCore, movement, input, camera, playerStateMachine, weaponCore));
+        if (input.MoveInput.sqrMagnitude > 0.01f) playerStateMachine.SwitchState(new WalkState(playerCore, movement, input, playerStateMachine, weaponCore, targetLock));
 
-        if (input.Crouch) playerStateMachine.SwitchState(new CrouchState(playerCore, movement, input, camera, playerStateMachine, weaponCore));
+        if (input.Crouch) playerStateMachine.SwitchState(new CrouchState(playerCore, movement, input, playerStateMachine, weaponCore, targetLock));
 
-        if(!movement.isGrounded()) playerStateMachine.SwitchState(new FallState(playerCore, movement, input, camera, playerStateMachine, weaponCore));
+        if(!movement.isGrounded()) playerStateMachine.SwitchState(new FallState(playerCore, movement, input, playerStateMachine, weaponCore, targetLock));
 
-        if (input.JumpPressed()) playerStateMachine.SwitchState(new JumpState(playerCore, movement, input, camera, playerStateMachine, weaponCore));
+        if (input.JumpPressed()) playerStateMachine.SwitchState(new JumpState(playerCore, movement, input, playerStateMachine, weaponCore, targetLock));
 
         if (playerCore.currentStamina < playerCore.maxStamina) playerCore.currentStamina += playerCore.staminaRegenRate * playerCore.staminaRegenRateMuliplier * playerCore.idleStaminaRegenMultiplier * Time.deltaTime;
 
-        camera.RotationManager(input.LookInput);
-        camera.PlayerRotManager(movement.RefinedMovementDirection);
         movement.ApplyMovement(0);
+
+        if(input.TargetLockPressed()) targetLock.TargetLock(!targetLock.activeTarget);
+        targetLock.HandleSwitchTargetInput(input.DeviceType, input.LookInput.x);
 
         HandleAttackInput();
     }
@@ -43,7 +44,7 @@ public class IdleState : PlayerState
         weaponCore.attackChainIndex = 0;
         weaponCore.currentChainAttackType = type;
         weaponCore.QueueAttack(firstAttack, type, 0);
-        playerStateMachine.SwitchState(new AttackState(playerCore, movement, input, camera, playerStateMachine, weaponCore));
+        playerStateMachine.SwitchState(new AttackState(playerCore, movement, input, playerStateMachine, weaponCore, targetLock));
     }
     public override void Exit()
     {

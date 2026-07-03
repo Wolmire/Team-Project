@@ -6,18 +6,18 @@ public class WeaponCore : MonoBehaviour
 {
     public WeaponData CurrentWeaponData; //this is what youll switch with your weapon swapping script, im not attached to how I do it, make any changes you want
 
-    public WeaponAttack queuedAttack;
-    public attackChainType queuedChainAttackType;
-    public attackChainType currentChainAttackType;
+    [HideInInspector] public WeaponAttack queuedAttack;
+    [HideInInspector] public attackChainType queuedChainAttackType;
+    [HideInInspector] public attackChainType currentChainAttackType;
 
-    public int queuedIndex;
-    public int attackChainIndex;
+    [HideInInspector] public int queuedIndex;
+    [HideInInspector] public int attackChainIndex;
 
-    public bool attackFinished;
+    [HideInInspector] public bool attackFinished;
 
     private Coroutine attackRoutine;
 
-    public Action<WeaponAttack> OnAttackStarted;
+    [HideInInspector] public Action<WeaponAttack> OnAttackStarted;
 
     public bool IsAttacking => attackRoutine != null;
 

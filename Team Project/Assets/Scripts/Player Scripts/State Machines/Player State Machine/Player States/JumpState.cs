@@ -3,7 +3,7 @@ using UnityEngine;
 
 public class JumpState : PlayerState
 {
-    public JumpState(PlayerCore playerCore, PlayerMovement movement, PlayerInput input, PlayerCamera camera, PlayerStateMachine psm, WeaponCore weaponCore) : base(playerCore, movement, input, camera, psm, weaponCore) { }
+    public JumpState(PlayerCore playerCore, PlayerMovement movement, PlayerInputManager input, PlayerStateMachine psm, WeaponCore weaponCore, TargetLockHandler targetLock) : base(playerCore, movement, input, psm, weaponCore, targetLock) { }
 
     public override void Enter()
     {
@@ -14,11 +14,10 @@ public class JumpState : PlayerState
     public override void Tick()
     {
         movement.ApplyMovement(movement.AirSpeedMultiplier);
-        camera.RotationManager(input.LookInput);
 
         if (movement.MController.velocity.y < -0.1f)
         {
-            playerStateMachine.SwitchState(new FallState(playerCore, movement, input, camera, playerStateMachine, weaponCore));
+            playerStateMachine.SwitchState(new FallState(playerCore, movement, input, playerStateMachine, weaponCore, targetLock));
         }
     }
 }

@@ -2,7 +2,7 @@ using System;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
-public class PlayerInput : MonoBehaviour
+public class PlayerInputManager : MonoBehaviour
 {
     [HideInInspector] public Vector2 MoveInput;
     [HideInInspector] public Vector2 LookInput;
@@ -16,8 +16,15 @@ public class PlayerInput : MonoBehaviour
     private bool heavyAttack;
     private bool specialAttack;
 
+    private bool toggleTargetLock;
+
     public bool ToggleCrouch;
 
+    public string DeviceType;
+    public void CheckDeviceType(PlayerInput input)
+    {
+        DeviceType = input.currentControlScheme;
+    }
     public void ReadMoveInput(InputAction.CallbackContext context) => MoveInput = context.ReadValue<Vector2>();
     public void ReadLookInput(InputAction.CallbackContext context) => LookInput = context.ReadValue<Vector2>();
 
@@ -64,4 +71,11 @@ public class PlayerInput : MonoBehaviour
 
     public void ReadBlockInput(InputAction.CallbackContext context) => Block = context.ReadValueAsButton();
 
+    public void ReadTargetLockInput(InputAction.CallbackContext context) { if (context.started) toggleTargetLock = true; }
+    public bool TargetLockPressed()
+    {
+        if (!toggleTargetLock) return false;
+        toggleTargetLock = false;
+        return true;
+    }
 }

@@ -32,31 +32,75 @@ public class PlayerMovement : MonoBehaviour
     {
         Gravity();
     }
-    public void Move(Vector2 Direction, bool Locked, GameObject camera)
+    public void Move(Vector2 Direction, bool Locked, GameObject camera, Transform targetPosition)
     {
         RawMovementDirection = new Vector3(Direction.x, 0, Direction.y);
 
-        if (Locked)
+        if (Locked && targetPosition != null)
         {
-            RefinedMovementDirection = transform.TransformDirection(RawMovementDirection);
+            // 1. First, face the enemy perfectly on the Y-axis
+            FaceLockedOnTarget(targetPosition);
+
+            // 2. Get the clean horizontal direction vector pointing at the enemy
+            Vector3 headingToEnemy = targetPosition.position - transform.position;
+            headingToEnemy.y = 0;
+            headingToEnemy.Normalize();
+
+            // 3. Create a perfect 90-degree right vector based on the enemy heading
+            Vector3 rightRelativeVector = Vector3.Cross(Vector3.up, headingToEnemy);
+
+            // 4. Calculate movement: Z input goes toward/away from enemy, X input orbits around enemy
+            Vector3 targetMovement = (headingToEnemy * RawMovementDirection.z) + (rightRelativeVector * RawMovementDirection.x);
+
+            // 5. Smoothly apply the direction change
+            RefinedMovementDirection = Vector3.Lerp(RefinedMovementDirection, targetMovement, SmoothSpeed * Time.deltaTime);
+
+            // 6. Smooth the X and Y inputs directly for your strafe animator blend tree
+            //AnimatorDirection = Vector2.Lerp(AnimatorDirection, Direction, SmoothSpeed * Time.deltaTime);
         }
         else
         {
-            RefinedMovementDirection = camera.transform.TransformDirection(RawMovementDirection);
-            RawMovementDirection = new Vector3(Direction.x, 0, Direction.y);
+            // Free movement mode (Relative to camera)
+            Vector3 cameraForward = camera.transform.forward;
+            Vector3 cameraRight = camera.transform.right;
+
+            cameraForward.y = 0;
+            cameraRight.y = 0;
+            cameraForward.Normalize();
+            cameraRight.Normalize();
+
+            Vector3 targetMovement = (cameraForward * RawMovementDirection.z) + (cameraRight * RawMovementDirection.x);
+            RefinedMovementDirection = Vector3.Lerp(RefinedMovementDirection, targetMovement, SmoothSpeed * Time.deltaTime);
+
+            if (RawMovementDirection.sqrMagnitude > 0.001f)
+            {
+                Quaternion freeRotation = Quaternion.LookRotation(targetMovement);
+                transform.rotation = Quaternion.Slerp(transform.rotation, freeRotation, 15 * Time.deltaTime);
+            }
+
+            Vector2 targetFreeDir = new Vector2(0f, Direction.magnitude);
+            //AnimatorDirection = Vector2.Lerp(AnimatorDirection, targetFreeDir, SmoothSpeed * Time.deltaTime);
         }
-        if (Locked)
+
+        RefinedMovementDirection.y = 0;
+    }
+    private void FaceLockedOnTarget(Transform targetPosition)
+    {
+        // SAFETY CHECK: Prevents errors if the target is suddenly destroyed or lost
+        if (targetPosition == null) return;
+
+        // Calculate direction to target
+        Vector3 lookDirection = targetPosition.position - transform.position;
+
+        // Keep upright
+        lookDirection.y = 0;
+
+        if (lookDirection.sqrMagnitude > 0.001f)
         {
-            RefinedMovementDirection = Vector3.Lerp(RefinedMovementDirection, transform.TransformDirection(RawMovementDirection), SmoothSpeed * Time.deltaTime);
-            //AnimatorDirection = transform.InverseTransformDirection(RefinedMovementDirection);
-        }
-        else
-        {            
-            RefinedMovementDirection = Vector3.Lerp(RefinedMovementDirection, camera.transform.TransformDirection(RawMovementDirection), SmoothSpeed * Time.deltaTime);
-            RefinedMovementDirection.y = 0;
+            Quaternion targetRotation = Quaternion.LookRotation(lookDirection);
+            transform.rotation = Quaternion.Slerp(transform.rotation, targetRotation, 15 * Time.deltaTime);
         }
     }
-
     public void Jump()
     {
         float jumpHeight = baseJumpHeight * jumpHeightMultiplier;
