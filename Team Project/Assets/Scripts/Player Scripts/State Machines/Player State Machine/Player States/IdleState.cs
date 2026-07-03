@@ -6,7 +6,7 @@ public class IdleState : PlayerState
     public override void Enter()
     {
         Debug.Log("Entered" + playerStateMachine.CurrentState);
-        //movement.AnimationTriggerer("Idle"); 
+        movement.AnimationBool("Idle", true);
     }
     public override void Tick()
     {
@@ -49,5 +49,6 @@ public class IdleState : PlayerState
     public override void Exit()
     {
         movement.AirSpeedMultiplier = 0.5f;
+        movement.AnimationBool("Idle", false);
     }
 }

@@ -11,5 +11,12 @@ public class StatesInitializer : MonoBehaviour
     private void Start()
     {
         playerStateMachine.SwitchState(new IdleState(playerCore, movement, input, playerStateMachine, weaponCore, targetLock));
+    public WeaponStateMachine weaponStateMachine;
+    public PlayerCore playerCore;
+    public WeaponCore weaponCore;
+    public PlayerMovement movement;
+    public PlayerInput input;
+    public PlayerCamera camera;
+
     }
 }

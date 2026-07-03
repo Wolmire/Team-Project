@@ -6,7 +6,7 @@ public class WalkState : PlayerState
     public override void Enter()
     {
         Debug.Log("Entered" + playerStateMachine.CurrentState);
-        //movement.AnimationTriggerer("Walking");
+        movement.AnimationBool("Walking", true);
     }
     public override void Tick()
     {
@@ -48,5 +48,6 @@ public class WalkState : PlayerState
     public override void Exit()
     {
         movement.AirSpeedMultiplier = movement.WalkSpeedMultiplier;
+        movement.AnimationBool("Walking", false);
     }
 }
