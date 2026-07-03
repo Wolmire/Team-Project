@@ -3,6 +3,13 @@ using UnityEngine;
 
 public class PlayerMovement : MonoBehaviour
 {
+<<<<<<< Updated upstream:Team Project/Assets/Scripts/Player Scripts/State Machine/PlayerMovement.cs
+=======
+    public CharacterController MController;
+
+    public PlayerAnimator PlayerAnim;
+
+>>>>>>> Stashed changes:Team Project/Assets/Scripts/Player Scripts/State Machines/Player State Machine/PlayerMovement.cs
     public float WalkSpeed = 1.0f;
     public float RunSpeed = 1.4f;
     public float SmoothSpeed = 10f;
@@ -10,11 +17,18 @@ public class PlayerMovement : MonoBehaviour
     [HideInInspector] public Vector3 RefinedMovementDirection;
     [HideInInspector] public Vector3 AnimatorDirection;
 
+<<<<<<< Updated upstream:Team Project/Assets/Scripts/Player Scripts/State Machine/PlayerMovement.cs
      public Animator PlayerAnimator;
 
     private void Start()
     {
         PlayerAnimator = GetComponent<Animator>();
+=======
+     
+    public void Awake()
+    {
+        DefaultHeight = MController.height;
+>>>>>>> Stashed changes:Team Project/Assets/Scripts/Player Scripts/State Machines/Player State Machine/PlayerMovement.cs
     }
     public void Move(Vector2 Direction, bool Locked, GameObject camera)
     {
@@ -41,14 +55,14 @@ public class PlayerMovement : MonoBehaviour
     }
     void Update()
     {
-    
-        PlayerAnimator.SetFloat("X", AnimatorDirection.x);
-        PlayerAnimator.SetFloat("Y", AnimatorDirection.z);
+
+        PlayerAnim.SetAnimFloat("X", AnimatorDirection.x);
+        PlayerAnim.SetAnimFloat("Y", AnimatorDirection.z);
     }
 
-    public void AnimationTriggerer(string TriggerString)
+    public void AnimationBool(string SettingBool, bool AnimationBool)
     {
-        PlayerAnimator.SetTrigger(TriggerString);
+        PlayerAnim.SetAnimBool(SettingBool, AnimationBool);
     }
 
     public void Jump(float force)
