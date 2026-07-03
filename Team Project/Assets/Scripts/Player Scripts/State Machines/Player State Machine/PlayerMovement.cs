@@ -3,7 +3,7 @@ using UnityEngine;
 public class PlayerMovement : MonoBehaviour
 {
     public CharacterController MController;
-    
+
     public float MovementSpeed = 1.0f;
     public float WalkSpeedMultiplier = 1.0f;
     public float RunSpeedMultiplier = 2.0f;
@@ -19,10 +19,14 @@ public class PlayerMovement : MonoBehaviour
     [HideInInspector] public Vector3 RefinedMovementDirection;
     [HideInInspector] public float velocity;
 
+    public PlayerAnimator PlayerAnim;
+    
+    public Vector3 AnimatorDirection;   
+
     public LayerMask ceilingLayer;
 
     public float GravityStrength;
-    
+
     public void Awake()
     {
         DefaultHeight = MController.height;
@@ -31,6 +35,8 @@ public class PlayerMovement : MonoBehaviour
     public void Update()
     {
         Gravity();
+        PlayerAnim.SetAnimFloat("X", AnimatorDirection.x);
+        PlayerAnim.SetAnimFloat("Y", AnimatorDirection.z);
     }
     public void Move(Vector2 Direction, bool Locked, GameObject camera, Transform targetPosition)
     {
@@ -38,29 +44,18 @@ public class PlayerMovement : MonoBehaviour
 
         if (Locked && targetPosition != null)
         {
-            // 1. First, face the enemy perfectly on the Y-axis
             FaceLockedOnTarget(targetPosition);
-
-            // 2. Get the clean horizontal direction vector pointing at the enemy
             Vector3 headingToEnemy = targetPosition.position - transform.position;
             headingToEnemy.y = 0;
             headingToEnemy.Normalize();
-
-            // 3. Create a perfect 90-degree right vector based on the enemy heading
             Vector3 rightRelativeVector = Vector3.Cross(Vector3.up, headingToEnemy);
-
-            // 4. Calculate movement: Z input goes toward/away from enemy, X input orbits around enemy
             Vector3 targetMovement = (headingToEnemy * RawMovementDirection.z) + (rightRelativeVector * RawMovementDirection.x);
-
-            // 5. Smoothly apply the direction change
             RefinedMovementDirection = Vector3.Lerp(RefinedMovementDirection, targetMovement, SmoothSpeed * Time.deltaTime);
+            AnimatorDirection = transform.InverseTransformDirection(RefinedMovementDirection);
 
-            // 6. Smooth the X and Y inputs directly for your strafe animator blend tree
-            //AnimatorDirection = Vector2.Lerp(AnimatorDirection, Direction, SmoothSpeed * Time.deltaTime);
         }
         else
         {
-            // Free movement mode (Relative to camera)
             Vector3 cameraForward = camera.transform.forward;
             Vector3 cameraRight = camera.transform.right;
 
@@ -77,22 +72,18 @@ public class PlayerMovement : MonoBehaviour
                 Quaternion freeRotation = Quaternion.LookRotation(targetMovement);
                 transform.rotation = Quaternion.Slerp(transform.rotation, freeRotation, 15 * Time.deltaTime);
             }
-
-            Vector2 targetFreeDir = new Vector2(0f, Direction.magnitude);
-            //AnimatorDirection = Vector2.Lerp(AnimatorDirection, targetFreeDir, SmoothSpeed * Time.deltaTime);
+            AnimatorDirection.z = RefinedMovementDirection.normalized.magnitude;
+            AnimatorDirection.x = 0;
         }
 
         RefinedMovementDirection.y = 0;
     }
     private void FaceLockedOnTarget(Transform targetPosition)
     {
-        // SAFETY CHECK: Prevents errors if the target is suddenly destroyed or lost
         if (targetPosition == null) return;
 
-        // Calculate direction to target
         Vector3 lookDirection = targetPosition.position - transform.position;
 
-        // Keep upright
         lookDirection.y = 0;
 
         if (lookDirection.sqrMagnitude > 0.001f)
@@ -139,5 +130,10 @@ public class PlayerMovement : MonoBehaviour
     {
         if (velocity < 0.1f && MController.isGrounded) velocity = -1f;
         else velocity -= GravityStrength * Time.deltaTime;
+    }
+
+    public void AnimationBool(string SettingBool, bool AnimationBool)
+    {
+        PlayerAnim.SetAnimBool(SettingBool, AnimationBool);
     }
 }

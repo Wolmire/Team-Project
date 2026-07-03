@@ -24,3 +24,4 @@ MonoBehaviour:
   heavyAttacks:
   - {fileID: 11400000, guid: 5f8019d4eab195a169e3565503d4377d, type: 2}
   specialAttacks: []
+  WeaponModel: {fileID: 0}
