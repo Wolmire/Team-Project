@@ -28,7 +28,7 @@ public class TargetLockHandler : MonoBehaviour
     private void Start()
     {
         SwitchCamera();
-        //setTarget.graphics.SetActive(false);
+        setTarget.visual.enabled = false;
     }
 
     private void FixedUpdate()
@@ -77,15 +77,16 @@ public class TargetLockHandler : MonoBehaviour
             if (targetMostInFront != null)
             {
                 setTarget.SetTargetPos(targetMostInFront);
-                //setTarget.graphics.SetActive(true);
                 activeTarget = true;
                 SwitchCamera();
+                setTarget.visual.enabled = true;
+
             }
         }
         else
         {
             nearbyTargets.Clear();
-            //setTarget.graphics.SetActive(false);
+            setTarget.visual.enabled = false;
             activeTarget = false;
             SwitchCamera();
         }
