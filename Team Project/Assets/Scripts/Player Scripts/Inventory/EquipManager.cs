@@ -36,8 +36,10 @@ public class EquipManager : MonoBehaviour
         {
             CurrentWeapon.name = CurrentHeldName;
             CurrentWeapon.transform.SetParent(Inventory.transform);
+            CurrentWeapon.gameObject.SetActive(false);
         }
         CurrentWeapon = EquippingWeapon;
+        CurrentWeapon.gameObject.SetActive(true);
         CurrentHeldName = CurrentWeapon.name;
         CurrentWeapon.name = ToolBoneName;
         CurrentWeapon.transform.SetParent(Slot.transform);
