@@ -6,9 +6,9 @@ public abstract class PlayerState
     protected PlayerInputManager input;
     protected WeaponCore weaponCore;
     protected TargetLockHandler targetLock;
-    protected EquipManager equipManager;
+    protected PlayerEquipManager equipManager;
 
-    public PlayerState(PlayerCore playerCore, PlayerMovement movement, PlayerInputManager input, PlayerStateMachine psm, WeaponCore weaponCore, TargetLockHandler targetLock, EquipManager equipManager)
+    public PlayerState(PlayerCore playerCore, PlayerMovement movement, PlayerInputManager input, PlayerStateMachine psm, WeaponCore weaponCore, TargetLockHandler targetLock, PlayerEquipManager equipManager)
     {
         this.playerCore = playerCore;
         this.movement = movement;
