@@ -7,7 +7,7 @@ public class StatesInitializer : MonoBehaviour
     public PlayerMovement movement;
     public PlayerInputManager input;
     public TargetLockHandler targetLock;
-    public EquipManager equipManager;
+    public PlayerEquipManager equipManager;
 
     private void Start()
     {
