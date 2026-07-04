@@ -1,0 +1,51 @@
+using System.Collections;
+using TMPro;
+using UnityEngine;
+
+public class PlayerCore : MonoBehaviour
+{
+    [HideInInspector] public bool waitComplete = false;
+
+    public float maxStamina = 100f;
+    public float staminaRegenRate = 10f;
+    public float currentStamina;
+    public float staminaRegenRateMuliplier = 1f;
+
+    public float idleStaminaRegenMultiplier = 1;
+    public float walkStaminaRegenMultiplier = 0.8f;
+    public float crouchStaminaRegenMultiplier = 1f;
+    public float crouchWalkStaminaRegenMultiplier = 1f;
+    public float runStaminaCost = 10f;
+    public float runMinStamina = 15f;
+
+    public bool isCrouching = false;
+
+    public TextMeshProUGUI staminaText;
+
+    public void Update()
+    {
+        if (staminaText != null) staminaText.text = currentStamina.ToString("F0") + " / " + maxStamina.ToString();
+        if(currentStamina > maxStamina) currentStamina = maxStamina;
+    }
+    public void ToggleBool(ref bool boolToToggle)
+    {
+        boolToToggle = !boolToToggle;
+    }
+
+    public void LeaveStateAfterDelay(float stateDuration)
+    {
+        waitComplete = false;
+        StartCoroutine(LeaveStateAfterDelayCoroutine(stateDuration));
+    }
+    private IEnumerator LeaveStateAfterDelayCoroutine(float delay)
+    {
+        yield return new WaitForSeconds(delay);
+
+        waitComplete = true;
+    }
+
+
+
+
+}
+ 
