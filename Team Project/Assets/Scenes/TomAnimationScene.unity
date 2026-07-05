@@ -502,7 +502,7 @@ MonoBehaviour:
   activeTarget: 0
   enemyDetectionRange: 5
   nearbyTargets: []
-  currentTarget: {fileID: 455836871}
+  currentTarget: {fileID: 0}
   freeLookCamera: {fileID: 1392428198}
   targetLockCamera: {fileID: 2054205423}
   enemyLayer:
@@ -1065,6 +1065,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::SetTarget
   targetLockHandler: {fileID: 101042009}
+  visual: {fileID: 0}
 --- !u!1 &488435551
 GameObject:
   m_ObjectHideFlags: 0
