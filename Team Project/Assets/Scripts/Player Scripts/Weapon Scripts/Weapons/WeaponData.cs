@@ -13,7 +13,6 @@ public class WeaponData : ScriptableObject
     public WeaponAttack[] lightAttacks;
     public WeaponAttack[] heavyAttacks;
     public WeaponAttack[] specialAttacks;
-    public GameObject WeaponModel;
 }
 public enum WeaponType
 {

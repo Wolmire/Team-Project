@@ -12,8 +12,8 @@ TagManager:
   - Water
   - UI
   - Ceiling
-  - 
-  - 
+  - LockOnLayer
+  - Enemy
   - 
   - 
   - 
@@ -38,6 +38,9 @@ TagManager:
   - 
   - 
   m_SortingLayers:
+  - name: LockOnIcon
+    uniqueID: 2141225973
+    locked: 0
   - name: Default
     uniqueID: 0
     locked: 0

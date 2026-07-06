@@ -19,8 +19,17 @@ public class WeaponCore : MonoBehaviour
 
     [HideInInspector] public Action<WeaponAttack> OnAttackStarted;
 
+    Animator animator;
+    AnimatorOverrideController overrideController;
     public bool IsAttacking => attackRoutine != null;
 
+    public void Start()
+    {
+        animator = GetComponent<Animator>();
+        overrideController = new AnimatorOverrideController();
+        overrideController.runtimeAnimatorController = animator.runtimeAnimatorController;
+        animator.runtimeAnimatorController = overrideController;
+    }
     public void QueueAttack(WeaponAttack attack, attackChainType type, int index) //done within attack state to try queue the next attack in chain
     {
         queuedAttack = attack;
@@ -49,7 +58,7 @@ public class WeaponCore : MonoBehaviour
             queuedChainAttackType = attackChainType.None;
 
             OnAttackStarted?.Invoke(attack); //attack started event that attack state uses to consume stamina, we could use it elsewhere too if we want to do something when an attack starts
-            attack.Attack();
+            attack.Attack(overrideController, "Attack", animator);
 
             yield return new WaitForSeconds(attack.AttackUptime);
 
