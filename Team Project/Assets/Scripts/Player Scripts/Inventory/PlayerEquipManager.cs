@@ -23,6 +23,8 @@ public class PlayerEquipManager : MonoBehaviour
 
     public string ToolBoneName;
 
+    [HideInInspector] public IWeaponBase WeaponControls;
+
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
@@ -43,6 +45,19 @@ public class PlayerEquipManager : MonoBehaviour
         CurrentHeldName = CurrentWeapon.name;
         CurrentWeapon.name = ToolBoneName;
         CurrentWeapon.transform.SetParent(Slot.transform);
+        WeaponControls = CurrentWeapon.gameObject.GetComponent<IWeaponBase>();
+
+        AnimationManager.OverrideAnimControl(WeaponControls.WeaponData.AnimOverride);
         AnimationManager.AnimationRebind();
+
+
+        //if (WeaponControls.WeaponData.AnimOverride)
+        //{
+        //    AnimationManager.OverrideAnimControl(WeaponControls.WeaponData.AnimOverride);
+        //}
+        //else
+        //{
+        //    print("NoAnimOver");
+        //}
     }
 }

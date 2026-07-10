@@ -9,10 +9,12 @@ public class WeaponAttack : ScriptableObject
     public float staminaCost;
     public AnimationClip attackAnimation;
 
-    public void Attack(AnimatorOverrideController controller, string stateName, Animator animator)
+   // public void Attack(//AnimatorOverrideController controller, string stateName, Animator animator)
+    public void Attack()
+
     {
         Debug.Log(this.name + " attacked for " + baseDamage + " damage.");
-        controller[stateName] = attackAnimation;
-        animator.SetTrigger("Attack");
+       // controller[stateName] = attackAnimation;
+       // animator.SetTrigger("Attack");
     }
 }
