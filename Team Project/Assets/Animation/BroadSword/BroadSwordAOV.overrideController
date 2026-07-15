@@ -8,16 +8,4 @@ AnimatorOverrideController:
   m_PrefabAsset: {fileID: 0}
   m_Name: BroadSwordAOV
   m_Controller: {fileID: 9100000, guid: 03739ee712f5164468dcfd06cab6c0a7, type: 2}
-  m_Clips:
-  - m_OriginalClip: {fileID: 3719449446380268508, guid: aebcb0062b9fa8e4fae1ceb864c73fb7, type: 3}
-    m_OverrideClip: {fileID: -6364550425450591234, guid: 4beca325d56a1624b83c6feffd09ec6f, type: 3}
-  - m_OriginalClip: {fileID: -6364550425450591234, guid: 4beca325d56a1624b83c6feffd09ec6f, type: 3}
-    m_OverrideClip: {fileID: -1822855285907441351, guid: 8ace9b128975b394891543667790fe66, type: 3}
-  - m_OriginalClip: {fileID: 6438388610050549677, guid: aebcb0062b9fa8e4fae1ceb864c73fb7, type: 3}
-    m_OverrideClip: {fileID: -513154053753738458, guid: 4beca325d56a1624b83c6feffd09ec6f, type: 3}
-  - m_OriginalClip: {fileID: -513154053753738458, guid: 4beca325d56a1624b83c6feffd09ec6f, type: 3}
-    m_OverrideClip: {fileID: 3286888108586758143, guid: 8ace9b128975b394891543667790fe66, type: 3}
-  - m_OriginalClip: {fileID: -1822855285907441351, guid: 8ace9b128975b394891543667790fe66, type: 3}
-    m_OverrideClip: {fileID: -6364550425450591234, guid: 4beca325d56a1624b83c6feffd09ec6f, type: 3}
-  - m_OriginalClip: {fileID: 3286888108586758143, guid: 8ace9b128975b394891543667790fe66, type: 3}
-    m_OverrideClip: {fileID: -513154053753738458, guid: 4beca325d56a1624b83c6feffd09ec6f, type: 3}
+  m_Clips: []

@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: aebcb0062b9fa8e4fae1ceb864c73fb7
+guid: 5dbd9321a609bad4a824a7802ed0415d
 ModelImporter:
   serializedVersion: 24200
   internalIDToNameTable: []
@@ -31,25 +31,25 @@ ModelImporter:
     extraUserProperties: []
     clipAnimations:
     - serializedVersion: 16
-      name: Movement_Idle_Body
-      takeName: Movement_Idle_Body
-      internalID: 3719449446380268508
+      name: DualDaggers_Equip_Body
+      takeName: DualDaggers_Equip_Body
+      internalID: -2143929199450500527
       firstFrame: 0
-      lastFrame: 5
+      lastFrame: 74
       wrapMode: 0
       orientationOffsetY: 0
       level: 0
       cycleOffset: 0
       loop: 0
       hasAdditiveReferencePose: 0
-      loopTime: 1
+      loopTime: 0
       loopBlend: 0
-      loopBlendOrientation: 0
-      loopBlendPositionY: 0
-      loopBlendPositionXZ: 0
-      keepOriginalOrientation: 1
-      keepOriginalPositionY: 1
-      keepOriginalPositionXZ: 1
+      loopBlendOrientation: 1
+      loopBlendPositionY: 1
+      loopBlendPositionXZ: 1
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 0
+      keepOriginalPositionXZ: 0
       heightFromFeet: 0
       mirror: 0
       bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
@@ -60,18 +60,18 @@ ModelImporter:
       maskSource: {instanceID: 0}
       additiveReferencePoseFrame: 0
     - serializedVersion: 16
-      name: Movement_Idle_WL
-      takeName: Movement_Idle_WL
-      internalID: 2949661832075772496
+      name: DualDaggers_Equip_WR
+      takeName: DualDaggers_Equip_WR
+      internalID: -1439707738056095010
       firstFrame: 0
-      lastFrame: 5
+      lastFrame: 74
       wrapMode: 0
       orientationOffsetY: 0
       level: 0
       cycleOffset: 0
       loop: 0
       hasAdditiveReferencePose: 0
-      loopTime: 1
+      loopTime: 0
       loopBlend: 0
       loopBlendOrientation: 0
       loopBlendPositionY: 0
@@ -89,18 +89,18 @@ ModelImporter:
       maskSource: {instanceID: 0}
       additiveReferencePoseFrame: 0
     - serializedVersion: 16
-      name: Movement_Idle_WR
-      takeName: Movement_Idle_WR
-      internalID: 6438388610050549677
+      name: Main_Root|DualDaggers_Equip_Body
+      takeName: Main_Root|DualDaggers_Equip_Body
+      internalID: -743132104823226283
       firstFrame: 0
-      lastFrame: 5
+      lastFrame: 74
       wrapMode: 0
       orientationOffsetY: 0
       level: 0
       cycleOffset: 0
       loop: 0
       hasAdditiveReferencePose: 0
-      loopTime: 1
+      loopTime: 0
       loopBlend: 0
       loopBlendOrientation: 0
       loopBlendPositionY: 0
@@ -147,11 +147,11 @@ ModelImporter:
       maskSource: {instanceID: 0}
       additiveReferencePoseFrame: 0
     - serializedVersion: 16
-      name: Main_Root|Main_RootAction
-      takeName: Main_Root|Main_RootAction
-      internalID: 2881532707669600658
+      name: Main_Root|Main_RootAction.001
+      takeName: Main_Root|Main_RootAction.001
+      internalID: -2901674184102655051
       firstFrame: 0
-      lastFrame: 5
+      lastFrame: 74
       wrapMode: 0
       orientationOffsetY: 0
       level: 0
@@ -176,40 +176,11 @@ ModelImporter:
       maskSource: {instanceID: 0}
       additiveReferencePoseFrame: 0
     - serializedVersion: 16
-      name: W_Left_Root|W_Left_RootAction
-      takeName: W_Left_Root|W_Left_RootAction
-      internalID: 7167476354902773281
+      name: W_Right_Root|DualDaggers_Equip_WR
+      takeName: W_Right_Root|DualDaggers_Equip_WR
+      internalID: 1249212782198796948
       firstFrame: 0
-      lastFrame: 5
-      wrapMode: 0
-      orientationOffsetY: 0
-      level: 0
-      cycleOffset: 0
-      loop: 0
-      hasAdditiveReferencePose: 0
-      loopTime: 0
-      loopBlend: 0
-      loopBlendOrientation: 0
-      loopBlendPositionY: 0
-      loopBlendPositionXZ: 0
-      keepOriginalOrientation: 0
-      keepOriginalPositionY: 1
-      keepOriginalPositionXZ: 0
-      heightFromFeet: 0
-      mirror: 0
-      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
-      curves: []
-      events: []
-      transformMask: []
-      maskType: 3
-      maskSource: {instanceID: 0}
-      additiveReferencePoseFrame: 0
-    - serializedVersion: 16
-      name: W_Right_Root|W_Right_RootAction
-      takeName: W_Right_Root|W_Right_RootAction
-      internalID: 2976608399079030213
-      firstFrame: 0
-      lastFrame: 5
+      lastFrame: 74
       wrapMode: 0
       orientationOffsetY: 0
       level: 0

@@ -6,274 +6,230 @@ AvatarMask:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: BCSWAY_RSLOT
-  m_Mask: 00000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000
+  m_Name: WeaponMask
+  m_Mask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
   m_Elements:
   - m_Path: 
     m_Weight: 1
   - m_Path: HeadObject
-    m_Weight: 0
+    m_Weight: 1
   - m_Path: Main_Root
-    m_Weight: 0
+    m_Weight: 1
   - m_Path: Main_Root/Foot.IK.L
-    m_Weight: 0
+    m_Weight: 1
   - m_Path: Main_Root/Foot.IK.L/Foot.IK.L_end
-    m_Weight: 0
+    m_Weight: 1
   - m_Path: Main_Root/Foot.IK.R
-    m_Weight: 0
+    m_Weight: 1
   - m_Path: Main_Root/Foot.IK.R/Foot.IK.R_end
-    m_Weight: 0
+    m_Weight: 1
   - m_Path: Main_Root/Hips
-    m_Weight: 0
+    m_Weight: 1
   - m_Path: Main_Root/Hips/IK.POLE.L
-    m_Weight: 0
+    m_Weight: 1
   - m_Path: Main_Root/Hips/IK.POLE.L/IK.POLE.L_end
-    m_Weight: 0
+    m_Weight: 1
   - m_Path: Main_Root/Hips/IK.POLE.R
-    m_Weight: 0
+    m_Weight: 1
   - m_Path: Main_Root/Hips/IK.POLE.R/IK.POLE.R_end
-    m_Weight: 0
+    m_Weight: 1
   - m_Path: Main_Root/Hips/IK.TARGET.L
-    m_Weight: 0
+    m_Weight: 1
   - m_Path: Main_Root/Hips/IK.TARGET.L/IK.TARGET.L_end
-    m_Weight: 0
+    m_Weight: 1
   - m_Path: Main_Root/Hips/IK.TARGET.R
-    m_Weight: 0
+    m_Weight: 1
   - m_Path: Main_Root/Hips/IK.TARGET.R/IK.TARGET.R_end
-    m_Weight: 0
+    m_Weight: 1
   - m_Path: Main_Root/Hips/KneePole.L
-    m_Weight: 0
+    m_Weight: 1
   - m_Path: Main_Root/Hips/KneePole.L/KneePole.L_end
-    m_Weight: 0
+    m_Weight: 1
   - m_Path: Main_Root/Hips/KneePole.R
-    m_Weight: 0
+    m_Weight: 1
   - m_Path: Main_Root/Hips/KneePole.R/KneePole.R_end
-    m_Weight: 0
+    m_Weight: 1
   - m_Path: Main_Root/Hips/Spine.0
-    m_Weight: 0
+    m_Weight: 1
   - m_Path: Main_Root/Hips/Spine.0/Spine.1
-    m_Weight: 0
+    m_Weight: 1
   - m_Path: Main_Root/Hips/Spine.0/Spine.1/Spine.2
-    m_Weight: 0
+    m_Weight: 1
   - m_Path: Main_Root/Hips/Spine.0/Spine.1/Spine.2/Neck.0
-    m_Weight: 0
+    m_Weight: 1
   - m_Path: Main_Root/Hips/Spine.0/Spine.1/Spine.2/Neck.0/Neck.1
-    m_Weight: 0
+    m_Weight: 1
   - m_Path: Main_Root/Hips/Spine.0/Spine.1/Spine.2/Neck.0/Neck.1/Head
-    m_Weight: 0
+    m_Weight: 1
   - m_Path: Main_Root/Hips/Spine.0/Spine.1/Spine.2/Neck.0/Neck.1/Head/Head_end
-    m_Weight: 0
+    m_Weight: 1
   - m_Path: Main_Root/Hips/Spine.0/Spine.1/Spine.2/Shoulder.L
-    m_Weight: 0
+    m_Weight: 1
   - m_Path: Main_Root/Hips/Spine.0/Spine.1/Spine.2/Shoulder.L/upper_arm.L
-    m_Weight: 0
+    m_Weight: 1
   - m_Path: Main_Root/Hips/Spine.0/Spine.1/Spine.2/Shoulder.L/upper_arm.L/forearm.L
-    m_Weight: 0
+    m_Weight: 1
   - m_Path: Main_Root/Hips/Spine.0/Spine.1/Spine.2/Shoulder.L/upper_arm.L/forearm.L/hand.L
-    m_Weight: 0
+    m_Weight: 1
   - m_Path: Main_Root/Hips/Spine.0/Spine.1/Spine.2/Shoulder.L/upper_arm.L/forearm.L/hand.L/f_index.01.L
-    m_Weight: 0
+    m_Weight: 1
   - m_Path: Main_Root/Hips/Spine.0/Spine.1/Spine.2/Shoulder.L/upper_arm.L/forearm.L/hand.L/f_index.01.L/f_index.02.L
-    m_Weight: 0
+    m_Weight: 1
   - m_Path: Main_Root/Hips/Spine.0/Spine.1/Spine.2/Shoulder.L/upper_arm.L/forearm.L/hand.L/f_index.01.L/f_index.02.L/f_index.03.L
-    m_Weight: 0
+    m_Weight: 1
   - m_Path: Main_Root/Hips/Spine.0/Spine.1/Spine.2/Shoulder.L/upper_arm.L/forearm.L/hand.L/f_index.01.L/f_index.02.L/f_index.03.L/f_index.03.L_end
-    m_Weight: 0
+    m_Weight: 1
   - m_Path: Main_Root/Hips/Spine.0/Spine.1/Spine.2/Shoulder.L/upper_arm.L/forearm.L/hand.L/f_middle.01.L
-    m_Weight: 0
+    m_Weight: 1
   - m_Path: Main_Root/Hips/Spine.0/Spine.1/Spine.2/Shoulder.L/upper_arm.L/forearm.L/hand.L/f_middle.01.L/f_middle.02.L
-    m_Weight: 0
+    m_Weight: 1
   - m_Path: Main_Root/Hips/Spine.0/Spine.1/Spine.2/Shoulder.L/upper_arm.L/forearm.L/hand.L/f_middle.01.L/f_middle.02.L/f_middle.03.L
-    m_Weight: 0
+    m_Weight: 1
   - m_Path: Main_Root/Hips/Spine.0/Spine.1/Spine.2/Shoulder.L/upper_arm.L/forearm.L/hand.L/f_middle.01.L/f_middle.02.L/f_middle.03.L/f_middle.03.L_end
-    m_Weight: 0
+    m_Weight: 1
   - m_Path: Main_Root/Hips/Spine.0/Spine.1/Spine.2/Shoulder.L/upper_arm.L/forearm.L/hand.L/f_pinky.01.L
-    m_Weight: 0
+    m_Weight: 1
   - m_Path: Main_Root/Hips/Spine.0/Spine.1/Spine.2/Shoulder.L/upper_arm.L/forearm.L/hand.L/f_pinky.01.L/f_pinky.02.L
-    m_Weight: 0
+    m_Weight: 1
   - m_Path: Main_Root/Hips/Spine.0/Spine.1/Spine.2/Shoulder.L/upper_arm.L/forearm.L/hand.L/f_pinky.01.L/f_pinky.02.L/f_pinky.03.L
-    m_Weight: 0
+    m_Weight: 1
   - m_Path: Main_Root/Hips/Spine.0/Spine.1/Spine.2/Shoulder.L/upper_arm.L/forearm.L/hand.L/f_pinky.01.L/f_pinky.02.L/f_pinky.03.L/f_pinky.03.L_end
-    m_Weight: 0
+    m_Weight: 1
   - m_Path: Main_Root/Hips/Spine.0/Spine.1/Spine.2/Shoulder.L/upper_arm.L/forearm.L/hand.L/f_ring.01.L
-    m_Weight: 0
+    m_Weight: 1
   - m_Path: Main_Root/Hips/Spine.0/Spine.1/Spine.2/Shoulder.L/upper_arm.L/forearm.L/hand.L/f_ring.01.L/f_ring.02.L
-    m_Weight: 0
+    m_Weight: 1
   - m_Path: Main_Root/Hips/Spine.0/Spine.1/Spine.2/Shoulder.L/upper_arm.L/forearm.L/hand.L/f_ring.01.L/f_ring.02.L/f_ring.03.L
-    m_Weight: 0
+    m_Weight: 1
   - m_Path: Main_Root/Hips/Spine.0/Spine.1/Spine.2/Shoulder.L/upper_arm.L/forearm.L/hand.L/f_ring.01.L/f_ring.02.L/f_ring.03.L/f_ring.03.L_end
-    m_Weight: 0
+    m_Weight: 1
   - m_Path: Main_Root/Hips/Spine.0/Spine.1/Spine.2/Shoulder.L/upper_arm.L/forearm.L/hand.L/thumb.01.L
-    m_Weight: 0
+    m_Weight: 1
   - m_Path: Main_Root/Hips/Spine.0/Spine.1/Spine.2/Shoulder.L/upper_arm.L/forearm.L/hand.L/thumb.01.L/thumb.02.L
-    m_Weight: 0
+    m_Weight: 1
   - m_Path: Main_Root/Hips/Spine.0/Spine.1/Spine.2/Shoulder.L/upper_arm.L/forearm.L/hand.L/thumb.01.L/thumb.02.L/thumb.03.L
-    m_Weight: 0
+    m_Weight: 1
   - m_Path: Main_Root/Hips/Spine.0/Spine.1/Spine.2/Shoulder.L/upper_arm.L/forearm.L/hand.L/thumb.01.L/thumb.02.L/thumb.03.L/thumb.03.L_end
-    m_Weight: 0
+    m_Weight: 1
   - m_Path: Main_Root/Hips/Spine.0/Spine.1/Spine.2/Shoulder.R
-    m_Weight: 0
+    m_Weight: 1
   - m_Path: Main_Root/Hips/Spine.0/Spine.1/Spine.2/Shoulder.R/upper_arm.R
-    m_Weight: 0
+    m_Weight: 1
   - m_Path: Main_Root/Hips/Spine.0/Spine.1/Spine.2/Shoulder.R/upper_arm.R/forearm.R
-    m_Weight: 0
+    m_Weight: 1
   - m_Path: Main_Root/Hips/Spine.0/Spine.1/Spine.2/Shoulder.R/upper_arm.R/forearm.R/hand.R
-    m_Weight: 0
+    m_Weight: 1
   - m_Path: Main_Root/Hips/Spine.0/Spine.1/Spine.2/Shoulder.R/upper_arm.R/forearm.R/hand.R/f_index.01.R
-    m_Weight: 0
+    m_Weight: 1
   - m_Path: Main_Root/Hips/Spine.0/Spine.1/Spine.2/Shoulder.R/upper_arm.R/forearm.R/hand.R/f_index.01.R/f_index.02.R
-    m_Weight: 0
+    m_Weight: 1
   - m_Path: Main_Root/Hips/Spine.0/Spine.1/Spine.2/Shoulder.R/upper_arm.R/forearm.R/hand.R/f_index.01.R/f_index.02.R/f_index.03.R
-    m_Weight: 0
+    m_Weight: 1
   - m_Path: Main_Root/Hips/Spine.0/Spine.1/Spine.2/Shoulder.R/upper_arm.R/forearm.R/hand.R/f_index.01.R/f_index.02.R/f_index.03.R/f_index.03.R_end
-    m_Weight: 0
+    m_Weight: 1
   - m_Path: Main_Root/Hips/Spine.0/Spine.1/Spine.2/Shoulder.R/upper_arm.R/forearm.R/hand.R/f_middle.01.R
-    m_Weight: 0
+    m_Weight: 1
   - m_Path: Main_Root/Hips/Spine.0/Spine.1/Spine.2/Shoulder.R/upper_arm.R/forearm.R/hand.R/f_middle.01.R/f_middle.02.R
-    m_Weight: 0
+    m_Weight: 1
   - m_Path: Main_Root/Hips/Spine.0/Spine.1/Spine.2/Shoulder.R/upper_arm.R/forearm.R/hand.R/f_middle.01.R/f_middle.02.R/f_middle.03.R
-    m_Weight: 0
+    m_Weight: 1
   - m_Path: Main_Root/Hips/Spine.0/Spine.1/Spine.2/Shoulder.R/upper_arm.R/forearm.R/hand.R/f_middle.01.R/f_middle.02.R/f_middle.03.R/f_middle.03.R_end
-    m_Weight: 0
+    m_Weight: 1
   - m_Path: Main_Root/Hips/Spine.0/Spine.1/Spine.2/Shoulder.R/upper_arm.R/forearm.R/hand.R/f_pinky.01.R
-    m_Weight: 0
+    m_Weight: 1
   - m_Path: Main_Root/Hips/Spine.0/Spine.1/Spine.2/Shoulder.R/upper_arm.R/forearm.R/hand.R/f_pinky.01.R/f_pinky.02.R
-    m_Weight: 0
+    m_Weight: 1
   - m_Path: Main_Root/Hips/Spine.0/Spine.1/Spine.2/Shoulder.R/upper_arm.R/forearm.R/hand.R/f_pinky.01.R/f_pinky.02.R/f_pinky.03.R
-    m_Weight: 0
+    m_Weight: 1
   - m_Path: Main_Root/Hips/Spine.0/Spine.1/Spine.2/Shoulder.R/upper_arm.R/forearm.R/hand.R/f_pinky.01.R/f_pinky.02.R/f_pinky.03.R/f_pinky.03.R_end
-    m_Weight: 0
+    m_Weight: 1
   - m_Path: Main_Root/Hips/Spine.0/Spine.1/Spine.2/Shoulder.R/upper_arm.R/forearm.R/hand.R/f_ring.01.R
-    m_Weight: 0
+    m_Weight: 1
   - m_Path: Main_Root/Hips/Spine.0/Spine.1/Spine.2/Shoulder.R/upper_arm.R/forearm.R/hand.R/f_ring.01.R/f_ring.02.R
-    m_Weight: 0
+    m_Weight: 1
   - m_Path: Main_Root/Hips/Spine.0/Spine.1/Spine.2/Shoulder.R/upper_arm.R/forearm.R/hand.R/f_ring.01.R/f_ring.02.R/f_ring.03.R
-    m_Weight: 0
+    m_Weight: 1
   - m_Path: Main_Root/Hips/Spine.0/Spine.1/Spine.2/Shoulder.R/upper_arm.R/forearm.R/hand.R/f_ring.01.R/f_ring.02.R/f_ring.03.R/f_ring.03.R_end
-    m_Weight: 0
+    m_Weight: 1
   - m_Path: Main_Root/Hips/Spine.0/Spine.1/Spine.2/Shoulder.R/upper_arm.R/forearm.R/hand.R/thumb.01.R
-    m_Weight: 0
+    m_Weight: 1
   - m_Path: Main_Root/Hips/Spine.0/Spine.1/Spine.2/Shoulder.R/upper_arm.R/forearm.R/hand.R/thumb.01.R/thumb.02.R
-    m_Weight: 0
+    m_Weight: 1
   - m_Path: Main_Root/Hips/Spine.0/Spine.1/Spine.2/Shoulder.R/upper_arm.R/forearm.R/hand.R/thumb.01.R/thumb.02.R/thumb.03.R
-    m_Weight: 0
+    m_Weight: 1
   - m_Path: Main_Root/Hips/Spine.0/Spine.1/Spine.2/Shoulder.R/upper_arm.R/forearm.R/hand.R/thumb.01.R/thumb.02.R/thumb.03.R/thumb.03.R_end
-    m_Weight: 0
+    m_Weight: 1
   - m_Path: Main_Root/Hips/Upper_Leg.L
-    m_Weight: 0
+    m_Weight: 1
   - m_Path: Main_Root/Hips/Upper_Leg.L/Lower_Leg.L
-    m_Weight: 0
+    m_Weight: 1
   - m_Path: Main_Root/Hips/Upper_Leg.L/Lower_Leg.L/Foot.L
-    m_Weight: 0
+    m_Weight: 1
   - m_Path: Main_Root/Hips/Upper_Leg.L/Lower_Leg.L/Foot.L/Toes.R
-    m_Weight: 0
+    m_Weight: 1
   - m_Path: Main_Root/Hips/Upper_Leg.L/Lower_Leg.L/Foot.L/Toes.R/Toes.R_end
-    m_Weight: 0
+    m_Weight: 1
   - m_Path: Main_Root/Hips/Upper_Leg.R
-    m_Weight: 0
+    m_Weight: 1
   - m_Path: Main_Root/Hips/Upper_Leg.R/Lower_Leg.R
-    m_Weight: 0
+    m_Weight: 1
   - m_Path: Main_Root/Hips/Upper_Leg.R/Lower_Leg.R/Foot.R
-    m_Weight: 0
+    m_Weight: 1
   - m_Path: Main_Root/Hips/Upper_Leg.R/Lower_Leg.R/Foot.R/Toes.L
-    m_Weight: 0
+    m_Weight: 1
   - m_Path: Main_Root/Hips/Upper_Leg.R/Lower_Leg.R/Foot.R/Toes.L/Toes.L_end
-    m_Weight: 0
+    m_Weight: 1
+  - m_Path: Main_Root/Weapon.L
+    m_Weight: 1
+  - m_Path: Main_Root/Weapon.L/DualSword.R
+    m_Weight: 1
+  - m_Path: Main_Root/Weapon.L/Handle.L
+    m_Weight: 1
+  - m_Path: Main_Root/Weapon.L/Handle.L/Handle.L_end
+    m_Weight: 1
+  - m_Path: Main_Root/Weapon.L/WeaponExtra0.L
+    m_Weight: 1
+  - m_Path: Main_Root/Weapon.L/WeaponExtra0.L/WeaponExtra0.L_end
+    m_Weight: 1
+  - m_Path: Main_Root/Weapon.L/WeaponExtra1.L
+    m_Weight: 1
+  - m_Path: Main_Root/Weapon.L/WeaponExtra1.L/WeaponExtra1.L_end
+    m_Weight: 1
+  - m_Path: Main_Root/Weapon.L/WeaponExtra2.L
+    m_Weight: 1
+  - m_Path: Main_Root/Weapon.L/WeaponExtra2.L/WeaponExtra2.L_end
+    m_Weight: 1
+  - m_Path: Main_Root/Weapon.R
+    m_Weight: 1
+  - m_Path: Main_Root/Weapon.R/DualSword.L
+    m_Weight: 1
+  - m_Path: Main_Root/Weapon.R/Handle.R
+    m_Weight: 1
+  - m_Path: Main_Root/Weapon.R/Handle.R/Handle.R_end
+    m_Weight: 1
+  - m_Path: Main_Root/Weapon.R/WeaponExtra0.R
+    m_Weight: 1
+  - m_Path: Main_Root/Weapon.R/WeaponExtra0.R/WeaponExtra0.R_end
+    m_Weight: 1
+  - m_Path: Main_Root/Weapon.R/WeaponExtra1.R
+    m_Weight: 1
+  - m_Path: Main_Root/Weapon.R/WeaponExtra1.R/WeaponExtra1.R_end
+    m_Weight: 1
+  - m_Path: Main_Root/Weapon.R/WeaponExtra2.R
+    m_Weight: 1
+  - m_Path: Main_Root/Weapon.R/WeaponExtra2.R/WeaponExtra2.R_end
+    m_Weight: 1
+  - m_Path: Main_Root/WeaponExtra.L
+    m_Weight: 1
+  - m_Path: Main_Root/WeaponExtra.L/WeaponExtra.L_end
+    m_Weight: 1
+  - m_Path: Main_Root/WeaponExtra.R
+    m_Weight: 1
+  - m_Path: Main_Root/WeaponExtra.R/WeaponExtra.R_end
+    m_Weight: 1
   - m_Path: Neck
-    m_Weight: 0
+    m_Weight: 1
   - m_Path: Pants
-    m_Weight: 0
+    m_Weight: 1
   - m_Path: Shirt
-    m_Weight: 0
-  - m_Path: W_Left_Root
     m_Weight: 1
-  - m_Path: W_Left_Root/LeftRoot
-    m_Weight: 0
-  - m_Path: W_Left_Root/LeftRoot/Extra2
-    m_Weight: 0
-  - m_Path: W_Left_Root/LeftRoot/Extra2/Extra2_end
-    m_Weight: 0
-  - m_Path: W_Left_Root/LeftRoot/Extra3
-    m_Weight: 0
-  - m_Path: W_Left_Root/LeftRoot/Extra3/Extra3_end
-    m_Weight: 0
-  - m_Path: W_Left_Root/LeftRoot/Extra4
-    m_Weight: 0
-  - m_Path: W_Left_Root/LeftRoot/Extra4/Extra4_end
-    m_Weight: 0
-  - m_Path: W_Left_Root/LeftRoot/Extra5
-    m_Weight: 0
-  - m_Path: W_Left_Root/LeftRoot/Extra5/Extra5_end
-    m_Weight: 0
-  - m_Path: W_Left_Root/LeftRoot/ExtraChild
-    m_Weight: 0
-  - m_Path: W_Left_Root/LeftRoot/ExtraChild/ExtraChild_end
-    m_Weight: 0
-  - m_Path: W_Left_Root/LeftRoot/ExtraMain
-    m_Weight: 0
-  - m_Path: W_Left_Root/LeftRoot/ExtraMain/ExtraMain_end
-    m_Weight: 0
-  - m_Path: W_Left_Root/LeftRoot/Handle
-    m_Weight: 0
-  - m_Path: W_Left_Root/LeftRoot/Handle/Handle_end
-    m_Weight: 0
-  - m_Path: W_Left_Root/LeftRoot/NAttach1
-    m_Weight: 0
-  - m_Path: W_Left_Root/LeftRoot/NAttach1/NAttach1_end
-    m_Weight: 0
-  - m_Path: W_Left_Root/LeftRoot/NAttach2
-    m_Weight: 0
-  - m_Path: W_Left_Root/LeftRoot/NAttach2/NAttach2_end
-    m_Weight: 0
-  - m_Path: W_Left_Root/LeftRoot/NAttach3
-    m_Weight: 0
-  - m_Path: W_Left_Root/LeftRoot/NAttach3/NAttach3_end
-    m_Weight: 0
-  - m_Path: W_Left_Root/LeftRoot/WeaponRoot
-    m_Weight: 0
-  - m_Path: W_Left_Root/LeftRoot/WeaponRoot/WeaponRoot_end
-    m_Weight: 0
-  - m_Path: W_Right_Root
-    m_Weight: 1
-  - m_Path: W_Right_Root/RightRoot
-    m_Weight: 0
-  - m_Path: W_Right_Root/RightRoot/NAttach1
-    m_Weight: 0
-  - m_Path: W_Right_Root/RightRoot/NAttach1/NAttach1_end
-    m_Weight: 0
-  - m_Path: W_Right_Root/RightRoot/NAttach2
-    m_Weight: 0
-  - m_Path: W_Right_Root/RightRoot/NAttach2/NAttach2_end
-    m_Weight: 0
-  - m_Path: W_Right_Root/RightRoot/NAttach3
-    m_Weight: 0
-  - m_Path: W_Right_Root/RightRoot/NAttach3/NAttach3_end
-    m_Weight: 0
-  - m_Path: W_Right_Root/RightRoot/WeaponRoot
-    m_Weight: 0
-  - m_Path: W_Right_Root/RightRoot/WeaponRoot/Extra2
-    m_Weight: 0
-  - m_Path: W_Right_Root/RightRoot/WeaponRoot/Extra2/Extra2_end
-    m_Weight: 0
-  - m_Path: W_Right_Root/RightRoot/WeaponRoot/Extra3
-    m_Weight: 0
-  - m_Path: W_Right_Root/RightRoot/WeaponRoot/Extra3/Extra3_end
-    m_Weight: 0
-  - m_Path: W_Right_Root/RightRoot/WeaponRoot/Extra4
-    m_Weight: 0
-  - m_Path: W_Right_Root/RightRoot/WeaponRoot/Extra4/Extra4_end
-    m_Weight: 0
-  - m_Path: W_Right_Root/RightRoot/WeaponRoot/Extra5
-    m_Weight: 0
-  - m_Path: W_Right_Root/RightRoot/WeaponRoot/Extra5/Extra5_end
-    m_Weight: 0
-  - m_Path: W_Right_Root/RightRoot/WeaponRoot/ExtraMain
-    m_Weight: 0
-  - m_Path: W_Right_Root/RightRoot/WeaponRoot/ExtraMain/ExtraChild
-    m_Weight: 0
-  - m_Path: W_Right_Root/RightRoot/WeaponRoot/ExtraMain/ExtraChild/ExtraChild_end
-    m_Weight: 0
-  - m_Path: W_Right_Root/RightRoot/WeaponRoot/Handle
-    m_Weight: 0
-  - m_Path: W_Right_Root/RightRoot/WeaponRoot/Handle/Handle_end
-    m_Weight: 0
