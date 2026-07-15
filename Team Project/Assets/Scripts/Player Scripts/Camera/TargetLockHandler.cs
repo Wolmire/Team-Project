@@ -6,87 +6,110 @@ using Unity.Collections;
 
 public class TargetLockHandler : MonoBehaviour
 {
-    [SerializeField] CharacterController playerController;
+    [SerializeField] private CharacterController playerController;
     public SetTarget setTarget;
     [SerializeField] private Animator cameraAnimator;
 
     public bool activeTarget;
-    [SerializeField][Range(5, 50)] float enemyDetectionRange;
-    [ReadOnly][SerializeField] private List<Transform> nearbyTargets;
+    [SerializeField][Range(5, 50)] private float enemyDetectionRange;
+    [ReadOnly][SerializeField] private List<Transform> nearbyTargets = new List<Transform>();
     public Transform currentTarget;
 
     [SerializeField] private GameObject freeLookCamera;
     [SerializeField] private GameObject targetLockCamera;
 
-    [SerializeField] LayerMask enemyLayer;
+    [SerializeField] private LayerMask enemyLayer;
 
     public static Action<bool> OnTargetLock;
 
-    float switchLockCooldown = 0.5f;
-    float switchAfterTime = 0;
+    [SerializeField] private float switchLockCooldown = 0.3f;
+    private float switchAfterTime = 0f;
+
+    private float accumulatedMouseDistance = 0f;
+    private float lastMouseMovementTime = 0f;
+
+    [SerializeField] private float mouseDistanceThreshold = 50f; 
+    [SerializeField] private float mouseResetTime = 0.15f;
 
     private void Start()
     {
         SwitchCamera();
-        setTarget.visual.enabled = false;
+        if (setTarget?.visual != null) setTarget.visual.enabled = false;
     }
 
     private void FixedUpdate()
     {
-        if(activeTarget)
+        if (activeTarget && currentTarget != null)
         {
             float distance = Vector3.Distance(playerController.transform.position, currentTarget.position);
-            if(distance > enemyDetectionRange + enemyDetectionRange / 2)
-            {
-                TargetLock(false);
-            }
+            if (distance > enemyDetectionRange * 1.5f) TargetLock(false);
         }
     }
+
     public void HandleSwitchTargetInput(string deviceType, float lookInputX)
     {
-        if(activeTarget)
+        if (!activeTarget) return;
+
+        if (Time.time < switchAfterTime)
         {
-            if ((deviceType == "Gamepad" && switchAfterTime < Time.time) || deviceType == "Keyboard&Mouse")
+            if (deviceType == "Gamepad" && Mathf.Abs(lookInputX) < 0.1f) switchAfterTime = 0;
+            return;
+        }
+
+        if (deviceType == "Keyboard&Mouse")
+        {
+            if (Time.time - lastMouseMovementTime > mouseResetTime) accumulatedMouseDistance = 0f;
+
+            if (Mathf.Abs(lookInputX) > 0.1f)
             {
-                float rightX = lookInputX;
+                accumulatedMouseDistance += lookInputX;
+                lastMouseMovementTime = Time.time;
+            }
 
-                float deadzone = 0.2f;
-                if (Mathf.Abs(rightX) < deadzone) rightX = 0f;
+            if (Mathf.Abs(accumulatedMouseDistance) >= mouseDistanceThreshold)
+            {
+                SwitchTarget(switchToLeft: accumulatedMouseDistance < 0);
 
-                if (rightX < 0.5f)
-                {
-                    SwitchTarget(true);
-                    switchAfterTime = Time.time + switchLockCooldown;
-                }
-                else if (rightX > 0.5f)
-                {
-                    SwitchTarget(true);
-                    switchAfterTime = Time.time + switchLockCooldown;
-                }
+                accumulatedMouseDistance = 0f;
+                switchAfterTime = Time.time + switchLockCooldown;
+            }
+        }
+        else
+        {
+            float deadzone = 0.4f;
+
+            if (lookInputX < -deadzone)
+            {
+                SwitchTarget(switchToLeft: true);
+                switchAfterTime = Time.time + switchLockCooldown;
+            }
+            else if (lookInputX > deadzone)
+            {
+                SwitchTarget(switchToLeft: false);
+                switchAfterTime = Time.time + switchLockCooldown;
             }
         }
     }
-
     public void TargetLock(bool boolval)
     {
         if (boolval)
         {
             CollectTargetsAndGetMostInFrontTarget(out Transform targetMostInFront);
-            currentTarget = targetMostInFront;
 
             if (targetMostInFront != null)
             {
-                setTarget.SetTargetPos(targetMostInFront);
+                currentTarget = targetMostInFront;
+                setTarget.SetTargetPos(currentTarget);
                 activeTarget = true;
                 SwitchCamera();
-                setTarget.visual.enabled = true;
-
+                if (setTarget.visual != null) setTarget.visual.enabled = true;
             }
         }
         else
         {
             nearbyTargets.Clear();
-            setTarget.visual.enabled = false;
+            currentTarget = null;
+            if (setTarget?.visual != null) setTarget.visual.enabled = false;
             activeTarget = false;
             SwitchCamera();
         }
@@ -95,41 +118,40 @@ public class TargetLockHandler : MonoBehaviour
 
     private void SwitchTarget(bool switchToLeft)
     {
-        if(!activeTarget) return;
+        if (!activeTarget) return;
 
-        CollectTargetsAndGetMostInFrontTarget(out Transform targetMostInFront);
+        CollectTargetsAndGetMostInFrontTarget(out _);
 
-        if(nearbyTargets.Count <= 0)
-        {
-            TargetLock(false);
-            return;
-        }
+        if (nearbyTargets.Count <= 1) return;
 
         int currentTargetIndex = GetTargetIndex(currentTarget);
 
         if (currentTargetIndex == -1)
         {
+            CollectTargetsAndGetMostInFrontTarget(out Transform targetMostInFront);
             currentTargetIndex = GetTargetIndex(targetMostInFront);
         }
 
         if (switchToLeft)
         {
-            if (currentTargetIndex > 0) currentTargetIndex -= 1;
-            else currentTargetIndex = currentTargetIndex = 0;
+            if (currentTargetIndex > 0) currentTargetIndex--;
+
+            else return;
         }
         else
-            if (currentTargetIndex < nearbyTargets.Count - 1)
         {
-            currentTargetIndex += 1;
+            if (currentTargetIndex < nearbyTargets.Count - 1) currentTargetIndex++;
+
+            else return;
         }
-        else currentTargetIndex = nearbyTargets.Count - 1;
 
         currentTarget = nearbyTargets[currentTargetIndex];
 
-        if(currentTarget != null)
+        if (currentTarget != null)
         {
-            CinemachineGroupFraming cinemachineGroupFraming = targetLockCamera.GetComponent<CinemachineGroupFraming>();
-            cinemachineGroupFraming.Damping = 1f;
+            CinemachineGroupFraming groupFraming = targetLockCamera.GetComponent<CinemachineGroupFraming>();
+            if (groupFraming != null) groupFraming.Damping = 1f;
+
             setTarget.SetTargetPos(currentTarget);
         }
     }
@@ -137,8 +159,16 @@ public class TargetLockHandler : MonoBehaviour
     private void CollectTargetsAndGetMostInFrontTarget(out Transform targetMostInFront)
     {
         List<Transform> foundTargets = new List<Transform>();
+        Camera mainCam = Camera.main;
 
-        Collider[] enemyColliders = Physics.OverlapSphere(playerController.transform.position, enemyDetectionRange);
+        if (mainCam == null)
+        {
+            targetMostInFront = null;
+            return;
+        }
+
+        Collider[] enemyColliders = Physics.OverlapSphere(playerController.transform.position, enemyDetectionRange, enemyLayer);
+
         foreach (Collider collider in enemyColliders)
         {
             if (collider.gameObject.TryGetComponent(out IEnemy enemyStatus))
@@ -146,20 +176,16 @@ public class TargetLockHandler : MonoBehaviour
                 if (enemyStatus != null && enemyStatus.isAlive)
                 {
                     Vector3 directionToEnemy = (collider.transform.position - playerController.transform.position).normalized;
-                    float dot = Vector3.Dot(GetActiveCamera().transform.forward, directionToEnemy);
-                    if (dot > 0.5f)
+                    float dot = Vector3.Dot(mainCam.transform.forward, directionToEnemy);
+
+                    if (dot > 0.3f)
                     {
-                        bool hitSomething = Physics.Raycast(playerController.transform.position, directionToEnemy, out RaycastHit hit, enemyDetectionRange);
-                        if (hitSomething)
+                        if (Physics.Raycast(playerController.transform.position + Vector3.up, directionToEnemy, out RaycastHit hit, enemyDetectionRange))
                         {
-                            if (hit.collider == collider)
+                            if (hit.collider == collider || hit.transform.IsChildOf(collider.transform))
                             {
                                 foundTargets.Add(collider.transform);
                             }
-                        }
-                        else
-                        {
-                            foundTargets.Add(collider.transform);
                         }
                     }
                 }
@@ -173,33 +199,30 @@ public class TargetLockHandler : MonoBehaviour
             return;
         }
 
-        foundTargets.Sort((enemy, enemy2) =>
+        foundTargets.Sort((enemyA, enemyB) =>
         {
-            Vector3 directionToEnemy = (enemy.position - playerController.transform.position).normalized;
-            Vector3 directionToEnemy2 = (enemy2.position - playerController.transform.position).normalized;
-
-            float crossEnemy = Vector3.Cross(GetActiveCamera().transform.forward, directionToEnemy).y;
-            float crossEnemy2 = Vector3.Cross(GetActiveCamera().transform.forward, directionToEnemy2).y;
-
-            return crossEnemy.CompareTo(crossEnemy2);
+            Vector3 screenPosA = mainCam.WorldToViewportPoint(enemyA.position);
+            Vector3 screenPosB = mainCam.WorldToViewportPoint(enemyB.position);
+            return screenPosA.x.CompareTo(screenPosB.x);
         });
 
         nearbyTargets = foundTargets;
 
-        float maxDot = -1f;
-        int mostInFrontIndex = 0;
-        for (int i = 0; i < foundTargets.Count; i++)
+        float closestToCenter = float.MaxValue;
+        int targetIndex = 0;
+
+        for (int i = 0; i < nearbyTargets.Count; i++)
         {
-            Vector3 directionToEnemy = (foundTargets[i].position - playerController.transform.position).normalized;
-            float dot = Vector3.Dot(GetActiveCamera().transform.forward, directionToEnemy);
-            if (dot > maxDot)
+            Vector3 viewportPos = mainCam.WorldToViewportPoint(nearbyTargets[i].position);
+            float offsetFromCenter = Mathf.Abs(viewportPos.x - 0.5f);
+            if (offsetFromCenter < closestToCenter)
             {
-                maxDot = dot;
-                mostInFrontIndex = i;
+                closestToCenter = offsetFromCenter;
+                targetIndex = i;
             }
         }
 
-        targetMostInFront = nearbyTargets[mostInFrontIndex];
+        targetMostInFront = nearbyTargets[targetIndex];
     }
 
     private void SwitchCamera()
@@ -209,18 +232,16 @@ public class TargetLockHandler : MonoBehaviour
         CinemachineCamera cinemachineLockCamera = targetLockCamera.GetComponent<CinemachineCamera>();
         CinemachineGroupFraming cinemachineLockedCameraGroupFraming = targetLockCamera.GetComponent<CinemachineGroupFraming>();
 
-        if (axisControllerFreeLook != null)
+        if (axisControllerFreeLook != null) axisControllerFreeLook.enabled = !activeTarget;
+
+        if (activeTarget)
         {
-            axisControllerFreeLook.enabled = !activeTarget;
-        }
-        if(activeTarget)
-        {
-            cinemachineFreeLookCamera.ForceCameraPosition(cinemachineFreeLookCamera.State.GetFinalPosition(), cinemachineFreeLookCamera.State.GetFinalOrientation());
+            cinemachineLockCamera.ForceCameraPosition(cinemachineFreeLookCamera.State.GetFinalPosition(), cinemachineFreeLookCamera.State.GetFinalOrientation());
             cameraAnimator.Play("Locked On Camera");
         }
         else
         {
-            cinemachineLockedCameraGroupFraming.Damping = 0;
+            if (cinemachineLockedCameraGroupFraming != null) cinemachineLockedCameraGroupFraming.Damping = 0;
             cinemachineFreeLookCamera.ForceCameraPosition(cinemachineLockCamera.State.GetFinalPosition(), cinemachineLockCamera.State.GetFinalOrientation());
             cameraAnimator.Play("Free Look Camera");
         }
@@ -233,9 +254,8 @@ public class TargetLockHandler : MonoBehaviour
 
     public GameObject GetActiveCamera()
     {
-        if(targetLockCamera.GetComponent<CinemachineCamera>().IsLive) return targetLockCamera;
-        if(freeLookCamera.GetComponent<CinemachineCamera>().IsLive) return freeLookCamera;
-
+        if (targetLockCamera.GetComponent<CinemachineCamera>().IsLive) return targetLockCamera;
+        if (freeLookCamera.GetComponent<CinemachineCamera>().IsLive) return freeLookCamera;
         return null;
     }
 }
