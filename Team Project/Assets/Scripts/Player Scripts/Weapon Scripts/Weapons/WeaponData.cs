@@ -13,6 +13,7 @@ public class WeaponData : ScriptableObject
     public WeaponAttack[] lightAttacks;
     public WeaponAttack[] heavyAttacks;
     public WeaponAttack[] specialAttacks;
+    public AnimatorOverrideController AnimOverride;
 }
 public enum WeaponType
 {

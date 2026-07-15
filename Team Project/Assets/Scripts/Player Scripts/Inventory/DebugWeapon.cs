@@ -2,5 +2,5 @@ using UnityEngine;
 
 public class DebugWeapon : IWeaponBase
 {
-    public WeaponData WeaponData;
+    // WeaponData Is now in the Abstract script :)
 }

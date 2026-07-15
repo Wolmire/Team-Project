@@ -19,16 +19,23 @@ public class WeaponCore : MonoBehaviour
 
     [HideInInspector] public Action<WeaponAttack> OnAttackStarted;
 
-    Animator animator;
+    public PlayerAnimator PlayerAnim;
+
+   // Animator animator;
     AnimatorOverrideController overrideController;
     public bool IsAttacking => attackRoutine != null;
 
     public void Start()
     {
-        animator = GetComponent<Animator>();
-        overrideController = new AnimatorOverrideController();
-        overrideController.runtimeAnimatorController = animator.runtimeAnimatorController;
-        animator.runtimeAnimatorController = overrideController;
+        //PlayerAnim = GetComponent<PlayerAnimator>();
+        PlayerAnim.OverrideAnimControl(overrideController);
+        //overrideController = new AnimatorOverrideController();
+        //overrideController.runtimeAnimatorController = animator.runtimeAnimatorController;
+        //animator.runtimeAnimatorController = overrideController;
+        if(PlayerAnim == null)
+        {
+            Debug.LogWarning("WARNING");
+        }
     }
     public void QueueAttack(WeaponAttack attack, attackChainType type, int index) //done within attack state to try queue the next attack in chain
     {
@@ -57,8 +64,11 @@ public class WeaponCore : MonoBehaviour
             queuedAttack = null;
             queuedChainAttackType = attackChainType.None;
 
-            OnAttackStarted?.Invoke(attack); //attack started event that attack state uses to consume stamina, we could use it elsewhere too if we want to do something when an attack starts
-            attack.Attack(overrideController, "Attack", animator);
+            //OnAttackStarted?.Invoke(attack); //attack started event that attack state uses to consume stamina, we could use it elsewhere too if we want to do something when an attack starts
+            //attack.Attack();
+
+            //PlayerAnim.Attack(overrideController, "Attack" ,attack.attackAnimation);
+            PlayerAnim.SetAnimTrigger("Attack");
 
             yield return new WaitForSeconds(attack.AttackUptime);
 

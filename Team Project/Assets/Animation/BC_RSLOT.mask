@@ -186,7 +186,7 @@ AvatarMask:
   - m_Path: Shirt
     m_Weight: 0
   - m_Path: W_Left_Root
-    m_Weight: 1
+    m_Weight: 0
   - m_Path: W_Left_Root/LeftRoot
     m_Weight: 1
   - m_Path: W_Left_Root/LeftRoot/Extra2
@@ -234,7 +234,7 @@ AvatarMask:
   - m_Path: W_Left_Root/LeftRoot/WeaponRoot/WeaponRoot_end
     m_Weight: 1
   - m_Path: W_Right_Root
-    m_Weight: 1
+    m_Weight: 0
   - m_Path: W_Right_Root/RightRoot
     m_Weight: 1
   - m_Path: W_Right_Root/RightRoot/NAttach1
