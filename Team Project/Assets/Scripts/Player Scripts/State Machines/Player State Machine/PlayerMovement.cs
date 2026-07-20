@@ -123,13 +123,19 @@ public class PlayerMovement : MonoBehaviour
         if (Physics.SphereCast(MController.transform.position + new Vector3(0, CrouchHeight - radius, 0), radius, Vector3.up, out RaycastHit hitInfo, distance, ceilingLayer)) return false;
         else return true;
     }
-
-    public bool isGrounded() => MController.isGrounded;
+    //New grounded system bc default was buggy
+    public bool isGrounded() => Physics.Raycast(transform.position, Vector3.down, MController.height + 0.1f);
 
     public void Gravity()
     {
-        if (velocity < 0.1f && MController.isGrounded) velocity = -1f;
-        else velocity -= GravityStrength * Time.deltaTime;
+        if (velocity < 0.1f && MController.isGrounded)
+        {
+            velocity = -1f * Time.deltaTime;
+        }
+        else
+        {
+            velocity -= GravityStrength * Time.deltaTime;
+        }
     }
 
     public void AnimationBool(string SettingBool, bool AnimationBool)
