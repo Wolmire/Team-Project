@@ -2,6 +2,7 @@ using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEditor.Animations;
 using UnityEngine;
+using UnityEngine.InputSystem.XR;
 
 public class PlayerAnimator : MonoBehaviour
 {
@@ -11,10 +12,23 @@ public class PlayerAnimator : MonoBehaviour
     float time;
     int CurrentAnimation;
     public RuntimeAnimatorController DefaultAnims;
+    public float FootOffset = 0.17f;
+
+    public float FootRayLength = 0.3f;
+
+    private float LowerFootYpos;
+    public float RootOffset = 0.5f;
+
+    public float SmoothingSpeed;
+    //public AvatarIKGoal
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     private void Start()
     {
        // DefaultAnims = GetComponent<RuntimeAnimatorController>();
+    }
+    private void Update()
+    {
+        //FootIk();
     }
     public void SetAnimBool(string AnimString, bool AnimBool)
     {
@@ -82,4 +96,43 @@ public class PlayerAnimator : MonoBehaviour
     {
         PlayerAnimController.SetTrigger(AnimString);
     }
+
+    void OnAnimatorIK(int layerIndex)
+    {
+        FootIk(AvatarIKGoal.LeftFoot);
+        FootIk(AvatarIKGoal.RightFoot);
+
+    }
+
+    void FootIk(AvatarIKGoal foot)
+    {
+        Vector3 FootPosition = PlayerAnimController.GetIKPosition(foot);
+        Debug.DrawRay(FootPosition, Vector3.down * FootRayLength, Color.red);
+       if(Physics.Raycast(FootPosition, Vector3.down, out RaycastHit hit, FootRayLength))
+        {
+
+            Debug.Log("Hit: " + hit.point);
+            PlayerAnimController.SetIKPositionWeight(foot, 1f);
+            PlayerAnimController.SetIKPosition(foot, hit.point + Vector3.up * FootOffset);
+
+         //   PlayerAnimController.SetIKRotationWeight(foot, 1f);
+          //  PlayerAnimController.SetIKRotation(foot, Quaternion.Euler(hit.normal));
+
+            float LeftFootYPos = PlayerAnimController.GetIKPosition(AvatarIKGoal.LeftFoot).y;
+            float RightFootYPos = PlayerAnimController.GetIKPosition(AvatarIKGoal.RightFoot).y;
+            float LowerFoot = Mathf.Min(LeftFootYPos, RightFootYPos);
+
+            LowerFootYpos = Mathf.Lerp(LowerFootYpos, LowerFoot, SmoothingSpeed * Time.deltaTime);
+
+
+            PlayerAnimController.bodyPosition = new Vector3(PlayerAnimController.rootPosition.x, LowerFootYpos + RootOffset, PlayerAnimController.rootPosition.z);
+        }
+        else
+        {
+            PlayerAnimController.SetIKPositionWeight(foot, 0f);
+        }
+
+
+    }
+
 }
