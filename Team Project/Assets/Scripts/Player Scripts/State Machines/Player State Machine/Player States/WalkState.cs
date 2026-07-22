@@ -24,14 +24,14 @@ public class WalkState : PlayerState
 
         if(playerCore.currentStamina < playerCore.maxStamina) playerCore.currentStamina += (playerCore.staminaRegenRate * playerCore.walkStaminaRegenMultiplier * playerCore.staminaRegenRateMuliplier * Time.deltaTime);
 
-        if (input.PrimaryInputPressed() && equipManager.CurrentWeapon != equipManager.WeaponSlot1)
+        if (input.PrimaryInputPressed() && equipManager.CurrentWeapon)
         {
-            equipManager.Equip(equipManager.WeaponSlot1, equipManager.RSlot);
+            equipManager.CycleInventory(PlayerEquipManager.Hand.MainHand);
             weaponCore.CurrentWeaponData = equipManager.CurrentWeapon.WeaponData;
         }
-        if (input.SecondaryInputPressed() && equipManager.CurrentWeapon != equipManager.WeaponSlot2)
+        if (input.SecondaryInputPressed() && equipManager.CurrentWeapon)
         {
-            equipManager.Equip(equipManager.WeaponSlot2, equipManager.RSlot);
+            equipManager.CycleInventory(PlayerEquipManager.Hand.OffHand);
             weaponCore.CurrentWeaponData = equipManager.CurrentWeapon.WeaponData;
         }
 

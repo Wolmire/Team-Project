@@ -1,10 +1,13 @@
 using UnityEngine;
 using System.Collections.Generic;
 using UnityEngine.UI;
+using UnityEngine.XR;
 
 [CreateAssetMenu(fileName = "WeaponData", menuName = "Weapons/WeaponData")]
 public class WeaponData : ScriptableObject
 {
+
+    public EquipType HoldType; 
     public string weaponName;
     public WeaponType weaponType;
     public Image weaponIcon;
@@ -19,4 +22,12 @@ public enum WeaponType
 {
     ShortSword,
     LongSword
+}
+
+public enum EquipType
+{
+    Dual,
+    OneHanded,
+    TwoHanded,
+        
 }

@@ -28,7 +28,7 @@ public class WeaponCore : MonoBehaviour
     public void Start()
     {
         //PlayerAnim = GetComponent<PlayerAnimator>();
-        PlayerAnim.OverrideAnimControl(overrideController);
+       // PlayerAnim.OverrideAnimControl(overrideController);
         //overrideController = new AnimatorOverrideController();
         //overrideController.runtimeAnimatorController = animator.runtimeAnimatorController;
         //animator.runtimeAnimatorController = overrideController;

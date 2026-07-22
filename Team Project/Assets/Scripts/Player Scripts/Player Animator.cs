@@ -18,9 +18,17 @@ public class PlayerAnimator : MonoBehaviour
 
     private float LowerFootYpos;
     public float RootOffset = 0.5f;
+    public float weight = 1f;
+    public float SmoothingSpeed = 3;
+    public float RootSmoothingSpeed = 6;
 
-    public float SmoothingSpeed;
+    public float RayCastOffset = 0.5f;
+
     //public AvatarIKGoal
+
+
+    Vector3 LeftLerpIKPos;
+    Vector3 RightLerpIKPos;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     private void Start()
     {
@@ -103,35 +111,68 @@ public class PlayerAnimator : MonoBehaviour
         FootIk(AvatarIKGoal.RightFoot);
 
     }
-
+    
     void FootIk(AvatarIKGoal foot)
     {
         Vector3 FootPosition = PlayerAnimController.GetIKPosition(foot);
-        Debug.DrawRay(FootPosition, Vector3.down * FootRayLength, Color.red);
-       if(Physics.Raycast(FootPosition, Vector3.down, out RaycastHit hit, FootRayLength))
+        Debug.DrawRay(FootPosition + Vector3.up * RayCastOffset, Vector3.down * FootRayLength, Color.red);
+       if(Physics.Raycast(FootPosition + Vector3.up * RayCastOffset, Vector3.down, out RaycastHit hit, FootRayLength))
         {
 
             Debug.Log("Hit: " + hit.point);
-            PlayerAnimController.SetIKPositionWeight(foot, 1f);
+         //   weight = Mathf.Lerp(weight, 1, SmoothWeight * Time.deltaTime);
+            PlayerAnimController.SetIKPositionWeight(foot, 1);
+
+
+            //PlayerAnimController.SetIKRotationWeight(foot, 1f);
+
+            //  PlayerAnimController.SetBoneLocalRotation(humanBoneId: HumanBodyBones.LeftFoot, hit.normal);
+            //Vector3 FootRotation = new Vector3(hit.normal.x, hit.normal.y, hit.normal.z);
+
+
+            //Transform FootCustomRotation = PlayerAnimController.GetBoneTransform(HumanBodyBones.Hips);
+
             PlayerAnimController.SetIKPosition(foot, hit.point + Vector3.up * FootOffset);
 
-         //   PlayerAnimController.SetIKRotationWeight(foot, 1f);
-          //  PlayerAnimController.SetIKRotation(foot, Quaternion.Euler(hit.normal));
-
-            float LeftFootYPos = PlayerAnimController.GetIKPosition(AvatarIKGoal.LeftFoot).y;
-            float RightFootYPos = PlayerAnimController.GetIKPosition(AvatarIKGoal.RightFoot).y;
-            float LowerFoot = Mathf.Min(LeftFootYPos, RightFootYPos);
-
-            LowerFootYpos = Mathf.Lerp(LowerFootYpos, LowerFoot, SmoothingSpeed * Time.deltaTime);
 
 
-            PlayerAnimController.bodyPosition = new Vector3(PlayerAnimController.rootPosition.x, LowerFootYpos + RootOffset, PlayerAnimController.rootPosition.z);
+            //if (foot == AvatarIKGoal.LeftFoot)
+            //{
+            //    LeftLerpIKPos = Vector3.Lerp(LeftLerpIKPos, hit.point + Vector3.up * FootOffset, SmoothingSpeed * Time.deltaTime);
+            //    PlayerAnimController.SetIKPosition(foot, LeftLerpIKPos);
+
+
+            //}
+            //else
+            //{
+            //    RightLerpIKPos = Vector3.Lerp(RightLerpIKPos, hit.point + Vector3.up * FootOffset, SmoothingSpeed * Time.deltaTime);
+            //    PlayerAnimController.SetIKPosition(foot, RightLerpIKPos);
+            //}
+            //PlayerAnimController.SetIKPosition(foot, hit.point + Vector3.up * FootOffset);
+
+
+            //Quaternion FootRotation = Quaternion.LookRotation(FootCustomRotation.rotation.eulerAngles, hit.normal);
+            //
+            // PlayerAnimController.SetBoneLocalRotation(HumanBodyBones.LeftFoot, FootRotation);
+
+
+            //PlayerAnimController.SetIKRotation(foot, Quaternion.LookRotation(hit.normal));
+
+
+           
+
+
         }
         else
-        {
-            PlayerAnimController.SetIKPositionWeight(foot, 0f);
+        { 
+          //  weight = 0;
         }
+        float LeftFootYPos = PlayerAnimController.GetIKPosition(AvatarIKGoal.LeftFoot).y;
+        float RightFootYPos = PlayerAnimController.GetIKPosition(AvatarIKGoal.RightFoot).y;
+        float LowerFoot = Mathf.Min(LeftFootYPos, RightFootYPos);
 
+        LowerFootYpos = Mathf.Lerp(LowerFootYpos, LowerFoot, RootSmoothingSpeed * Time.deltaTime);
+        PlayerAnimController.bodyPosition = new Vector3(PlayerAnimController.rootPosition.x, LowerFootYpos + RootOffset, PlayerAnimController.rootPosition.z);
 
     }
 

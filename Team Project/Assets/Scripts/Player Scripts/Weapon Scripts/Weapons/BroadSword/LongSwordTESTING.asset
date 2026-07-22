@@ -12,6 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3de0f362656bbd7ac8bfaebe6fff3288, type: 3}
   m_Name: LongSwordTESTING
   m_EditorClassIdentifier: Assembly-CSharp::WeaponData
+  HoldType: 2
   weaponName: Standard Long Sword
   weaponType: 1
   weaponIcon: {fileID: 0}
@@ -24,4 +25,4 @@ MonoBehaviour:
   heavyAttacks:
   - {fileID: 11400000, guid: 5f8019d4eab195a169e3565503d4377d, type: 2}
   specialAttacks: []
-  AnimOverride: {fileID: 22100000, guid: fd9bf52fbaf3634429e73312587e5f69, type: 2}
+  AnimOverride: {fileID: 0}

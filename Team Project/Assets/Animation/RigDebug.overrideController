@@ -1,0 +1,15 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!221 &22100000
+AnimatorOverrideController:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: RigDebug
+  m_Controller: {fileID: 9100000, guid: a2f25b28c79ab504faa32562f04d9731, type: 2}
+  m_Clips:
+  - m_OriginalClip: {fileID: 3397078966901630776, guid: 1d66ba130fc59264982145d5b2b352bd, type: 3}
+    m_OverrideClip: {fileID: 1431553357447135385, guid: 695d0b4c0696ca54284e433260af2d7c, type: 3}
+  - m_OriginalClip: {fileID: 4893529509781756936, guid: 1d66ba130fc59264982145d5b2b352bd, type: 3}
+    m_OverrideClip: {fileID: -3195840009241905961, guid: f5b8da38e611e564792b33d16baea4d8, type: 3}

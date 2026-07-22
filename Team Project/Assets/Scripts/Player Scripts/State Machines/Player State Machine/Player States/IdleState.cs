@@ -1,5 +1,6 @@
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.XR;
 public class IdleState : PlayerState
 {
     public IdleState(PlayerCore playerCore, PlayerMovement movement, PlayerInputManager input, PlayerStateMachine psm, WeaponCore weaponCore, TargetLockHandler targetLock, PlayerEquipManager equipManager) : base(playerCore, movement, input, psm, weaponCore, targetLock, equipManager) { }
@@ -25,14 +26,14 @@ public class IdleState : PlayerState
         if(input.TargetLockPressed()) targetLock.TargetLock(!targetLock.activeTarget);
         targetLock.HandleSwitchTargetInput(input.DeviceType, input.LookInput.x);
 
-        if (input.PrimaryInputPressed() && equipManager.CurrentWeapon != equipManager.WeaponSlot1)
+        if (input.PrimaryInputPressed() && equipManager.CurrentWeapon)
         {
-            equipManager.Equip(equipManager.WeaponSlot1, equipManager.RSlot);
+            equipManager.CycleInventory(PlayerEquipManager.Hand.MainHand);
             weaponCore.CurrentWeaponData = equipManager.CurrentWeapon.WeaponData;
         }
-        if (input.SecondaryInputPressed() && equipManager.CurrentWeapon != equipManager.WeaponSlot2)
+        if (input.SecondaryInputPressed() && equipManager.CurrentWeapon)
         {
-            equipManager.Equip(equipManager.WeaponSlot2, equipManager.RSlot);
+            equipManager.CycleInventory(PlayerEquipManager.Hand.OffHand);
             weaponCore.CurrentWeaponData = equipManager.CurrentWeapon.WeaponData;
         }
         HandleAttackInput();
