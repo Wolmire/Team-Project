@@ -35,8 +35,8 @@ public class PlayerEquipManager : MonoBehaviour
     public Hand HeldHand;
 
 
-    public int MainHandWeaponInt;
-    public int OffHandWeaponInt;
+    int MainHandWeaponInt;
+    int OffHandWeaponInt;
 
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
