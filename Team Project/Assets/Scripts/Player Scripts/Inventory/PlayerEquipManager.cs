@@ -8,13 +8,14 @@ public class PlayerEquipManager : MonoBehaviour
     public IWeaponBase[] MainHandWeapons;
     public IWeaponBase[] OffHandWeapons;
 
+
     [HideInInspector] public IWeaponBase CurrentWeapon;
 
 
     [HideInInspector] public IWeaponBase CurrentAltWeapon;
 
     public PlayerInput InventoryInput;
-
+        
     private string CurrentHeldName;
 
     private string CurrentAltHeldName;

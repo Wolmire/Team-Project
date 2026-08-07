@@ -32,7 +32,7 @@ public class WalkState : PlayerState
         if (input.SecondaryInputPressed() && equipManager.CurrentWeapon)
         {
             equipManager.CycleInventory(PlayerEquipManager.Hand.OffHand);
-            weaponCore.CurrentWeaponData = equipManager.CurrentWeapon.WeaponData;
+            weaponCore.CurrentAltWeaponData = equipManager.CurrentAltWeapon.WeaponData;
         }
 
         HandleAttackInput();

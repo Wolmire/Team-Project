@@ -119,7 +119,7 @@ public class PlayerAnimator : MonoBehaviour
        if(Physics.Raycast(FootPosition + Vector3.up * RayCastOffset, Vector3.down, out RaycastHit hit, FootRayLength))
         {
 
-            Debug.Log("Hit: " + hit.point);
+            //Debug.Log("Hit: " + hit.point);
          //   weight = Mathf.Lerp(weight, 1, SmoothWeight * Time.deltaTime);
             PlayerAnimController.SetIKPositionWeight(foot, 1);
 

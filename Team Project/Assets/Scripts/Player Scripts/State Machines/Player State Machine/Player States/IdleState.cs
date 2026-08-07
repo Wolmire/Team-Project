@@ -34,20 +34,51 @@ public class IdleState : PlayerState
         if (input.SecondaryInputPressed() && equipManager.CurrentWeapon)
         {
             equipManager.CycleInventory(PlayerEquipManager.Hand.OffHand);
-            weaponCore.CurrentWeaponData = equipManager.CurrentWeapon.WeaponData;
+            weaponCore.CurrentAltWeaponData = equipManager.CurrentAltWeapon.WeaponData;
         }
-        HandleAttackInput();
+
+        if (weaponCore.CurrentWeaponData.Magic)
+        {
+            Debug.Log("UsingMagic");
+            HandleMagicAttackInput();
+        }
+        else
+        {
+            Debug.Log("Melee");
+            HandleMeleeAttackInput();
+        }
     }
-    private void HandleAttackInput()
+
+    private void HandleMagicAttackInput()
     {
-        if (input.LightAttackPressed()) InitiateAttack(attackChainType.Light, weaponCore.CurrentWeaponData.lightAttacks);
+        if (input.LightAttackPressed()) InitiateMelee(attackChainType.Light, weaponCore.CurrentWeaponData.lightAttacks);
 
-        if (input.HeavyAttackPressed()) InitiateAttack(attackChainType.Heavy, weaponCore.CurrentWeaponData.heavyAttacks);
+        if (input.HeavyAttackPressed()) InitiateMagic(attackChainType.Heavy, weaponCore.MagicSpells);
 
-        if (input.SpecialAttackPressed()) InitiateAttack(attackChainType.Special, weaponCore.CurrentWeaponData.specialAttacks);
+        if (input.SpecialAttackPressed()) InitiateMagic(attackChainType.Special, weaponCore.CurrentWeaponData.specialAttacks);
+    }
+    private void HandleMeleeAttackInput()
+    {
+        if (input.LightAttackPressed()) InitiateMelee(attackChainType.Light, weaponCore.CurrentWeaponData.lightAttacks);
+
+        if (input.HeavyAttackPressed()) InitiateMelee(attackChainType.Heavy, weaponCore.CurrentWeaponData.heavyAttacks);
+
+        if (input.SpecialAttackPressed()) InitiateMelee(attackChainType.Special, weaponCore.CurrentWeaponData.specialAttacks);
     }
 
-    private void InitiateAttack(attackChainType type, WeaponAttack[] list) //basically checks if player has enough stamina and there is a valid attack to initiate
+    private void InitiateMagic(attackChainType type, WeaponAttack[] list)
+    {
+        if (list == null || list.Length == 0) return;
+        WeaponAttack firstAttack = list[0];
+        if (playerCore.currentStamina < firstAttack.staminaCost) return;
+        weaponCore.attackChainIndex = 0;
+        weaponCore.currentChainAttackType = type;
+        weaponCore.QueueAttack(firstAttack, type, 0);
+        playerStateMachine.SwitchState(new AttackState(playerCore, movement, input, playerStateMachine, weaponCore, targetLock, equipManager));
+
+    }
+
+    private void InitiateMelee(attackChainType type, WeaponAttack[] list) //basically checks if player has enough stamina and there is a valid attack to initiate
     {
         if (list == null || list.Length == 0) return;
         WeaponAttack firstAttack = list[0];

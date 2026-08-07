@@ -1,15 +1,18 @@
-using UnityEngine;
-using System.Collections;
 using System;
+using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+using UnityEngine.UIElements;
 
 public class WeaponCore : MonoBehaviour
 {
-    public WeaponData CurrentWeaponData; //this is what youll switch with your weapon swapping script, im not attached to how I do it, make any changes you want
+    public WeaponData CurrentWeaponData;
+    public WeaponData CurrentAltWeaponData;//this is what youll switch with your weapon swapping script, im not attached to how I do it, make any changes you want
 
     [HideInInspector] public WeaponAttack queuedAttack;
     [HideInInspector] public attackChainType queuedChainAttackType;
     [HideInInspector] public attackChainType currentChainAttackType;
-
+    private string AttackTypeString;
     [HideInInspector] public int queuedIndex;
     [HideInInspector] public int attackChainIndex;
 
@@ -17,7 +20,10 @@ public class WeaponCore : MonoBehaviour
 
     private Coroutine attackRoutine;
 
+    public WeaponAttack[] MagicSpells;
+
     [HideInInspector] public Action<WeaponAttack> OnAttackStarted;
+    [HideInInspector] public int CurrentSpell;
 
     public PlayerAnimator PlayerAnim;
 
@@ -32,6 +38,8 @@ public class WeaponCore : MonoBehaviour
         //overrideController = new AnimatorOverrideController();
         //overrideController.runtimeAnimatorController = animator.runtimeAnimatorController;
         //animator.runtimeAnimatorController = overrideController;
+
+        //runtimeOverride = new AnimatorOverrideController()
         if(PlayerAnim == null)
         {
             Debug.LogWarning("WARNING");
@@ -42,6 +50,26 @@ public class WeaponCore : MonoBehaviour
         queuedAttack = attack;
         queuedChainAttackType = type;
         queuedIndex = index;
+    }
+
+    public void CycleMagic()
+    {
+        if(MagicSpells.Length > 1)
+        {
+            CurrentSpell++;
+            if (MagicSpells.Length - 1 < CurrentSpell)
+            {
+                CurrentSpell = 0;
+            }
+            ReadySpell();
+        }
+    }
+    private void ReadySpell()
+    {
+       if(MagicSpells[CurrentSpell].Unique)
+       {
+           // runtime MagicSpells[CurrentSpell].UniqueAnimation;
+       }
     }
 
     public void StartAttack() //done within other states to start the attack loop (they will also call queueattack), if an attack is queued it will start the loop, if not it will do nothing
@@ -62,13 +90,26 @@ public class WeaponCore : MonoBehaviour
         while (true)
         {
             queuedAttack = null;
-            queuedChainAttackType = attackChainType.None;
 
             //OnAttackStarted?.Invoke(attack); //attack started event that attack state uses to consume stamina, we could use it elsewhere too if we want to do something when an attack starts
-            //attack.Attack();
 
+            if(queuedChainAttackType == attackChainType.Light)
+            {
+                AttackTypeString = "Light";
+            }
+            if (queuedChainAttackType == attackChainType.Heavy)
+            {
+                AttackTypeString = "Heavy";
+            }
+            if(queuedChainAttackType == attackChainType.Special)
+            {
+                AttackTypeString = "Special";
+            }
+            queuedChainAttackType = attackChainType.None;
+            attack.InitiateAttack();
+            PlayerAnim.SetAnimTrigger(AttackTypeString);
             //PlayerAnim.Attack(overrideController, "Attack" ,attack.attackAnimation);
-            PlayerAnim.SetAnimTrigger("Attack");
+            //PlayerAnim.SetAnimTrigger("");
 
             yield return new WaitForSeconds(attack.AttackUptime);
 
@@ -89,7 +130,14 @@ public class WeaponCore : MonoBehaviour
         attackChainIndex = 0;
         currentChainAttackType = attackChainType.None;
     }
+    public void OnAttackEvent()
+    {
+        queuedAttack.InitiateAttack();
+    }
 }
+
+
+
 public enum attackChainType //enum so we can track what attack chain were in so we dont allow the player to queue a different attack type in the middle of an attack chain
 {
     None,

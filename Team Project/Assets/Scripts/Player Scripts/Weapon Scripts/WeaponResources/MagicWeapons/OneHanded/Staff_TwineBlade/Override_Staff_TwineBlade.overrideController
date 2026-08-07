@@ -1,0 +1,25 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!221 &22100000
+AnimatorOverrideController:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: Override_Staff_TwineBlade
+  m_Controller: {fileID: 9100000, guid: a2f25b28c79ab504faa32562f04d9731, type: 2}
+  m_Clips:
+  - m_OriginalClip: {fileID: 8350816339630823838, guid: 4c5c8228e1e253b4cad7ee39133e2e08, type: 3}
+    m_OverrideClip: {fileID: -7644880850620284698, guid: 45afbe8ec7544274fa269d66b7857c49, type: 3}
+  - m_OriginalClip: {fileID: -1089554749865405874, guid: 4c5c8228e1e253b4cad7ee39133e2e08, type: 3}
+    m_OverrideClip: {fileID: 2269981529700895920, guid: 45afbe8ec7544274fa269d66b7857c49, type: 3}
+  - m_OriginalClip: {fileID: 4930920218851014556, guid: 4c5c8228e1e253b4cad7ee39133e2e08, type: 3}
+    m_OverrideClip: {fileID: -8932971829977462721, guid: 45afbe8ec7544274fa269d66b7857c49, type: 3}
+  - m_OriginalClip: {fileID: 6719210481058646981, guid: 4c5c8228e1e253b4cad7ee39133e2e08, type: 3}
+    m_OverrideClip: {fileID: 6652060287795518525, guid: 45afbe8ec7544274fa269d66b7857c49, type: 3}
+  - m_OriginalClip: {fileID: 8092723800721037219, guid: 4c5c8228e1e253b4cad7ee39133e2e08, type: 3}
+    m_OverrideClip: {fileID: 4547774341644132286, guid: 45afbe8ec7544274fa269d66b7857c49, type: 3}
+  - m_OriginalClip: {fileID: 330211783352062551, guid: 4c5c8228e1e253b4cad7ee39133e2e08, type: 3}
+    m_OverrideClip: {fileID: 6002510337101247023, guid: 45afbe8ec7544274fa269d66b7857c49, type: 3}
+  - m_OriginalClip: {fileID: -3100369314251171874, guid: 4c5c8228e1e253b4cad7ee39133e2e08, type: 3}
+    m_OverrideClip: {fileID: -1269869830299223416, guid: 5b400891167859046a07b7e3210556fb, type: 3}
