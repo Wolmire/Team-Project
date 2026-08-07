@@ -11,7 +11,6 @@ public class WeaponAttack : ScriptableObject
 
    // public void Attack(//AnimatorOverrideController controller, string stateName, Animator animator)
     public void Attack()
-
     {
         Debug.Log(this.name + " attacked for " + baseDamage + " damage.");
        // controller[stateName] = attackAnimation;

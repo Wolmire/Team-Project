@@ -10,6 +10,7 @@ public class WeaponData : ScriptableObject
     public Image weaponIcon;
     public float AttackDamageModifier;
     public float AttackSpeedModifier;
+    public CapsuleCollider weaponHitbox;
     public WeaponAttack[] lightAttacks;
     public WeaponAttack[] heavyAttacks;
     public WeaponAttack[] specialAttacks;
@@ -17,6 +18,8 @@ public class WeaponData : ScriptableObject
 }
 public enum WeaponType
 {
+    Staff,
+    DualDaggers,
     ShortSword,
     LongSword
 }
