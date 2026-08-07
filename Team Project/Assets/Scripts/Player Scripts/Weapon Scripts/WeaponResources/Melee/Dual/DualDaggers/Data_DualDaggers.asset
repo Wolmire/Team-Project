@@ -1,0 +1,29 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3de0f362656bbd7ac8bfaebe6fff3288, type: 3}
+  m_Name: Data_DualDaggers
+  m_EditorClassIdentifier: Assembly-CSharp::WeaponData
+  HoldType: 1
+  weaponName: DualDaggers
+  Magic: 0
+  weaponType: 0
+  weaponIcon: {fileID: 0}
+  AttackDamageModifier: 1
+  AttackSpeedModifier: 1
+  lightAttacks:
+  - {fileID: 11400000, guid: 1db0f3387f3c5434cab2d378386fbf46, type: 2}
+  - {fileID: 11400000, guid: 1db0f3387f3c5434cab2d378386fbf46, type: 2}
+  - {fileID: 11400000, guid: 1db0f3387f3c5434cab2d378386fbf46, type: 2}
+  heavyAttacks:
+  - {fileID: 11400000, guid: 24d29fb872b1049499daf7227746cad7, type: 2}
+  specialAttacks: []
+  AnimOverride: {fileID: 22100000, guid: 8c0edf50fc4d900498ed72f48edcde80, type: 2}
