@@ -31,7 +31,11 @@ public class WeaponAttack : ScriptableObject
     // public void Attack(//AnimatorOverrideController controller, string stateName, Animator animator)
     public void InitiateAttack()
     {
-        IAttack.OnInitiateIAttack();
+        if(IAttack != null)
+        {
+            IAttack.OnInitiateIAttack();
+
+        }
         Debug.Log(this.name + " attacked for " + baseDamage + " damage.");
        // controller[stateName] = attackAnimation;
        // animator.SetTrigger("Attack");

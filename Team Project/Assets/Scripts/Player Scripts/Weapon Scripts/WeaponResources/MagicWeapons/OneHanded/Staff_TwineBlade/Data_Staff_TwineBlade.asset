@@ -21,6 +21,7 @@ MonoBehaviour:
   AttackSpeedModifier: 0
   lightAttacks:
   - {fileID: 11400000, guid: 1a8e6ff45a356f94b982727976f208e3, type: 2}
+  - {fileID: 11400000, guid: 1a8e6ff45a356f94b982727976f208e3, type: 2}
   heavyAttacks: []
   specialAttacks: []
   AnimOverride: {fileID: 22100000, guid: ddd42fa066624e94581a315f06f94fc4, type: 2}
