@@ -1,3 +1,4 @@
+using System.Collections;
 using UnityEngine;
 
 public class PlayerMovement : MonoBehaviour
@@ -13,6 +14,13 @@ public class PlayerMovement : MonoBehaviour
 
     public float baseJumpHeight = 1.5f;
     public float jumpHeightMultiplier = 1.0f;
+
+    public float baseDashDistance = 2.5f;
+    public float dashDistanceMultiplier = 1.0f;
+    public float dashDuration = 0.5f;
+    public float dashDurationMultiplier = 1f;
+    public bool isDashing = false;
+
     float DefaultHeight;
     public float CrouchHeight = 1.2f;
     [HideInInspector] public Vector3 RawMovementDirection;
@@ -96,6 +104,23 @@ public class PlayerMovement : MonoBehaviour
     {
         float jumpHeight = baseJumpHeight * jumpHeightMultiplier;
         velocity = Mathf.Sqrt(jumpHeight * 2f * GravityStrength);
+    }
+    public IEnumerator Dash()
+    {
+        isDashing = true;
+        
+        float startTime = Time.time;
+        float dashDistance = baseDashDistance * dashDistanceMultiplier;
+        float dashSpeed = dashDistance / (dashDuration * dashDurationMultiplier);
+        Vector3 dashDirection = new Vector3(RefinedMovementDirection.x, 0, RefinedMovementDirection.z).normalized;
+        
+        while (Time.time < startTime + (dashDuration * dashDurationMultiplier))
+        {
+            MController.Move(dashDirection * dashSpeed * Time.deltaTime);
+            yield return null;
+        }
+
+        isDashing = false;
     }
 
     public void ApplyMovement(float speedMultiplier)

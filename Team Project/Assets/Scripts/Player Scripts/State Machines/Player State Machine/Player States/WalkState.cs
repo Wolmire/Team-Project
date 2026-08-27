@@ -13,6 +13,7 @@ public class WalkState : PlayerState
         if (input.MoveInput.sqrMagnitude < 0.01f) playerStateMachine.SwitchState(new IdleState(playerCore, movement, input, playerStateMachine, weaponCore, targetLock, equipManager));
         if (input.Sprint && playerCore.currentStamina > playerCore.runMinStamina) playerStateMachine.SwitchState(new RunState(playerCore, movement, input, playerStateMachine, weaponCore, targetLock, equipManager));
         if (input.Crouch) playerStateMachine.SwitchState(new CrouchWalkState(playerCore, movement, input, playerStateMachine, weaponCore, targetLock, equipManager));
+        if (input.DashPressed() && playerCore.currentStamina >= playerCore.dashStaminaCost) playerStateMachine.SwitchState(new DashState(playerCore, movement, input, playerStateMachine, weaponCore, targetLock, equipManager));
         if (!movement.isGrounded()) playerStateMachine.SwitchState(new FallState(playerCore, movement, input, playerStateMachine, weaponCore, targetLock, equipManager));
         if (input.JumpPressed())
         {

@@ -25,7 +25,6 @@ public class WeaponData : ScriptableObject
 }
 public enum WeaponType
 {
-    Staff,
     DualDaggers,
     ShortSword,
     LongSword,

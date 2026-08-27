@@ -7131,8 +7131,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1720471800}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.0016170967, y: 0.9943224, z: -0.0152704315, w: 0.105296}
-  m_LocalPosition: {x: -6.9971347, y: 2.37874, z: 4.3586807}
+  m_LocalRotation: {x: 0.0030800395, y: 0.9940142, z: -0.029085174, w: 0.10526337}
+  m_LocalPosition: {x: -2.1554847, y: 1.7128003, z: 0.21679068}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -19166,6 +19166,22 @@ MonoBehaviour:
         m_CallState: 2
     m_ActionId: a5263de5-0f7c-4b51-824e-4b2604021f5e
     m_ActionName: 'Player/LockOn[/Mouse/middleButton]'
+  - m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 3376066968827683834}
+        m_TargetAssemblyTypeName: PlayerInputManager, Assembly-CSharp
+        m_MethodName: ReadDashInput
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_ActionId: b4bf5ba9-79cb-4136-8915-30ccf8795d56
+    m_ActionName: 'Player/Dash[/Keyboard/leftAlt]'
   m_NeverAutoSwitchControlSchemes: 0
   m_DefaultControlScheme: 
   m_DefaultActionMap: Player
@@ -19938,7 +19954,7 @@ Transform:
   m_GameObject: {fileID: 3922001074591609433}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.96202, y: 0, z: 0.06813}
+  m_LocalPosition: {x: 5.82, y: -0.75, z: -4.15}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -20414,7 +20430,7 @@ Transform:
   m_GameObject: {fileID: 2894298633422332929}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: 0.40335238, z: -0, w: 0.9150447}
-  m_LocalPosition: {x: -3.6805, y: 0.4005, z: 0.749}
+  m_LocalPosition: {x: -3.6805, y: 0.4005, z: 0.7490001}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -21043,7 +21059,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::AIOMovement
   MController: {fileID: 4996565318345985084}
-  MovementSpeed: 1
+  MovementSpeed: 2
   WalkSpeedMultiplier: 1
   RunSpeedMultiplier: 2
   CrouchSpeedMultiplier: 0.75
@@ -21051,6 +21067,11 @@ MonoBehaviour:
   SmoothSpeed: 10
   baseJumpHeight: 1
   jumpHeightMultiplier: 1
+  baseDashDistance: 3
+  dashDistanceMultiplier: 1
+  dashDuration: 0.3
+  dashDurationMultiplier: 1
+  isDashing: 0
   CrouchHeight: 1.2
   RawMovementDirection: {x: 0, y: 0, z: 0}
   RefinedMovementDirection: {x: 0, y: 0, z: 0}
@@ -21115,14 +21136,14 @@ MonoBehaviour:
   Radius: 1
   Orbits:
     Top:
-      Radius: 0.51
-      Height: 0.6
+      Radius: 0.5
+      Height: 1.5
     Center:
-      Radius: 2.92
+      Radius: 3
       Height: 0
     Bottom:
-      Radius: 0.71
-      Height: -0.97
+      Radius: 0.7
+      Height: -1
     SplineCurvature: 1
   RecenteringTarget: 2
   HorizontalAxis:
@@ -21355,6 +21376,7 @@ MonoBehaviour:
   Sprint: 0
   Crouch: 0
   Block: 0
+  Dash: 0
   ToggleCrouch: 0
   DeviceType: 
 --- !u!4 &3402035577422006192
@@ -22656,8 +22678,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2311720106977727093}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.0016170968, y: 0.99432236, z: -0.0152704315, w: 0.10529601}
-  m_LocalPosition: {x: -7.9591546, y: 2.37874, z: 4.2905507}
+  m_LocalRotation: {x: 0.0030800395, y: 0.9940142, z: -0.029085172, w: 0.10526336}
+  m_LocalPosition: {x: -7.975485, y: 2.4628005, z: 4.366791}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -24792,6 +24814,7 @@ MonoBehaviour:
   crouchWalkStaminaRegenMultiplier: 0.9
   runStaminaCost: 20
   runMinStamina: 25
+  dashStaminaCost: 20
   isCrouching: 0
   staminaText: {fileID: 427459702}
 --- !u!4 &9020676666164694641

@@ -18,6 +18,9 @@ public class PlayerCore : MonoBehaviour
     public float runStaminaCost = 10f;
     public float runMinStamina = 15f;
 
+    public float dashStaminaCost = 20f;
+
+
     public bool isCrouching = false;
 
     public TextMeshProUGUI staminaText;

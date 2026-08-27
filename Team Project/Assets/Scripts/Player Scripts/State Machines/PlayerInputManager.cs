@@ -11,6 +11,7 @@ public class PlayerInputManager : MonoBehaviour
     [HideInInspector] public bool Sprint;
     [HideInInspector] public bool Crouch;
     [HideInInspector] public bool Block;
+    [HideInInspector] public bool Dash;
 
     private bool lightAttack;
     private bool heavyAttack;
@@ -40,7 +41,13 @@ public class PlayerInputManager : MonoBehaviour
         Jump = false;
         return true;
     }
-
+    public void ReadDashInput(InputAction.CallbackContext context) { if (context.started) Dash = true; }
+    public bool DashPressed()
+    {
+        if (!Dash) return false;
+        Dash = false;
+        return true;
+    }
     public void ReadCrouchInput(InputAction.CallbackContext context)
     {
         if (!ToggleCrouch) Crouch = context.ReadValueAsButton();
