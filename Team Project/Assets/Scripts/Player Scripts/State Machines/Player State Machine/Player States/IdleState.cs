@@ -11,6 +11,8 @@ public class IdleState : PlayerState
     }
     public override void Tick()
     {
+        if (movement.OnLedge) playerStateMachine.SwitchState(new LedgeState(playerCore, movement, input, playerStateMachine, weaponCore, targetLock, equipManager));
+
         if (input.MoveInput.sqrMagnitude > 0.01f) playerStateMachine.SwitchState(new WalkState(playerCore, movement, input, playerStateMachine, weaponCore, targetLock, equipManager));
 
         if (input.Crouch) playerStateMachine.SwitchState(new CrouchState(playerCore, movement, input, playerStateMachine, weaponCore, targetLock, equipManager));

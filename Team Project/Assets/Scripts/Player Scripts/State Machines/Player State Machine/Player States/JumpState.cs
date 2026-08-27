@@ -14,10 +14,30 @@ public class JumpState : PlayerState
     public override void Tick()
     {
         movement.ApplyMovement(movement.AirSpeedMultiplier);
-
-        if (movement.MController.velocity.y < -0.1f)
+        if (movement.OnLedge)
         {
-            playerStateMachine.SwitchState(new FallState(playerCore, movement, input, playerStateMachine, weaponCore, targetLock, equipManager));
+            playerStateMachine.SwitchState(new LedgeState(playerCore, movement, input, playerStateMachine, weaponCore, targetLock, equipManager));
+        }
+        else
+        {
+            if (movement.isGrounded())
+            {
+                if (movement.MovementSpeed > 0.1)
+                {
+                    playerStateMachine.SwitchState(new WalkState(playerCore, movement, input, playerStateMachine, weaponCore, targetLock, equipManager));
+
+                }
+                else
+                {
+                    playerStateMachine.SwitchState(new IdleState(playerCore, movement, input, playerStateMachine, weaponCore, targetLock, equipManager));
+
+                }
+            }
+
+            if (movement.MController.velocity.y < -0.1f)
+            {
+                playerStateMachine.SwitchState(new FallState(playerCore, movement, input, playerStateMachine, weaponCore, targetLock, equipManager));
+            }
         }
     }
 }

@@ -10,6 +10,7 @@ public class WalkState : PlayerState
     }
     public override void Tick()
     {
+        if (movement.OnLedge) playerStateMachine.SwitchState(new LedgeState(playerCore, movement, input, playerStateMachine, weaponCore, targetLock, equipManager));
         if (input.MoveInput.sqrMagnitude < 0.01f) playerStateMachine.SwitchState(new IdleState(playerCore, movement, input, playerStateMachine, weaponCore, targetLock, equipManager));
         if (input.Sprint && playerCore.currentStamina > playerCore.runMinStamina) playerStateMachine.SwitchState(new RunState(playerCore, movement, input, playerStateMachine, weaponCore, targetLock, equipManager));
         if (input.Crouch) playerStateMachine.SwitchState(new CrouchWalkState(playerCore, movement, input, playerStateMachine, weaponCore, targetLock, equipManager));
@@ -20,6 +21,8 @@ public class WalkState : PlayerState
         }
 
         movement.Move(input.MoveInput, targetLock.activeTarget, targetLock.GetActiveCamera(), targetLock.currentTarget);
+        movement.Gravity();
+
         movement.ApplyMovement(movement.WalkSpeedMultiplier);
 
         if(playerCore.currentStamina < playerCore.maxStamina) playerCore.currentStamina += (playerCore.staminaRegenRate * playerCore.walkStaminaRegenMultiplier * playerCore.staminaRegenRateMuliplier * Time.deltaTime);

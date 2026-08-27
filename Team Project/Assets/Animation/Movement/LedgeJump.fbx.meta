@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 1e0154650885d364f8f5702bcd89f622
+guid: bd3c9929d64b66443bb980114b681c8f
 ModelImporter:
   serializedVersion: 24200
   internalIDToNameTable: []
@@ -17,27 +17,28 @@ ModelImporter:
     removeConstantScaleCurves: 0
     motionNodeName: 
     animationImportErrors: 
-    animationImportWarnings: "\nClip 'DiagonalWalk' has import animation warnings
-      that might lower retargeting quality:\nNote: Activate translation DOF on avatar
-      to improve retargeting quality.\n\t'Upper_Leg.R' has translation animation
-      that will be discarded.\n\t'Upper_Leg.L' has translation animation that will
-      be discarded.\n\nClip 'SideWalkCross' has import animation warnings that might
-      lower retargeting quality:\nNote: Activate translation DOF on avatar to improve
-      retargeting quality.\n\t'Upper_Leg.R' has translation animation that will be
-      discarded.\n\t'Upper_Leg.L' has translation animation that will be discarded.\n\nClip
-      'Player_Root|DiagonalWalk' has import animation warnings that might lower retargeting
-      quality:\nNote: Activate translation DOF on avatar to improve retargeting quality.\n\t'Upper_Leg.R'
-      has translation animation that will be discarded.\n\t'Upper_Leg.L' has translation
-      animation that will be discarded.\n\nClip 'Player_Root|SideWalkCross' has import
-      animation warnings that might lower retargeting quality:\nNote: Activate translation
-      DOF on avatar to improve retargeting quality.\n\t'Upper_Leg.R' has translation
-      animation that will be discarded.\n\t'Upper_Leg.L' has translation animation
-      that will be discarded.\n"
+    animationImportWarnings: "\nClip 'LedgeCatch' has import animation warnings that
+      might lower retargeting quality:\nNote: Activate translation DOF on avatar
+      to improve retargeting quality.\n\t'Neck.1' is inbetween humanoid transforms
+      and has rotation animation that will be discarded.\n\nClip 'LedgeJump' has
+      import animation warnings that might lower retargeting quality:\nNote: Activate
+      translation DOF on avatar to improve retargeting quality.\n\t'Neck.1' is inbetween
+      humanoid transforms and has rotation animation that will be discarded.\n\nClip
+      'Player_Root|LedgeCatch' has import animation warnings that might lower retargeting
+      quality:\nNote: Activate translation DOF on avatar to improve retargeting quality.\n\t'Neck.1'
+      is inbetween humanoid transforms and has rotation animation that will be discarded.\n\nClip
+      'Player_Root|LedgeJump' has import animation warnings that might lower retargeting
+      quality:\nNote: Activate translation DOF on avatar to improve retargeting quality.\n\t'Neck.1'
+      is inbetween humanoid transforms and has rotation animation that will be discarded.\n\nClip
+      'Player_Root|SideWalkCross' has import animation warnings that might lower
+      retargeting quality:\nNote: Activate translation DOF on avatar to improve retargeting
+      quality.\n\t'Upper_Leg.R' has translation animation that will be discarded.\n\t'Upper_Leg.L'
+      has translation animation that will be discarded.\n"
     animationRetargetingWarnings: 
     animationDoRetargetingWarnings: 0
     importAnimatedCustomProperties: 0
     importConstraints: 0
-    animationCompression: 0
+    animationCompression: 1
     animationRotationError: 0.5
     animationPositionError: 0.5
     animationScaleError: 0.5
@@ -46,11 +47,69 @@ ModelImporter:
     extraUserProperties: []
     clipAnimations:
     - serializedVersion: 16
-      name: Default
-      takeName: Default
-      internalID: 6121895296435977923
+      name: LedgeCatch
+      takeName: LedgeCatch
+      internalID: 1660586149272759940
       firstFrame: 0
-      lastFrame: 2
+      lastFrame: 25
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 0
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 1
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 1
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask: []
+      maskType: 3
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 0
+    - serializedVersion: 16
+      name: LedgeJump
+      takeName: LedgeJump
+      internalID: -7326674915892917534
+      firstFrame: 0
+      lastFrame: 27
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 0
+      loopBlend: 0
+      loopBlendOrientation: 1
+      loopBlendPositionY: 1
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 1
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask: []
+      maskType: 3
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 0
+    - serializedVersion: 16
+      name: LedgeFreeze
+      takeName: LedgeFreeze
+      internalID: 5829048438594919786
+      firstFrame: 0
+      lastFrame: 11
       wrapMode: 0
       orientationOffsetY: 0
       level: 0
@@ -62,64 +121,6 @@ ModelImporter:
       loopBlendOrientation: 1
       loopBlendPositionY: 1
       loopBlendPositionXZ: 1
-      keepOriginalOrientation: 0
-      keepOriginalPositionY: 1
-      keepOriginalPositionXZ: 0
-      heightFromFeet: 0
-      mirror: 0
-      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
-      curves: []
-      events: []
-      transformMask: []
-      maskType: 3
-      maskSource: {instanceID: 0}
-      additiveReferencePoseFrame: 0
-    - serializedVersion: 16
-      name: SideWalkStep
-      takeName: SideWalkStep
-      internalID: 474537309394110402
-      firstFrame: 0
-      lastFrame: 63
-      wrapMode: 0
-      orientationOffsetY: 0
-      level: 0
-      cycleOffset: 0
-      loop: 0
-      hasAdditiveReferencePose: 0
-      loopTime: 1
-      loopBlend: 0
-      loopBlendOrientation: 0
-      loopBlendPositionY: 0
-      loopBlendPositionXZ: 0
-      keepOriginalOrientation: 0
-      keepOriginalPositionY: 1
-      keepOriginalPositionXZ: 1
-      heightFromFeet: 0
-      mirror: 0
-      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
-      curves: []
-      events: []
-      transformMask: []
-      maskType: 3
-      maskSource: {instanceID: 0}
-      additiveReferencePoseFrame: 0
-    - serializedVersion: 16
-      name: DiagonalWalk
-      takeName: DiagonalWalk
-      internalID: -3196557631176466113
-      firstFrame: 0
-      lastFrame: 63
-      wrapMode: 0
-      orientationOffsetY: 0
-      level: 0
-      cycleOffset: 0
-      loop: 0
-      hasAdditiveReferencePose: 0
-      loopTime: 1
-      loopBlend: 0
-      loopBlendOrientation: 0
-      loopBlendPositionY: 0
-      loopBlendPositionXZ: 0
       keepOriginalOrientation: 1
       keepOriginalPositionY: 1
       keepOriginalPositionXZ: 1
@@ -128,96 +129,233 @@ ModelImporter:
       bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
       curves: []
       events: []
-      transformMask: []
-      maskType: 3
-      maskSource: {instanceID: 0}
-      additiveReferencePoseFrame: 0
-    - serializedVersion: 16
-      name: Walk
-      takeName: Walk
-      internalID: 2667949614841947897
-      firstFrame: 0
-      lastFrame: 63
-      wrapMode: 0
-      orientationOffsetY: 0
-      level: 0
-      cycleOffset: 0
-      loop: 0
-      hasAdditiveReferencePose: 0
-      loopTime: 1
-      loopBlend: 0
-      loopBlendOrientation: 0
-      loopBlendPositionY: 0
-      loopBlendPositionXZ: 0
-      keepOriginalOrientation: 1
-      keepOriginalPositionY: 1
-      keepOriginalPositionXZ: 1
-      heightFromFeet: 0
-      mirror: 0
-      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
-      curves: []
-      events: []
-      transformMask: []
-      maskType: 3
-      maskSource: {instanceID: 0}
-      additiveReferencePoseFrame: 0
-    - serializedVersion: 16
-      name: SideWalkCross
-      takeName: SideWalkCross
-      internalID: -1512951246770865891
-      firstFrame: 0
-      lastFrame: 63
-      wrapMode: 0
-      orientationOffsetY: 0
-      level: 0
-      cycleOffset: 0
-      loop: 0
-      hasAdditiveReferencePose: 0
-      loopTime: 1
-      loopBlend: 0
-      loopBlendOrientation: 0
-      loopBlendPositionY: 0
-      loopBlendPositionXZ: 0
-      keepOriginalOrientation: 1
-      keepOriginalPositionY: 1
-      keepOriginalPositionXZ: 0
-      heightFromFeet: 0
-      mirror: 0
-      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
-      curves: []
-      events: []
-      transformMask: []
-      maskType: 3
-      maskSource: {instanceID: 0}
-      additiveReferencePoseFrame: 0
-    - serializedVersion: 16
-      name: AuraWalk
-      takeName: AuraWalk
-      internalID: 6561897740079599504
-      firstFrame: 0
-      lastFrame: 127
-      wrapMode: 0
-      orientationOffsetY: 0
-      level: 0
-      cycleOffset: 0
-      loop: 0
-      hasAdditiveReferencePose: 0
-      loopTime: 1
-      loopBlend: 0
-      loopBlendOrientation: 0
-      loopBlendPositionY: 0
-      loopBlendPositionXZ: 0
-      keepOriginalOrientation: 1
-      keepOriginalPositionY: 1
-      keepOriginalPositionXZ: 1
-      heightFromFeet: 0
-      mirror: 0
-      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
-      curves: []
-      events: []
-      transformMask: []
-      maskType: 3
-      maskSource: {instanceID: 0}
+      transformMask:
+      - path: 
+        weight: 1
+      - path: Player_Root
+        weight: 1
+      - path: Player_Root/Foot.IK.L
+        weight: 1
+      - path: Player_Root/Foot.IK.L/Foot.IK.L_end
+        weight: 1
+      - path: Player_Root/Foot.IK.R
+        weight: 1
+      - path: Player_Root/Foot.IK.R/Foot.IK.R_end
+        weight: 1
+      - path: Player_Root/Hips
+        weight: 1
+      - path: Player_Root/Hips/IK.POLE.L
+        weight: 1
+      - path: Player_Root/Hips/IK.POLE.L/IK.POLE.L_end
+        weight: 1
+      - path: Player_Root/Hips/IK.POLE.R
+        weight: 1
+      - path: Player_Root/Hips/IK.POLE.R/IK.POLE.R_end
+        weight: 1
+      - path: Player_Root/Hips/IK.TARGET.L
+        weight: 1
+      - path: Player_Root/Hips/IK.TARGET.L/IK.TARGET.L_end
+        weight: 1
+      - path: Player_Root/Hips/IK.TARGET.R
+        weight: 1
+      - path: Player_Root/Hips/IK.TARGET.R/IK.TARGET.R_end
+        weight: 1
+      - path: Player_Root/Hips/KneePole.L
+        weight: 1
+      - path: Player_Root/Hips/KneePole.L/KneePole.L_end
+        weight: 1
+      - path: Player_Root/Hips/KneePole.R
+        weight: 1
+      - path: Player_Root/Hips/KneePole.R/KneePole.R_end
+        weight: 1
+      - path: Player_Root/Hips/Spine.0
+        weight: 1
+      - path: Player_Root/Hips/Spine.0/Spine.1
+        weight: 1
+      - path: Player_Root/Hips/Spine.0/Spine.1/Spine.2
+        weight: 1
+      - path: Player_Root/Hips/Spine.0/Spine.1/Spine.2/Neck.0
+        weight: 1
+      - path: Player_Root/Hips/Spine.0/Spine.1/Spine.2/Neck.0/Neck.1
+        weight: 1
+      - path: Player_Root/Hips/Spine.0/Spine.1/Spine.2/Neck.0/Neck.1/Head
+        weight: 1
+      - path: Player_Root/Hips/Spine.0/Spine.1/Spine.2/Neck.0/Neck.1/Head/Head_end
+        weight: 1
+      - path: Player_Root/Hips/Spine.0/Spine.1/Spine.2/Shoulder.L
+        weight: 1
+      - path: Player_Root/Hips/Spine.0/Spine.1/Spine.2/Shoulder.L/upper_arm.L
+        weight: 1
+      - path: Player_Root/Hips/Spine.0/Spine.1/Spine.2/Shoulder.L/upper_arm.L/forearm.L
+        weight: 1
+      - path: Player_Root/Hips/Spine.0/Spine.1/Spine.2/Shoulder.L/upper_arm.L/forearm.L/hand.L
+        weight: 1
+      - path: Player_Root/Hips/Spine.0/Spine.1/Spine.2/Shoulder.L/upper_arm.L/forearm.L/hand.L/f_index.01.L
+        weight: 1
+      - path: Player_Root/Hips/Spine.0/Spine.1/Spine.2/Shoulder.L/upper_arm.L/forearm.L/hand.L/f_index.01.L/f_index.02.L
+        weight: 1
+      - path: Player_Root/Hips/Spine.0/Spine.1/Spine.2/Shoulder.L/upper_arm.L/forearm.L/hand.L/f_index.01.L/f_index.02.L/f_index.03.L
+        weight: 1
+      - path: Player_Root/Hips/Spine.0/Spine.1/Spine.2/Shoulder.L/upper_arm.L/forearm.L/hand.L/f_index.01.L/f_index.02.L/f_index.03.L/f_index.03.L_end
+        weight: 1
+      - path: Player_Root/Hips/Spine.0/Spine.1/Spine.2/Shoulder.L/upper_arm.L/forearm.L/hand.L/f_middle.01.L
+        weight: 1
+      - path: Player_Root/Hips/Spine.0/Spine.1/Spine.2/Shoulder.L/upper_arm.L/forearm.L/hand.L/f_middle.01.L/f_middle.02.L
+        weight: 1
+      - path: Player_Root/Hips/Spine.0/Spine.1/Spine.2/Shoulder.L/upper_arm.L/forearm.L/hand.L/f_middle.01.L/f_middle.02.L/f_middle.03.L
+        weight: 1
+      - path: Player_Root/Hips/Spine.0/Spine.1/Spine.2/Shoulder.L/upper_arm.L/forearm.L/hand.L/f_middle.01.L/f_middle.02.L/f_middle.03.L/f_middle.03.L_end
+        weight: 1
+      - path: Player_Root/Hips/Spine.0/Spine.1/Spine.2/Shoulder.L/upper_arm.L/forearm.L/hand.L/f_pinky.01.L
+        weight: 1
+      - path: Player_Root/Hips/Spine.0/Spine.1/Spine.2/Shoulder.L/upper_arm.L/forearm.L/hand.L/f_pinky.01.L/f_pinky.02.L
+        weight: 1
+      - path: Player_Root/Hips/Spine.0/Spine.1/Spine.2/Shoulder.L/upper_arm.L/forearm.L/hand.L/f_pinky.01.L/f_pinky.02.L/f_pinky.03.L
+        weight: 1
+      - path: Player_Root/Hips/Spine.0/Spine.1/Spine.2/Shoulder.L/upper_arm.L/forearm.L/hand.L/f_pinky.01.L/f_pinky.02.L/f_pinky.03.L/f_pinky.03.L_end
+        weight: 1
+      - path: Player_Root/Hips/Spine.0/Spine.1/Spine.2/Shoulder.L/upper_arm.L/forearm.L/hand.L/f_ring.01.L
+        weight: 1
+      - path: Player_Root/Hips/Spine.0/Spine.1/Spine.2/Shoulder.L/upper_arm.L/forearm.L/hand.L/f_ring.01.L/f_ring.02.L
+        weight: 1
+      - path: Player_Root/Hips/Spine.0/Spine.1/Spine.2/Shoulder.L/upper_arm.L/forearm.L/hand.L/f_ring.01.L/f_ring.02.L/f_ring.03.L
+        weight: 1
+      - path: Player_Root/Hips/Spine.0/Spine.1/Spine.2/Shoulder.L/upper_arm.L/forearm.L/hand.L/f_ring.01.L/f_ring.02.L/f_ring.03.L/f_ring.03.L_end
+        weight: 1
+      - path: Player_Root/Hips/Spine.0/Spine.1/Spine.2/Shoulder.L/upper_arm.L/forearm.L/hand.L/thumb.01.L
+        weight: 1
+      - path: Player_Root/Hips/Spine.0/Spine.1/Spine.2/Shoulder.L/upper_arm.L/forearm.L/hand.L/thumb.01.L/thumb.02.L
+        weight: 1
+      - path: Player_Root/Hips/Spine.0/Spine.1/Spine.2/Shoulder.L/upper_arm.L/forearm.L/hand.L/thumb.01.L/thumb.02.L/thumb.03.L
+        weight: 1
+      - path: Player_Root/Hips/Spine.0/Spine.1/Spine.2/Shoulder.L/upper_arm.L/forearm.L/hand.L/thumb.01.L/thumb.02.L/thumb.03.L/thumb.03.L_end
+        weight: 1
+      - path: Player_Root/Hips/Spine.0/Spine.1/Spine.2/Shoulder.L/upper_arm.L/forearm.L/hand.L/Weapon.L
+        weight: 1
+      - path: Player_Root/Hips/Spine.0/Spine.1/Spine.2/Shoulder.L/upper_arm.L/forearm.L/hand.L/Weapon.L/Handle.L
+        weight: 1
+      - path: Player_Root/Hips/Spine.0/Spine.1/Spine.2/Shoulder.L/upper_arm.L/forearm.L/hand.L/Weapon.L/Handle.L/Handle.L_end
+        weight: 1
+      - path: Player_Root/Hips/Spine.0/Spine.1/Spine.2/Shoulder.L/upper_arm.L/forearm.L/hand.L/Weapon.L/Weapon.R
+        weight: 1
+      - path: Player_Root/Hips/Spine.0/Spine.1/Spine.2/Shoulder.L/upper_arm.L/forearm.L/hand.L/Weapon.L/WeaponExtra0.L
+        weight: 1
+      - path: Player_Root/Hips/Spine.0/Spine.1/Spine.2/Shoulder.L/upper_arm.L/forearm.L/hand.L/Weapon.L/WeaponExtra0.L/WeaponExtra0.L_end
+        weight: 1
+      - path: Player_Root/Hips/Spine.0/Spine.1/Spine.2/Shoulder.L/upper_arm.L/forearm.L/hand.L/Weapon.L/WeaponExtra1.L
+        weight: 1
+      - path: Player_Root/Hips/Spine.0/Spine.1/Spine.2/Shoulder.L/upper_arm.L/forearm.L/hand.L/Weapon.L/WeaponExtra1.L/WeaponExtra1.L_end
+        weight: 1
+      - path: Player_Root/Hips/Spine.0/Spine.1/Spine.2/Shoulder.L/upper_arm.L/forearm.L/hand.L/Weapon.L/WeaponExtra2.L
+        weight: 1
+      - path: Player_Root/Hips/Spine.0/Spine.1/Spine.2/Shoulder.L/upper_arm.L/forearm.L/hand.L/Weapon.L/WeaponExtra2.L/WeaponExtra2.L_end
+        weight: 1
+      - path: Player_Root/Hips/Spine.0/Spine.1/Spine.2/Shoulder.R
+        weight: 1
+      - path: Player_Root/Hips/Spine.0/Spine.1/Spine.2/Shoulder.R/upper_arm.R
+        weight: 1
+      - path: Player_Root/Hips/Spine.0/Spine.1/Spine.2/Shoulder.R/upper_arm.R/forearm.R
+        weight: 1
+      - path: Player_Root/Hips/Spine.0/Spine.1/Spine.2/Shoulder.R/upper_arm.R/forearm.R/hand.R
+        weight: 1
+      - path: Player_Root/Hips/Spine.0/Spine.1/Spine.2/Shoulder.R/upper_arm.R/forearm.R/hand.R/f_index.01.R
+        weight: 1
+      - path: Player_Root/Hips/Spine.0/Spine.1/Spine.2/Shoulder.R/upper_arm.R/forearm.R/hand.R/f_index.01.R/f_index.02.R
+        weight: 1
+      - path: Player_Root/Hips/Spine.0/Spine.1/Spine.2/Shoulder.R/upper_arm.R/forearm.R/hand.R/f_index.01.R/f_index.02.R/f_index.03.R
+        weight: 1
+      - path: Player_Root/Hips/Spine.0/Spine.1/Spine.2/Shoulder.R/upper_arm.R/forearm.R/hand.R/f_index.01.R/f_index.02.R/f_index.03.R/f_index.03.R_end
+        weight: 1
+      - path: Player_Root/Hips/Spine.0/Spine.1/Spine.2/Shoulder.R/upper_arm.R/forearm.R/hand.R/f_middle.01.R
+        weight: 1
+      - path: Player_Root/Hips/Spine.0/Spine.1/Spine.2/Shoulder.R/upper_arm.R/forearm.R/hand.R/f_middle.01.R/f_middle.02.R
+        weight: 1
+      - path: Player_Root/Hips/Spine.0/Spine.1/Spine.2/Shoulder.R/upper_arm.R/forearm.R/hand.R/f_middle.01.R/f_middle.02.R/f_middle.03.R
+        weight: 1
+      - path: Player_Root/Hips/Spine.0/Spine.1/Spine.2/Shoulder.R/upper_arm.R/forearm.R/hand.R/f_middle.01.R/f_middle.02.R/f_middle.03.R/f_middle.03.R_end
+        weight: 1
+      - path: Player_Root/Hips/Spine.0/Spine.1/Spine.2/Shoulder.R/upper_arm.R/forearm.R/hand.R/f_pinky.01.R
+        weight: 1
+      - path: Player_Root/Hips/Spine.0/Spine.1/Spine.2/Shoulder.R/upper_arm.R/forearm.R/hand.R/f_pinky.01.R/f_pinky.02.R
+        weight: 1
+      - path: Player_Root/Hips/Spine.0/Spine.1/Spine.2/Shoulder.R/upper_arm.R/forearm.R/hand.R/f_pinky.01.R/f_pinky.02.R/f_pinky.03.R
+        weight: 1
+      - path: Player_Root/Hips/Spine.0/Spine.1/Spine.2/Shoulder.R/upper_arm.R/forearm.R/hand.R/f_pinky.01.R/f_pinky.02.R/f_pinky.03.R/f_pinky.03.R_end
+        weight: 1
+      - path: Player_Root/Hips/Spine.0/Spine.1/Spine.2/Shoulder.R/upper_arm.R/forearm.R/hand.R/f_ring.01.R
+        weight: 1
+      - path: Player_Root/Hips/Spine.0/Spine.1/Spine.2/Shoulder.R/upper_arm.R/forearm.R/hand.R/f_ring.01.R/f_ring.02.R
+        weight: 1
+      - path: Player_Root/Hips/Spine.0/Spine.1/Spine.2/Shoulder.R/upper_arm.R/forearm.R/hand.R/f_ring.01.R/f_ring.02.R/f_ring.03.R
+        weight: 1
+      - path: Player_Root/Hips/Spine.0/Spine.1/Spine.2/Shoulder.R/upper_arm.R/forearm.R/hand.R/f_ring.01.R/f_ring.02.R/f_ring.03.R/f_ring.03.R_end
+        weight: 1
+      - path: Player_Root/Hips/Spine.0/Spine.1/Spine.2/Shoulder.R/upper_arm.R/forearm.R/hand.R/thumb.01.R
+        weight: 1
+      - path: Player_Root/Hips/Spine.0/Spine.1/Spine.2/Shoulder.R/upper_arm.R/forearm.R/hand.R/thumb.01.R/thumb.02.R
+        weight: 1
+      - path: Player_Root/Hips/Spine.0/Spine.1/Spine.2/Shoulder.R/upper_arm.R/forearm.R/hand.R/thumb.01.R/thumb.02.R/thumb.03.R
+        weight: 1
+      - path: Player_Root/Hips/Spine.0/Spine.1/Spine.2/Shoulder.R/upper_arm.R/forearm.R/hand.R/thumb.01.R/thumb.02.R/thumb.03.R/thumb.03.R_end
+        weight: 1
+      - path: Player_Root/Hips/Spine.0/Spine.1/Spine.2/Shoulder.R/upper_arm.R/forearm.R/hand.R/Weapon.R
+        weight: 1
+      - path: Player_Root/Hips/Spine.0/Spine.1/Spine.2/Shoulder.R/upper_arm.R/forearm.R/hand.R/Weapon.R/Handle.R
+        weight: 1
+      - path: Player_Root/Hips/Spine.0/Spine.1/Spine.2/Shoulder.R/upper_arm.R/forearm.R/hand.R/Weapon.R/Handle.R/Handle.R_end
+        weight: 1
+      - path: Player_Root/Hips/Spine.0/Spine.1/Spine.2/Shoulder.R/upper_arm.R/forearm.R/hand.R/Weapon.R/Weapon.L
+        weight: 1
+      - path: Player_Root/Hips/Spine.0/Spine.1/Spine.2/Shoulder.R/upper_arm.R/forearm.R/hand.R/Weapon.R/WeaponExtra0.R
+        weight: 1
+      - path: Player_Root/Hips/Spine.0/Spine.1/Spine.2/Shoulder.R/upper_arm.R/forearm.R/hand.R/Weapon.R/WeaponExtra0.R/WeaponExtra0.R_end
+        weight: 1
+      - path: Player_Root/Hips/Spine.0/Spine.1/Spine.2/Shoulder.R/upper_arm.R/forearm.R/hand.R/Weapon.R/WeaponExtra1.R
+        weight: 1
+      - path: Player_Root/Hips/Spine.0/Spine.1/Spine.2/Shoulder.R/upper_arm.R/forearm.R/hand.R/Weapon.R/WeaponExtra1.R/WeaponExtra1.R_end
+        weight: 1
+      - path: Player_Root/Hips/Spine.0/Spine.1/Spine.2/Shoulder.R/upper_arm.R/forearm.R/hand.R/Weapon.R/WeaponExtra2.R
+        weight: 1
+      - path: Player_Root/Hips/Spine.0/Spine.1/Spine.2/Shoulder.R/upper_arm.R/forearm.R/hand.R/Weapon.R/WeaponExtra2.R/WeaponExtra2.R_end
+        weight: 1
+      - path: Player_Root/Hips/Upper_Leg.L
+        weight: 1
+      - path: Player_Root/Hips/Upper_Leg.L/Lower_Leg.L
+        weight: 1
+      - path: Player_Root/Hips/Upper_Leg.L/Lower_Leg.L/Foot.L
+        weight: 1
+      - path: Player_Root/Hips/Upper_Leg.L/Lower_Leg.L/Foot.L/Toes.R
+        weight: 1
+      - path: Player_Root/Hips/Upper_Leg.L/Lower_Leg.L/Foot.L/Toes.R/Toes.R_end
+        weight: 1
+      - path: Player_Root/Hips/Upper_Leg.R
+        weight: 1
+      - path: Player_Root/Hips/Upper_Leg.R/Lower_Leg.R
+        weight: 1
+      - path: Player_Root/Hips/Upper_Leg.R/Lower_Leg.R/Foot.R
+        weight: 1
+      - path: Player_Root/Hips/Upper_Leg.R/Lower_Leg.R/Foot.R/Toes.L
+        weight: 1
+      - path: Player_Root/Hips/Upper_Leg.R/Lower_Leg.R/Foot.R/Toes.L/Toes.L_end
+        weight: 1
+      - path: Player_Root/WeaponExtra.L
+        weight: 1
+      - path: Player_Root/WeaponExtra.L/WeaponExtra.L_end
+        weight: 1
+      - path: Player_Root/WeaponExtra.R
+        weight: 1
+      - path: Player_Root/WeaponExtra.R/WeaponExtra.R_end
+        weight: 1
+      - path: Vanity1
+        weight: 1
+      - path: Vanity2
+        weight: 1
+      - path: Vanity3
+        weight: 1
+      - path: Vanity4
+        weight: 1
+      maskType: 1
+      maskSource: {fileID: 31900000, guid: aad1d21a27deacc4d817f69096e746e8, type: 2}
       additiveReferencePoseFrame: 0
     - serializedVersion: 16
       name: Player_Root|AuraWalk
@@ -278,11 +416,69 @@ ModelImporter:
       maskSource: {instanceID: 0}
       additiveReferencePoseFrame: 0
     - serializedVersion: 16
-      name: Player_Root|DiagonalWalk
-      takeName: Player_Root|DiagonalWalk
-      internalID: 6260171548904570779
+      name: Player_Root|LedgeCatch
+      takeName: Player_Root|LedgeCatch
+      internalID: -6153386381271385133
       firstFrame: 0
-      lastFrame: 62
+      lastFrame: 25
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 0
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask: []
+      maskType: 3
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 0
+    - serializedVersion: 16
+      name: Player_Root|LedgeFreeze
+      takeName: Player_Root|LedgeFreeze
+      internalID: -646442387799588083
+      firstFrame: 0
+      lastFrame: 11
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 0
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask: []
+      maskType: 3
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 0
+    - serializedVersion: 16
+      name: Player_Root|LedgeJump
+      takeName: Player_Root|LedgeJump
+      internalID: -5767257705365526752
+      firstFrame: 0
+      lastFrame: 27
       wrapMode: 0
       orientationOffsetY: 0
       level: 0
@@ -402,7 +598,7 @@ ModelImporter:
     useSRGBMaterialColor: 1
     sortHierarchyByName: 1
     importPhysicalCameras: 1
-    importVisibility: 0
+    importVisibility: 1
     importBlendShapes: 1
     importCameras: 1
     importLights: 1
@@ -412,7 +608,7 @@ ModelImporter:
     generateSecondaryUV: 0
     useFileUnits: 1
     keepQuads: 0
-    weldVertices: 0
+    weldVertices: 1
     bakeAxisConversion: 0
     preserveHierarchy: 0
     skinWeightsMode: 0
@@ -437,7 +633,7 @@ ModelImporter:
     normalSmoothAngle: 60
     normalImportMode: 0
     tangentImportMode: 3
-    normalCalculationMode: 1
+    normalCalculationMode: 4
     legacyComputeAllNormalsFromSmoothingGroupsWhenMeshHasBlendShapes: 0
     blendShapeNormalImportMode: 1
     normalSmoothingSource: 0

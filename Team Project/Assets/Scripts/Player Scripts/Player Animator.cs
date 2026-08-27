@@ -22,6 +22,8 @@ public class PlayerAnimator : MonoBehaviour
     public float SmoothingSpeed = 3;
     public float RootSmoothingSpeed = 6;
 
+    public bool IKEnabled = true;
+
     public float RayCastOffset = 0.5f;
 
     //public AvatarIKGoal
@@ -107,9 +109,16 @@ public class PlayerAnimator : MonoBehaviour
 
     void OnAnimatorIK(int layerIndex)
     {
-        FootIk(AvatarIKGoal.LeftFoot);
-        FootIk(AvatarIKGoal.RightFoot);
+        if (IKEnabled)
+        {
+            FootIk(AvatarIKGoal.LeftFoot);
+            FootIk(AvatarIKGoal.RightFoot);
+        }
+    }
 
+    public void SetIK(bool Condition)
+    {
+        IKEnabled = Condition;
     }
     
     void FootIk(AvatarIKGoal foot)
