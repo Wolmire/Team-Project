@@ -11,6 +11,10 @@ public class FallState : PlayerState
 
     public override void Tick()
     {
+        if (movement.OnLedge) playerStateMachine.SwitchState(new LedgeState(playerCore, movement, input, playerStateMachine, weaponCore, targetLock, equipManager));
+
+        movement.Gravity();
+
         if (movement.isGrounded()) playerStateMachine.SwitchState(new IdleState(playerCore, movement, input, playerStateMachine, weaponCore, targetLock, equipManager));
 
         movement.ApplyMovement(movement.AirSpeedMultiplier);

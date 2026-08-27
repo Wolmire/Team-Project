@@ -2468,7 +2468,7 @@ Transform:
   m_GameObject: {fileID: 519870366}
   serializedVersion: 2
   m_LocalRotation: {x: 0.5, y: 0.5, z: 0.5, w: 0.5}
-  m_LocalPosition: {x: -1.16, y: 2.658, z: -0.41}
+  m_LocalPosition: {x: 3.543, y: 2.658, z: -10.454151}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -8377,7 +8377,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1720471800}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.0016170962, y: 0.9943224, z: -0.0152704315, w: 0.10529598}
+  m_LocalRotation: {x: 0.0016170967, y: 0.9943224, z: -0.0152704315, w: 0.105296}
   m_LocalPosition: {x: -6.9971347, y: 2.37874, z: 4.3586807}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -20174,7 +20174,7 @@ Transform:
   m_GameObject: {fileID: 2145930463}
   serializedVersion: 2
   m_LocalRotation: {x: 1.1102231e-17, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -2.2463295, y: 0.80766034, z: -1.2679262}
+  m_LocalPosition: {x: 2.4566705, y: 0.80766034, z: -11.3120775}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -22668,8 +22668,7 @@ MonoBehaviour:
     m_Bits: 4294967295
   GravityStrength: 9.81
   OnLedge: 0
-  Offset: {x: 0.48, y: -0.76}
-  LedgeClimbTime: 0.1
+  Offset: {x: 0, y: 0}
 --- !u!1 &3271839772617834237
 GameObject:
   m_ObjectHideFlags: 0
@@ -24265,7 +24264,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2311720106977727093}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.0016170962, y: 0.99432236, z: -0.015270431, w: 0.10529598}
+  m_LocalRotation: {x: 0.0016170968, y: 0.99432236, z: -0.0152704315, w: 0.10529601}
   m_LocalPosition: {x: -7.9591546, y: 2.37874, z: 4.2905507}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0

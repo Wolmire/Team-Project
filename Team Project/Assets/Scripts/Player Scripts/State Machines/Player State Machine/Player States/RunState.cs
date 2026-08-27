@@ -12,6 +12,8 @@ public class RunState : PlayerState
 
     public override void Tick()
     {
+        if (movement.OnLedge) playerStateMachine.SwitchState(new LedgeState(playerCore, movement, input, playerStateMachine, weaponCore, targetLock, equipManager));
+
         if (!input.Sprint) playerStateMachine.SwitchState(new WalkState(playerCore, movement, input, playerStateMachine, weaponCore, targetLock, equipManager));
         if (input.MoveInput.sqrMagnitude < 0.01f) playerStateMachine.SwitchState(new IdleState(playerCore, movement, input, playerStateMachine, weaponCore, targetLock, equipManager));
         if (!movement.isGrounded()) playerStateMachine.SwitchState(new FallState(playerCore, movement, input, playerStateMachine, weaponCore, targetLock, equipManager));
@@ -22,7 +24,9 @@ public class RunState : PlayerState
             playerStateMachine.SwitchState(new JumpState(playerCore, movement, input, playerStateMachine, weaponCore, targetLock, equipManager));
         }
 
+
         movement.Move(input.MoveInput, targetLock.activeTarget, targetLock.GetActiveCamera(), targetLock.currentTarget);
+        movement.Gravity();
         movement.ApplyMovement(movement.RunSpeedMultiplier);
                 
         playerCore.currentStamina -= playerCore.runStaminaCost * Time.deltaTime;

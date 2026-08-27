@@ -1,4 +1,6 @@
 using System.Collections;
+using DG.Tweening;
+using UnityEditor.Experimental.GraphView;
 using UnityEngine;
 
 public class PlayerMovement : MonoBehaviour
@@ -11,6 +13,7 @@ public class PlayerMovement : MonoBehaviour
     public float CrouchSpeedMultiplier = 0.75f;
     public float AirSpeedMultiplier = 1f;
     public float SmoothSpeed = 10f;
+
 
     public float baseJumpHeight = 1.5f;
     public float jumpHeightMultiplier = 1.0f;
@@ -32,9 +35,15 @@ public class PlayerMovement : MonoBehaviour
     public Vector3 AnimatorDirection;   
 
     public LayerMask ceilingLayer;
-
+    public LayerMask LedgeMask;
     public float GravityStrength;
+    public bool OnLedge = false;
+    public Vector2 Offset;
 
+    Vector3 LedgeClimbPoint;
+    Vector3 LedgeClimbDirection;
+
+    public float LedgeClimbTime;
     public void Awake()
     {
         DefaultHeight = MController.height;
@@ -42,7 +51,7 @@ public class PlayerMovement : MonoBehaviour
 
     public void Update()
     {
-        Gravity();
+        //UpwardMovement();
         PlayerAnim.SetAnimFloat("X", AnimatorDirection.x);
         PlayerAnim.SetAnimFloat("Y", AnimatorDirection.z);
     }
@@ -86,6 +95,14 @@ public class PlayerMovement : MonoBehaviour
 
         RefinedMovementDirection.y = 0;
     }
+
+    public void OnDrawGizmos()
+    {
+        Gizmos.color = Color.yellow;
+        Gizmos.DrawSphere(LedgeClimbPoint, .1f);
+
+    }
+
     private void FaceLockedOnTarget(Transform targetPosition)
     {
         if (targetPosition == null) return;
@@ -100,10 +117,92 @@ public class PlayerMovement : MonoBehaviour
             transform.rotation = Quaternion.Slerp(transform.rotation, targetRotation, 15 * Time.deltaTime);
         }
     }
+    //public void Jump()
+    //{
+    //    float jumpHeight = baseJumpHeight * jumpHeightMultiplier;
+    //    velocity = Mathf.Sqrt(jumpHeight * 2f * GravityStrength);
+    //}
+
+
+    public void LedgeInitiate()
+    {
+        PlayerAnim.SetAnimTrigger("LedgeInitiate");
+        Vector3 OffSetPosition = new Vector3(LedgeClimbDirection.x, LedgeClimbDirection.y + Offset.y, LedgeClimbDirection.z + Offset.x);
+        
+        transform.DOMove(LedgeClimbPoint + OffSetPosition, LedgeClimbTime)
+        .SetEase(Ease.InExpo)
+        .OnComplete(() =>
+        {
+            transform.rotation = Quaternion.Euler(LedgeClimbDirection.x, LedgeClimbDirection.y + 180f, LedgeClimbDirection.z);
+            AnimationBool("OnLedge", true);
+        });
+    }
+    public void LedgeMove(Vector2 Actions)
+    {
+        Debug.LogWarning("IM HERE");
+        //if()
+    }
+
+    public void Climbing()
+    {
+
+    }
+
     public void Jump()
     {
-        float jumpHeight = baseJumpHeight * jumpHeightMultiplier;
-        velocity = Mathf.Sqrt(jumpHeight * 2f * GravityStrength);
+        Debug.DrawRay(ClimbRayPosition(), Vector3.down * RayLength(), Color.green);
+        if (Physics.Raycast(ClimbRayPosition(), Vector3.down, out RaycastHit ClimbRayHit, RayLength()))
+        {
+            Debug.Log("CLIMBABLE");
+        }
+        else
+        {
+            Debug.DrawRay(LedgeRayPosition(), transform.forward * RayLength(), Color.red);
+            if (Physics.Raycast(LedgeRayPosition(), transform.forward, out RaycastHit WallRayhit, RayLength(), LedgeMask))
+            {
+                Vector3 RayPosition = WallRayhit.point + WallRayhit.normal * 0.01f;
+
+                Debug.DrawRay(RayPosition, Vector3.up * RayLength(), Color.blue);
+                if (Physics.Raycast(RayPosition, Vector3.up, out RaycastHit LedgeDetection, RayLength()))
+                {
+                    //transform.rotation = Quaternion.LookRotation(LedgeDetection.normal);
+
+                    LedgeClimbPoint = LedgeDetection.point;
+                    LedgeClimbDirection = LedgeDetection.normal;
+                    OnLedge = true;
+
+                }
+                else
+                {
+                }
+                Debug.Log("Ledge");
+
+            }
+            else
+            {
+                float jumpHeight = baseJumpHeight * jumpHeightMultiplier;
+                velocity = Mathf.Sqrt(jumpHeight * 2f * GravityStrength);
+            }
+        }
+    }
+
+    public void SetIKFromHere(bool Set)
+    {
+        PlayerAnim.SetIK(Set);
+    }
+
+    Vector3 LedgeRayPosition()
+    {
+        return transform.position + transform.up;
+    }
+
+     Vector3 ClimbRayPosition()
+    {
+        return transform.position + transform.forward + transform.up * 2;
+    }
+    float RayLength()
+    {
+        return 2;
     }
     public IEnumerator Dash()
     {
