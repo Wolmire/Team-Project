@@ -1,11 +1,16 @@
-using System.Collections;
 using DG.Tweening;
+using System.Collections;
+using Unity.VisualScripting;
 using UnityEditor.Experimental.GraphView;
 using UnityEngine;
+using UnityEngine.EventSystems;
 
 public class PlayerMovement : MonoBehaviour
 {
     public CharacterController MController;
+
+    [Header("Default")]
+
 
     public float MovementSpeed = 1.0f;
     public float WalkSpeedMultiplier = 1.0f;
@@ -14,36 +19,63 @@ public class PlayerMovement : MonoBehaviour
     public float AirSpeedMultiplier = 1f;
     public float SmoothSpeed = 10f;
 
+    [Header("Jump")]
+
 
     public float baseJumpHeight = 1.5f;
     public float jumpHeightMultiplier = 1.0f;
+
+    [Header("Dash")]
 
     public float baseDashDistance = 2.5f;
     public float dashDistanceMultiplier = 1.0f;
     public float dashDuration = 0.5f;
     public float dashDurationMultiplier = 1f;
-    public bool isDashing = false;
+    [HideInInspector] public bool isDashing = false;
 
-    float DefaultHeight;
+    [Header("Crouch")]
+
+
     public float CrouchHeight = 1.2f;
+
     [HideInInspector] public Vector3 RawMovementDirection;
     [HideInInspector] public Vector3 RefinedMovementDirection;
     [HideInInspector] public float velocity;
 
     public PlayerAnimator PlayerAnim;
     
-    public Vector3 AnimatorDirection;   
+    [HideInInspector] public Vector3 AnimatorDirection;   
 
     public LayerMask ceilingLayer;
-    public LayerMask LedgeMask;
+    
     public float GravityStrength;
-    public bool OnLedge = false;
-    public Vector2 Offset;
+
+
+    [Header("Ledge")]
+
+    public Vector2 LedgeOffset;
+
+    public LayerMask LedgeMask;
+
+    [HideInInspector] public bool OnLedge = false;
+
+    public float LedgeClimbTime;
+
+    public float OnLedgeRayDistance;
+
+    [Header("LocalHidden")]
 
     Vector3 LedgeClimbPoint;
     Vector3 LedgeClimbDirection;
 
-    public float LedgeClimbTime;
+    Vector3 RayPosition;
+
+    Vector3 DebugValue;
+
+    float DefaultHeight;
+
+    Vector3 LedgeOffSetPosition;
+
     public void Awake()
     {
         DefaultHeight = MController.height;
@@ -99,7 +131,18 @@ public class PlayerMovement : MonoBehaviour
     public void OnDrawGizmos()
     {
         Gizmos.color = Color.yellow;
+
+        Gizmos.color = Color.lightGreen;
+
+        Gizmos.DrawSphere(LedgeOffSetPosition, .3f);
+        Gizmos.color = Color.red;
+
+        Gizmos.DrawSphere(LedgeOffSetPosition, .3f);
+
         Gizmos.DrawSphere(LedgeClimbPoint, .1f);
+
+
+        Debug.DrawRay(LedgeRayPosition(), transform.forward * RayLength(), Color.red);
 
     }
 
@@ -123,24 +166,42 @@ public class PlayerMovement : MonoBehaviour
     //    velocity = Mathf.Sqrt(jumpHeight * 2f * GravityStrength);
     //}
 
-
+    
     public void LedgeInitiate()
     {
         PlayerAnim.SetAnimTrigger("LedgeInitiate");
-        Vector3 OffSetPosition = new Vector3(LedgeClimbDirection.x, LedgeClimbDirection.y + Offset.y, LedgeClimbDirection.z + Offset.x);
+        LedgeOffSetPosition = new Vector3(LedgeClimbDirection.x, LedgeClimbDirection.y + LedgeOffset.y, LedgeClimbDirection.z);
         
-        transform.DOMove(LedgeClimbPoint + OffSetPosition, LedgeClimbTime)
+        transform.DOMove(LedgeClimbPoint + LedgeOffSetPosition + (LedgeClimbDirection * LedgeOffset.x), LedgeClimbTime)
         .SetEase(Ease.InExpo)
         .OnComplete(() =>
         {
-            transform.rotation = Quaternion.Euler(LedgeClimbDirection.x, LedgeClimbDirection.y + 180f, LedgeClimbDirection.z);
+            transform.rotation = Quaternion.LookRotation(-LedgeClimbDirection, Vector3.up);
             AnimationBool("OnLedge", true);
         });
     }
-    public void LedgeMove(Vector2 Actions)
+    public void LedgeMove(Vector2 Direction)
     {
+
+        if(Direction.x != 0)
+        {
+            if (MController.enabled == false)
+            {
+                MController.enabled = true;
+            }
+            if (Physics.Raycast(transform.position, transform.forward, out RaycastHit LedgeHit, OnLedgeRayDistance))
+            {
+                transform.rotation = Quaternion.LookRotation(-LedgeHit.normal, Vector3.up);
+                //transform.rotation = Quaternion.LookRotation(new Vector3(LedgeHit.normal.x, LedgeHit.normal.y + 180, LedgeHit.normal.z), Vector3.up);
+            }
+            else
+            {
+                OnLedge = false;
+            }
+        }
+        Vector3 MoveDirection = transform.right * Direction.x;
+        MController.Move(MoveDirection / 100);
         Debug.LogWarning("IM HERE");
-        //if()
     }
 
     public void Climbing()
@@ -150,25 +211,25 @@ public class PlayerMovement : MonoBehaviour
 
     public void Jump()
     {
-        Debug.DrawRay(ClimbRayPosition(), Vector3.down * RayLength(), Color.green);
         if (Physics.Raycast(ClimbRayPosition(), Vector3.down, out RaycastHit ClimbRayHit, RayLength()))
         {
             Debug.Log("CLIMBABLE");
         }
         else
         {
-            Debug.DrawRay(LedgeRayPosition(), transform.forward * RayLength(), Color.red);
             if (Physics.Raycast(LedgeRayPosition(), transform.forward, out RaycastHit WallRayhit, RayLength(), LedgeMask))
             {
-                Vector3 RayPosition = WallRayhit.point + WallRayhit.normal * 0.01f;
 
-                Debug.DrawRay(RayPosition, Vector3.up * RayLength(), Color.blue);
+                RayPosition = WallRayhit.point + (WallRayhit.normal * 0.01f);
+
+                DebugValue = WallRayhit.point;
+
                 if (Physics.Raycast(RayPosition, Vector3.up, out RaycastHit LedgeDetection, RayLength()))
                 {
                     //transform.rotation = Quaternion.LookRotation(LedgeDetection.normal);
 
                     LedgeClimbPoint = LedgeDetection.point;
-                    LedgeClimbDirection = LedgeDetection.normal;
+                    LedgeClimbDirection = WallRayhit.normal;
                     OnLedge = true;
 
                 }

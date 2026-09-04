@@ -16,7 +16,7 @@ public class LedgeState : PlayerState
     public override void Tick()
     {
         if(input.MoveInput.y < -0.49f) playerStateMachine.SwitchState(new IdleState(playerCore, movement, input, playerStateMachine, weaponCore, targetLock, equipManager));
-
+        if(movement.OnLedge == false) playerStateMachine.SwitchState(new IdleState(playerCore, movement, input, playerStateMachine, weaponCore, targetLock, equipManager));
         movement.LedgeMove(input.MoveInput);
     }
     public override void Exit()
