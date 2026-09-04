@@ -46,9 +46,5 @@ public class PlayerCore : MonoBehaviour
 
         waitComplete = true;
     }
-
-
-
-
 }
  

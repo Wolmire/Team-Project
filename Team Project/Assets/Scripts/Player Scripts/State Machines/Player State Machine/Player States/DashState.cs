@@ -7,7 +7,9 @@ public class DashState : PlayerState
     public override void Enter()
     {
         Debug.Log("Entered" + playerStateMachine.CurrentState);
-        movement.StartCoroutine("Dash");
+        movement.SetMovementDirection(input.MoveInput, targetLock.activeTarget, targetLock.GetActiveCamera(), targetLock.currentTarget);
+
+        movement.StartCoroutine(movement.Dash());
         playerCore.currentStamina -= playerCore.dashStaminaCost;
     }
     public override void Tick()

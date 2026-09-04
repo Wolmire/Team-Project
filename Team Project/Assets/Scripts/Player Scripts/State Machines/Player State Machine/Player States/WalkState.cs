@@ -21,7 +21,7 @@ public class WalkState : PlayerState
             playerStateMachine.SwitchState(new JumpState(playerCore, movement, input, playerStateMachine, weaponCore, targetLock, equipManager));
         }
 
-        movement.Move(input.MoveInput, targetLock.activeTarget, targetLock.GetActiveCamera(), targetLock.currentTarget);
+        movement.SetMovementDirection(input.MoveInput, targetLock.activeTarget, targetLock.GetActiveCamera(), targetLock.currentTarget);
         movement.Gravity();
 
         movement.ApplyMovement(movement.WalkSpeedMultiplier);

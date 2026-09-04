@@ -28,6 +28,7 @@ public class PlayerMovement : MonoBehaviour
     public float CrouchHeight = 1.2f;
     [HideInInspector] public Vector3 RawMovementDirection;
     [HideInInspector] public Vector3 RefinedMovementDirection;
+    [HideInInspector] public Vector3 TargetMovementDirection;
     [HideInInspector] public float velocity;
 
     public PlayerAnimator PlayerAnim;
@@ -55,7 +56,7 @@ public class PlayerMovement : MonoBehaviour
         PlayerAnim.SetAnimFloat("X", AnimatorDirection.x);
         PlayerAnim.SetAnimFloat("Y", AnimatorDirection.z);
     }
-    public void Move(Vector2 Direction, bool Locked, GameObject camera, Transform targetPosition)
+    public void SetMovementDirection(Vector2 Direction, bool Locked, GameObject camera, Transform targetPosition)
     {
         RawMovementDirection = new Vector3(Direction.x, 0, Direction.y);
 
@@ -66,8 +67,8 @@ public class PlayerMovement : MonoBehaviour
             headingToEnemy.y = 0;
             headingToEnemy.Normalize();
             Vector3 rightRelativeVector = Vector3.Cross(Vector3.up, headingToEnemy);
-            Vector3 targetMovement = (headingToEnemy * RawMovementDirection.z) + (rightRelativeVector * RawMovementDirection.x);
-            RefinedMovementDirection = Vector3.Lerp(RefinedMovementDirection, targetMovement, SmoothSpeed * Time.deltaTime);
+            TargetMovementDirection = (headingToEnemy * RawMovementDirection.z) + (rightRelativeVector * RawMovementDirection.x);
+            RefinedMovementDirection = Vector3.Lerp(RefinedMovementDirection, TargetMovementDirection, SmoothSpeed * Time.deltaTime);
             AnimatorDirection = transform.InverseTransformDirection(RefinedMovementDirection);
 
         }
@@ -81,12 +82,12 @@ public class PlayerMovement : MonoBehaviour
             cameraForward.Normalize();
             cameraRight.Normalize();
 
-            Vector3 targetMovement = (cameraForward * RawMovementDirection.z) + (cameraRight * RawMovementDirection.x);
-            RefinedMovementDirection = Vector3.Lerp(RefinedMovementDirection, targetMovement, SmoothSpeed * Time.deltaTime);
+            TargetMovementDirection = (cameraForward * RawMovementDirection.z) + (cameraRight * RawMovementDirection.x);
+            RefinedMovementDirection = Vector3.Lerp(RefinedMovementDirection, TargetMovementDirection, SmoothSpeed * Time.deltaTime);
 
             if (RawMovementDirection.sqrMagnitude > 0.001f)
             {
-                Quaternion freeRotation = Quaternion.LookRotation(targetMovement);
+                Quaternion freeRotation = Quaternion.LookRotation(TargetMovementDirection);
                 transform.rotation = Quaternion.Slerp(transform.rotation, freeRotation, 15 * Time.deltaTime);
             }
             AnimatorDirection.z = RefinedMovementDirection.normalized.magnitude;
@@ -204,15 +205,16 @@ public class PlayerMovement : MonoBehaviour
     {
         return 2;
     }
+
     public IEnumerator Dash()
     {
         isDashing = true;
-        
+
         float startTime = Time.time;
         float dashDistance = baseDashDistance * dashDistanceMultiplier;
         float dashSpeed = dashDistance / (dashDuration * dashDurationMultiplier);
-        Vector3 dashDirection = new Vector3(RefinedMovementDirection.x, 0, RefinedMovementDirection.z).normalized;
-        
+        Vector3 dashDirection = new Vector3(TargetMovementDirection.x, 0, TargetMovementDirection.z);
+
         while (Time.time < startTime + (dashDuration * dashDurationMultiplier))
         {
             MController.Move(dashDirection * dashSpeed * Time.deltaTime);

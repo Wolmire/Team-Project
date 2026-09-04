@@ -14,7 +14,7 @@ public class CrouchWalkState : PlayerState
     {
         if (input.MoveInput.sqrMagnitude < 0.01f) playerStateMachine.SwitchState(new CrouchState(playerCore, movement, input, playerStateMachine, weaponCore, targetLock, equipManager));
 
-        movement.Move(input.MoveInput, targetLock.activeTarget, targetLock.GetActiveCamera(), targetLock.currentTarget);
+        movement.SetMovementDirection(input.MoveInput, targetLock.activeTarget, targetLock.GetActiveCamera(), targetLock.currentTarget);
         movement.ApplyMovement(movement.CrouchSpeedMultiplier);
 
 

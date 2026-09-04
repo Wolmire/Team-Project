@@ -25,7 +25,7 @@ public class RunState : PlayerState
         }
 
 
-        movement.Move(input.MoveInput, targetLock.activeTarget, targetLock.GetActiveCamera(), targetLock.currentTarget);
+        movement.SetMovementDirection(input.MoveInput, targetLock.activeTarget, targetLock.GetActiveCamera(), targetLock.currentTarget);
         movement.Gravity();
         movement.ApplyMovement(movement.RunSpeedMultiplier);
                 
